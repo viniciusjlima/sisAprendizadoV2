@@ -1,0 +1,20 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+        Olá @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "Login", title = "Manage" })!
+        Seu id é: @ViewBag.IdUsuarioAutenticado
+@ViewBag.NomePessoa
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="/Home/Logoff" class="Login">Sair</a>
+        }
+    </text>
+} 
+
+
+
+@*
+else {
+    <ul>
+        <li>@Html.ActionLink("Entrar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@

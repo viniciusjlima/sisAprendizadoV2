@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Aprendizado.Entity.Telefone>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Lista de Telefones</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Edit", new { id = 0 })
+</p>
+<table>
+    <tr>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Numero
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTelefone.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idTelefone }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idTelefone }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+        </td>
+    </tr>
+}
+
+</table>

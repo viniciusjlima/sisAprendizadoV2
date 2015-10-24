@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Aprendizado.Entity.Pergunta_Atividade>
+
+@{
+    ViewBag.Title = "ListaPerguntaAtividade";
+}
+
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Atividades <small>- Listas de Pergutas -</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                     <tr>
+
+        <th>
+            Identificação
+        </th>
+        <th>
+            Titulo
+        </th>
+        <th>
+            Enunciado
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Pergunta.Identificacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pergunta.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pergunta.Enunciado)
+        </td>
+        <td>
+            @Html.ActionLink("Remover Pergunta", "DeletePerguntaAtividade", new { idPerguntaAtividade = item.idPerguntaAtividade }, new { @onclick = "return confirm ('Confirma exclusão?');" })
+        </td>
+    </tr>
+}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>

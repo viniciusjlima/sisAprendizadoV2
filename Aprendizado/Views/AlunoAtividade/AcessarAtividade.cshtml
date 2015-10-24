@@ -1,0 +1,41 @@
+﻿@model Aprendizado.Entity.Aluno_Atividade
+
+@{
+    ViewBag.Title = "AcessarAtividade";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Editar Atividade</h4>
+        <hr />
+
+
+        @Html.HiddenFor(model => model.idAlunoAtividade)
+        @Html.HiddenFor(model => model.idAluno)
+        @Html.HiddenFor(model => model.idAtividade)
+
+        
+        @if(Model.idAlunoAtividade !=0 )
+        {
+            <p>Veja no link abaixo suas respostas: </p>
+                
+            @Html.ActionLink("Respostas", "Respostas", new { idAlunoAtividade = Model.idAlunoAtividade })
+        }else {
+
+        <p>Voce aluno com id @Html.DisplayFor(model => model.idAluno) deseja realizar a atividade de id @Html.DisplayFor(model => model.idAtividade) ?</p>
+        <input type="submit" value="Realizar Atividade"  class="btn btn-default" onclick="    return validar();"/> 
+        }
+
+<br />   
+        <br />  
+        <br />  
+        <br />  
+        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  
+
+        </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

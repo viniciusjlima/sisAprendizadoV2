@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Aprendizado.Entity.NivelDificuldade>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Disciplinas - Professores de @ViewBag.DescricaoDisciplina
+                </h1>
+                <h2><small>@Html.ActionLink("Nova Cidade", "Edit", new { id = 0 })</small></h2>
+                    <br />
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                     <tr>
+
+
+        <th>
+            Descrição
+        </th>
+        <th></th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idNivelDificuldade }) </td><td>
+            @Html.ActionLink("Deletar", "Delete", new { id = item.idNivelDificuldade }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+        </td>
+    </tr>
+}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model Aprendizado.Entity.Curso
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>ViewBag.Titulo</h2>
+
+@using (Html.BeginForm()) {
+
+    <fieldset>
+        <legend>Curso</legend>
+
+        @Html.HiddenFor(model => model.idCurso)
+
+        <div class="editor-label">
+            Descrição
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descricao)
+        </div>
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar()" />
+        </p>
+    </fieldset>
+}
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@ViewBag.Erro');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#Descricao").val() == "") {
+            alert('A descrição é obrigatória');
+            return false;
+        }
+        return true;
+    }
+</script>

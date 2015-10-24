@@ -1,0 +1,58 @@
+﻿@model Aprendizado.Entity.Turma
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <h4>Editar Turma</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.idTurma)
+
+        
+        <div class="form-group">
+	        @Html.LabelFor(model => model.Curso, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("idCurso")
+	        </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        @if (Model.idTurma != 0)
+        {
+        @Html.ActionLink("Disciplinas da Turma", "ListaDisciplinaTurma", new { idTurma = Model.idTurma })
+        }
+        <br />   
+        <br />  
+        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Save"  class="btn btn-default" onclick="    return validar();"/> 
+
+        </div>
+}
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@ViewBag.Erro');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#Identificacao").val() == "") {
+            alert('A identificação é obrigatória');
+            return false;
+        }
+
+        return true;
+    }
+</script>

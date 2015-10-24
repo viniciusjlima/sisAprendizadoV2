@@ -1,0 +1,72 @@
+﻿@model Aprendizado.Entity.Aluno
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+
+    <fieldset>
+        <legend>Pessoa</legend>
+
+        @Html.HiddenFor(model => model.idPessoa)
+        @Html.HiddenFor(model => model.idAluno)
+
+        <div class="editor-label">
+            <b>Turma</b>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTurma")
+        </div>
+
+        <div class="editor-label">
+            <b>Matricula</b>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Matricula)
+        </div>
+
+        
+
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Error)');
+    </script>
+}
+
+<script>
+    function validar() {
+        
+        if ($("#idTurma").val() == "") {
+            alert("Informe uma Turma");
+            return false;
+        }
+
+        if ($("#Matricula").val() == "") {
+            alert("Informe uma Matricula");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

@@ -1,0 +1,139 @@
+﻿@model Aprendizado.Entity.Endereco
+
+@{
+    ViewBag.Title = "EditEndereco";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <h4>Informar endereço do aluno @ViewBag.nome</h4>
+        <hr />
+    
+        @Html.HiddenFor(model => model.idEndereco)
+        @Html.HiddenFor(model => model.idPessoa)
+        
+        <div class="form-group">
+	        @Html.LabelFor(model => model.TipoEndereco, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("idTipoEndereco")
+	        </div>
+        </div>
+        
+        <div class="form-group">
+	        @Html.LabelFor(model => model.Cidade.Estado, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("UF")
+	        </div>
+        </div>
+
+        <div id="divCidades">
+            <div class="form-group">
+	        @Html.LabelFor(model => model.Cidade, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("idCidade")
+	        </div>
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CEP, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Logradouro, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Logradouro, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Complemento, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />   
+        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/> 
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $("#divCidades").hide();
+
+    $("#UF").change(function () {
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaCidades",
+            data: { estado: $("#UF").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["cidades"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idCidade").html(html);
+                $("#divCidades").show();
+            }
+        });
+
+    });
+</script>
+
+ <script>
+     function validar() {
+
+
+         if ($("#UF").val() == "") {
+             alert("Selecione um estado");
+             return false;
+         }
+
+         if ($("#idCidade").val() == "") {
+             alert("Selecione uma Cidade");
+             return false;
+         }
+
+         if ($("#CEP").val() == "") {
+             alert("Informe um CEP");
+             return false;
+         }
+
+         if ($("#Logradouro").val() == "") {
+             alert("Informe um Logradouro");
+             return false;
+         }
+
+         if ($("#Numero").val() == "") {
+             alert("Informe um Número");
+             return false;
+         }
+
+         if ($("#Complemento").val() == "") {
+             alert("Informe um Complemento");
+             return false;
+         }
+
+         return true;
+     }
+
+</script>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Aprendizado.Entity.Professor_Disciplina>
+
+@{
+    ViewBag.Title = "ListaProfessorDisciplina";
+}
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header"><small>Gerenciamento de Disciplinas - Professores de @ViewBag.DescricaoDisciplina</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                     <tr>
+
+
+        <th>
+            Disciplina
+        </th>
+        <th>
+            Professor
+        </th>
+        <th>
+            Turma
+        </th>
+
+        <th></th><th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Professor.Pessoa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turma.Identificacao)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Remover Professor", "DeleteProfessorDisciplina", new { idProfessorDisciplina = item.idProfessorDisciplina }, new { @onclick = "return confirm ('Confirma exclusão?');" })
+        </td>
+    </tr>
+}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>

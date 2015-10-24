@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Aprendizado.Entity.Pergunta>
+
+@{
+    ViewBag.Title = "Perguntas";
+}
+
+<h2>Perguntas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idTema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idNivelDificuldade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enunciado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ater')
+        </th>
+        @item
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alternativa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idNivelDificuldade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enunciado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identificacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idPergunta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idPergunta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idPergunta })
+        </td>
+
+    </tr>
+}
+
+</table>

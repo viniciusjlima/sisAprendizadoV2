@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Aprendizado.Entity.Pergunta>
+
+<table>
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enunciado)
+        </td>
+        <td>
+            <input type="button" value="Responder" 
+                onclick="pergunta(@item.idPergunta);" />
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    function pergunta(id) {
+        editar(id);
+    }
+</script>

@@ -1,0 +1,59 @@
+﻿@model Aprendizado.Entity.Professor
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+
+    <fieldset>
+        <legend>Pessoa</legend>
+
+        @Html.HiddenFor(model => model.idPessoa)
+        @Html.HiddenFor(model => model.idProfessor)
+
+
+        <div class="editor-label">
+            <b>Especialização</b>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Especializacao)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "IndexProfessor")
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Error)');
+    </script>
+}
+
+<script>
+    function validar() {
+        
+        if ($("#Especializacao").val() == "") {
+            alert("Informe uma Especialização");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

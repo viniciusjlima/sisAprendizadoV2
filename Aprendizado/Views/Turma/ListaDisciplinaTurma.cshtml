@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Aprendizado.Entity.Professor_Disciplina>
+
+@{
+    ViewBag.Title = "ListaDisciplinaTurma";
+}
+
+<h2>ListaDisciplinaTurma</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idProfessor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idDisciplina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idTurma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataRegistro)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idProfessor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idDisciplina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idTurma)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataRegistro)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProfessorDisciplina }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProfessorDisciplina }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProfessorDisciplina })
+        </td>
+    </tr>
+}
+
+</table>

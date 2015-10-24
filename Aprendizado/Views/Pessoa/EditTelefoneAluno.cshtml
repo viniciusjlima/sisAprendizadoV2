@@ -1,0 +1,52 @@
+﻿@model Aprendizado.Entity.Telefone
+@{
+    ViewBag.Title = "EditTelefoneAluno";
+}
+<h2>Editar Telefone</h2>
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <legend>Endereco</legend>
+        @Html.HiddenFor(model => model.idTelefone)
+        @Html.HiddenFor(model => model.idPessoa)
+        
+        <div class="editor-label">
+            <b>Tipo</b>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTipoTelefone")
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Numero)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" onclick="return validar();"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("VoltarCliente", "ListaTelefones", new { idCliente = Model.idPessoa })
+    @Html.ActionLink("VoltarPessoa", "ListaTelefones", new { idPessoa = Model.idPessoa })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+ <script>
+     function validar() {
+
+         if ($("#Numero").val() == "") {
+             alert("Informe um Número");
+             return false;
+         }
+         return true;
+     }
+
+</script>

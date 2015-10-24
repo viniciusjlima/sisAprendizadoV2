@@ -1,0 +1,161 @@
+﻿@model Aprendizado.Entity.Aluno
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>ViewBag.Titulo</h2>
+
+@using (Html.BeginForm()) {
+
+    <fieldset>
+        <legend>Aluno</legend>
+
+        @Html.HiddenFor(model => model.idAluno)
+
+        @Html.HiddenFor(model => model.PessoaId)
+
+        @Html.HiddenFor(model => model.Pessoa.TelefoneId)
+
+        @Html.HiddenFor(model => model.Pessoa.EnderecoId)
+
+        @Html.HiddenFor(model => model.Pessoa.IdUsuario)
+
+
+        @*Usuario*@
+        <div class="editor-label">
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idPerfil")
+        </div>
+
+        <div class="editor-label">
+            Login
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Usuario.Login)
+        </div>
+
+        <div class="editor-label">
+            Senha
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Usuario.Senha)
+        </div>
+
+        @*Endereco*@
+        <div class="editor-label">
+            Estado
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UF")
+        </div>
+
+        <div class="editor-label">
+            Cidade
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CidadeId")
+        </div>
+
+        <div class="editor-label">
+            CEP
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Endereco.CEP)
+        </div>
+
+        <div class="editor-label">
+            Logradouro
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Endereco.Logradouro)
+        </div>
+
+        <div class="editor-label">
+            Numero
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Endereco.Numero)
+        </div>
+
+        <div class="editor-label">
+            Complemento
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Endereco.Complemento)
+        </div>
+
+        @*Telefone*@
+        <div class="editor-label">
+            Tipo Telefone
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTipoTelefone")
+        </div>
+
+        <div class="editor-label">
+            Telefone
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Telefone.Numero)
+        </div>
+
+        +@*Pessoa*@
+        <div class="editor-label">
+            Nome
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Nome)
+        </div>
+
+        <div class="editor-label">
+            Nascimento
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pessoa.Nascimento)
+        </div>
+
+        @*USUARIO*@
+        <div class="editor-label">
+            Turma
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTurma")
+        </div>
+
+        <div class="editor-label">
+            Matricula
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Matricula)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar()" />
+        </p>
+    </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Voltar", "Index")
+    </div>
+
+
+    @if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+        <script>
+            alert('@ViewBag.Erro');
+        </script>
+}
+
+    <script>
+        function validar() {
+            if ($("#Matricula").val() == "") {
+                alert('A Matricula é obrigatória');
+                return false;
+            }
+
+            return true;
+        }
+    </script>

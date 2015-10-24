@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AprendizadoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="AprendizadoModelStoreContainer">
+    <EntitySet Name="Alternativa" EntityType="AprendizadoModel.Store.Alternativa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Aluno" EntityType="AprendizadoModel.Store.Aluno" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Aluno_Atividade" EntityType="AprendizadoModel.Store.Aluno_Atividade" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Atividade" EntityType="AprendizadoModel.Store.Atividade" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cidade" EntityType="AprendizadoModel.Store.Cidade" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Curso" EntityType="AprendizadoModel.Store.Curso" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Disciplina" EntityType="AprendizadoModel.Store.Disciplina" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Endereco" EntityType="AprendizadoModel.Store.Endereco" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Estado" EntityType="AprendizadoModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NivelDificuldade" EntityType="AprendizadoModel.Store.NivelDificuldade" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Perfil" EntityType="AprendizadoModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pergunta" EntityType="AprendizadoModel.Store.Pergunta" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pergunta_Atividade" EntityType="AprendizadoModel.Store.Pergunta_Atividade" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoa" EntityType="AprendizadoModel.Store.Pessoa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Professor" EntityType="AprendizadoModel.Store.Professor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Professor_Disciplina" EntityType="AprendizadoModel.Store.Professor_Disciplina" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Questao_Resposta" EntityType="AprendizadoModel.Store.Questao_Resposta" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="AprendizadoModel.Store.Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Telefone" EntityType="AprendizadoModel.Store.Telefone" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tema" EntityType="AprendizadoModel.Store.Tema" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tipo" EntityType="AprendizadoModel.Store.Tipo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoEndereco" EntityType="AprendizadoModel.Store.TipoEndereco" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoTelefone" EntityType="AprendizadoModel.Store.TipoTelefone" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Turma" EntityType="AprendizadoModel.Store.Turma" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="AprendizadoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FKAlternativ980029" Association="AprendizadoModel.Store.FKAlternativ980029">
+      <End Role="Pergunta" EntitySet="Pergunta" />
+      <End Role="Alternativa" EntitySet="Alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FKAluno_Ativ208244" Association="AprendizadoModel.Store.FKAluno_Ativ208244">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="Aluno_Atividade" EntitySet="Aluno_Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAluno_Ativ783692" Association="AprendizadoModel.Store.FKAluno_Ativ783692">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Aluno_Atividade" EntitySet="Aluno_Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAluno_Ativ984710" Association="AprendizadoModel.Store.FKAluno_Ativ984710">
+      <End Role="Atividade" EntitySet="Atividade" />
+      <End Role="Aluno_Atividade" EntitySet="Aluno_Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAluno40701" Association="AprendizadoModel.Store.FKAluno40701">
+      <End Role="Turma" EntitySet="Turma" />
+      <End Role="Aluno" EntitySet="Aluno" />
+    </AssociationSet>
+    <AssociationSet Name="FKAluno899029" Association="AprendizadoModel.Store.FKAluno899029">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Aluno" EntitySet="Aluno" />
+    </AssociationSet>
+    <AssociationSet Name="FKAtividade285433" Association="AprendizadoModel.Store.FKAtividade285433">
+      <End Role="Tipo" EntitySet="Tipo" />
+      <End Role="Atividade" EntitySet="Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAtividade601822" Association="AprendizadoModel.Store.FKAtividade601822">
+      <End Role="Turma" EntitySet="Turma" />
+      <End Role="Atividade" EntitySet="Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAtividade690522" Association="AprendizadoModel.Store.FKAtividade690522">
+      <End Role="Disciplina" EntitySet="Disciplina" />
+      <End Role="Atividade" EntitySet="Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKAtividade814154" Association="AprendizadoModel.Store.FKAtividade814154">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Atividade" EntitySet="Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKCidade595219" Association="AprendizadoModel.Store.FKCidade595219">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Cidade" EntitySet="Cidade" />
+    </AssociationSet>
+    <AssociationSet Name="FKDisciplina387436" Association="AprendizadoModel.Store.FKDisciplina387436">
+      <End Role="Curso" EntitySet="Curso" />
+      <End Role="Disciplina" EntitySet="Disciplina" />
+    </AssociationSet>
+    <AssociationSet Name="FKEndereco263487" Association="AprendizadoModel.Store.FKEndereco263487">
+      <End Role="TipoEndereco" EntitySet="TipoEndereco" />
+      <End Role="Endereco" EntitySet="Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FKEndereco362332" Association="AprendizadoModel.Store.FKEndereco362332">
+      <End Role="Cidade" EntitySet="Cidade" />
+      <End Role="Endereco" EntitySet="Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FKEndereco760014" Association="AprendizadoModel.Store.FKEndereco760014">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Endereco" EntitySet="Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FKPergunta_A661303" Association="AprendizadoModel.Store.FKPergunta_A661303">
+      <End Role="Pergunta" EntitySet="Pergunta" />
+      <End Role="Pergunta_Atividade" EntitySet="Pergunta_Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKPergunta_A778576" Association="AprendizadoModel.Store.FKPergunta_A778576">
+      <End Role="Atividade" EntitySet="Atividade" />
+      <End Role="Pergunta_Atividade" EntitySet="Pergunta_Atividade" />
+    </AssociationSet>
+    <AssociationSet Name="FKPergunta396203" Association="AprendizadoModel.Store.FKPergunta396203">
+      <End Role="Tema" EntitySet="Tema" />
+      <End Role="Pergunta" EntitySet="Pergunta" />
+    </AssociationSet>
+    <AssociationSet Name="FKPergunta99368" Association="AprendizadoModel.Store.FKPergunta99368">
+      <End Role="NivelDificuldade" EntitySet="NivelDificuldade" />
+      <End Role="Pergunta" EntitySet="Pergunta" />
+    </AssociationSet>
+    <AssociationSet Name="FKProfessor_226359" Association="AprendizadoModel.Store.FKProfessor_226359">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="Professor_Disciplina" EntitySet="Professor_Disciplina" />
+    </AssociationSet>
+    <AssociationSet Name="FKProfessor_809341" Association="AprendizadoModel.Store.FKProfessor_809341">
+      <End Role="Turma" EntitySet="Turma" />
+      <End Role="Professor_Disciplina" EntitySet="Professor_Disciplina" />
+    </AssociationSet>
+    <AssociationSet Name="FKProfessor_869903" Association="AprendizadoModel.Store.FKProfessor_869903">
+      <End Role="Disciplina" EntitySet="Disciplina" />
+      <End Role="Professor_Disciplina" EntitySet="Professor_Disciplina" />
+    </AssociationSet>
+    <AssociationSet Name="FKProfessor633853" Association="AprendizadoModel.Store.FKProfessor633853">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Professor" EntitySet="Professor" />
+    </AssociationSet>
+    <AssociationSet Name="FKQuestao_Re577319" Association="AprendizadoModel.Store.FKQuestao_Re577319">
+      <End Role="Alternativa" EntitySet="Alternativa" />
+      <End Role="Questao_Resposta" EntitySet="Questao_Resposta" />
+    </AssociationSet>
+    <AssociationSet Name="FKQuestao_Re616996" Association="AprendizadoModel.Store.FKQuestao_Re616996">
+      <End Role="Pergunta" EntitySet="Pergunta" />
+      <End Role="Questao_Resposta" EntitySet="Questao_Resposta" />
+    </AssociationSet>
+    <AssociationSet Name="FKQuestao_Re701385" Association="AprendizadoModel.Store.FKQuestao_Re701385">
+      <End Role="Aluno_Atividade" EntitySet="Aluno_Atividade" />
+      <End Role="Questao_Resposta" EntitySet="Questao_Resposta" />
+    </AssociationSet>
+    <AssociationSet Name="FKTelefone320442" Association="AprendizadoModel.Store.FKTelefone320442">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Telefone" EntitySet="Telefone" />
+    </AssociationSet>
+    <AssociationSet Name="FKTelefone476788" Association="AprendizadoModel.Store.FKTelefone476788">
+      <End Role="TipoTelefone" EntitySet="TipoTelefone" />
+      <End Role="Telefone" EntitySet="Telefone" />
+    </AssociationSet>
+    <AssociationSet Name="FKTema879213" Association="AprendizadoModel.Store.FKTema879213">
+      <End Role="Disciplina" EntitySet="Disciplina" />
+      <End Role="Tema" EntitySet="Tema" />
+    </AssociationSet>
+    <AssociationSet Name="FKTurma327611" Association="AprendizadoModel.Store.FKTurma327611">
+      <End Role="Curso" EntitySet="Curso" />
+      <End Role="Turma" EntitySet="Turma" />
+    </AssociationSet>
+    <AssociationSet Name="FKUsuario624817" Association="AprendizadoModel.Store.FKUsuario624817">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FKUsuario752194" Association="AprendizadoModel.Store.FKUsuario752194">
+      <End Role="Perfil" EntitySet="Perfil" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Alternativa">
+    <Key>
+      <PropertyRef Name="idAlternativa" />
+    </Key>
+    <Property Name="idAlternativa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPergunta" Type="int" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Aluno">
+    <Key>
+      <PropertyRef Name="idAluno" />
+    </Key>
+    <Property Name="idAluno" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPessoa" Type="int" Nullable="false" />
+    <Property Name="idTurma" Type="int" Nullable="false" />
+    <Property Name="Matricula" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Aluno_Atividade">
+    <Key>
+      <PropertyRef Name="idAlunoAtividade" />
+    </Key>
+    <Property Name="idAlunoAtividade" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idAluno" Type="int" Nullable="false" />
+    <Property Name="idAtividade" Type="int" Nullable="false" />
+    <Property Name="idStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Atividade">
+    <Key>
+      <PropertyRef Name="idAtividade" />
+    </Key>
+    <Property Name="idAtividade" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idDisciplina" Type="smallint" Nullable="false" />
+    <Property Name="idTurma" Type="int" Nullable="false" />
+    <Property Name="idTipo" Type="int" Nullable="false" />
+    <Property Name="idStatus" Type="int" Nullable="false" />
+    <Property Name="Identificacao" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="DataAbertura" Type="datetime" Nullable="false" />
+    <Property Name="DataEncerramento" Type="datetime" Nullable="false" />
+    <Property Name="Titulo" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Cidade">
+    <Key>
+      <PropertyRef Name="idCidade" />
+    </Key>
+    <Property Name="idCidade" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UF" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="Descricao" Type="char" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="idCurso" />
+    </Key>
+    <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Disciplina">
+    <Key>
+      <PropertyRef Name="idDisciplina" />
+    </Key>
+    <Property Name="idDisciplina" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="idCurso" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="idEndereco" />
+    </Key>
+    <Property Name="idEndereco" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idCidade" Type="smallint" Nullable="false" />
+    <Property Name="idTipoEndereco" Type="int" Nullable="false" />
+    <Property Name="idPessoa" Type="int" Nullable="false" />
+    <Property Name="Logradouro" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="CEP" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="smallint" Nullable="false" />
+    <Property Name="Complemento" Type="char" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="UF" />
+    </Key>
+    <Property Name="UF" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NivelDificuldade">
+    <Key>
+      <PropertyRef Name="idNivelDificuldade" />
+    </Key>
+    <Property Name="idNivelDificuldade" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="idPerfil" />
+    </Key>
+    <Property Name="idPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pergunta">
+    <Key>
+      <PropertyRef Name="idPergunta" />
+    </Key>
+    <Property Name="idPergunta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idTema" Type="int" Nullable="false" />
+    <Property Name="idNivelDificuldade" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="char" Nullable="false" MaxLength="40" />
+    <Property Name="Enunciado" Type="text" Nullable="false" />
+    <Property Name="Identificacao" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Correta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pergunta_Atividade">
+    <Key>
+      <PropertyRef Name="idPerguntaAtividade" />
+    </Key>
+    <Property Name="idPerguntaAtividade" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPergunta" Type="int" Nullable="false" />
+    <Property Name="idAtividade" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="idPessoa" />
+    </Key>
+    <Property Name="idPessoa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="Nascimento" Type="date" Nullable="false" />
+    <Property Name="CPF" Type="char" Nullable="false" MaxLength="11" />
+  </EntityType>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="idProfessor" />
+    </Key>
+    <Property Name="idProfessor" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPessoa" Type="int" Nullable="false" />
+    <Property Name="Especializacao" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Professor_Disciplina">
+    <Key>
+      <PropertyRef Name="idProfessorDisciplina" />
+    </Key>
+    <Property Name="idProfessorDisciplina" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idProfessor" Type="int" Nullable="false" />
+    <Property Name="idDisciplina" Type="smallint" Nullable="false" />
+    <Property Name="idTurma" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Questao_Resposta">
+    <Key>
+      <PropertyRef Name="idQuestaoResposta" />
+    </Key>
+    <Property Name="idQuestaoResposta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idAlunoAtividade" Type="int" Nullable="false" />
+    <Property Name="idAlternativa" Type="int" Nullable="false" />
+    <Property Name="idPergunta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="idStatus" />
+    </Key>
+    <Property Name="idStatus" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Telefone">
+    <Key>
+      <PropertyRef Name="idTelefone" />
+    </Key>
+    <Property Name="idTelefone" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoTelefone" Type="tinyint" Nullable="false" />
+    <Property Name="idPessoa" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tema">
+    <Key>
+      <PropertyRef Name="idTema" />
+    </Key>
+    <Property Name="idTema" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idDisciplina" Type="smallint" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Tipo">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TipoEndereco">
+    <Key>
+      <PropertyRef Name="idTipoEndereco" />
+    </Key>
+    <Property Name="idTipoEndereco" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TipoTelefone">
+    <Key>
+      <PropertyRef Name="idTipoTelefone" />
+    </Key>
+    <Property Name="idTipoTelefone" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Turma">
+    <Key>
+      <PropertyRef Name="idTurma" />
+    </Key>
+    <Property Name="idTurma" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idCurso" Type="int" Nullable="false" />
+    <Property Name="Identificacao" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPerfil" Type="int" Nullable="false" />
+    <Property Name="idPessoa" Type="int" Nullable="false" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Senha" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <Association Name="FKAlternativ980029">
+    <End Role="Pergunta" Type="AprendizadoModel.Store.Pergunta" Multiplicity="1" />
+    <End Role="Alternativa" Type="AprendizadoModel.Store.Alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="idPergunta" />
+      </Principal>
+      <Dependent Role="Alternativa">
+        <PropertyRef Name="idPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAluno_Ativ208244">
+    <End Role="Aluno" Type="AprendizadoModel.Store.Aluno" Multiplicity="1" />
+    <End Role="Aluno_Atividade" Type="AprendizadoModel.Store.Aluno_Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="idAluno" />
+      </Principal>
+      <Dependent Role="Aluno_Atividade">
+        <PropertyRef Name="idAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAluno_Ativ783692">
+    <End Role="Status" Type="AprendizadoModel.Store.Status" Multiplicity="1" />
+    <End Role="Aluno_Atividade" Type="AprendizadoModel.Store.Aluno_Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="idStatus" />
+      </Principal>
+      <Dependent Role="Aluno_Atividade">
+        <PropertyRef Name="idStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAluno_Ativ984710">
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="1" />
+    <End Role="Aluno_Atividade" Type="AprendizadoModel.Store.Aluno_Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atividade">
+        <PropertyRef Name="idAtividade" />
+      </Principal>
+      <Dependent Role="Aluno_Atividade">
+        <PropertyRef Name="idAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAluno40701">
+    <End Role="Turma" Type="AprendizadoModel.Store.Turma" Multiplicity="1" />
+    <End Role="Aluno" Type="AprendizadoModel.Store.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turma">
+        <PropertyRef Name="idTurma" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="idTurma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAluno899029">
+    <End Role="Pessoa" Type="AprendizadoModel.Store.Pessoa" Multiplicity="1" />
+    <End Role="Aluno" Type="AprendizadoModel.Store.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="idPessoa" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="idPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAtividade285433">
+    <End Role="Tipo" Type="AprendizadoModel.Store.Tipo" Multiplicity="1" />
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Atividade">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAtividade601822">
+    <End Role="Turma" Type="AprendizadoModel.Store.Turma" Multiplicity="1" />
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turma">
+        <PropertyRef Name="idTurma" />
+      </Principal>
+      <Dependent Role="Atividade">
+        <PropertyRef Name="idTurma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAtividade690522">
+    <End Role="Disciplina" Type="AprendizadoModel.Store.Disciplina" Multiplicity="1" />
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="idDisciplina" />
+      </Principal>
+      <Dependent Role="Atividade">
+        <PropertyRef Name="idDisciplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKAtividade814154">
+    <End Role="Status" Type="AprendizadoModel.Store.Status" Multiplicity="1" />
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="idStatus" />
+      </Principal>
+      <Dependent Role="Atividade">
+        <PropertyRef Name="idStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKCidade595219">
+    <End Role="Estado" Type="AprendizadoModel.Store.Estado" Multiplicity="1" />
+    <End Role="Cidade" Type="AprendizadoModel.Store.Cidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="UF" />
+      </Principal>
+      <Dependent Role="Cidade">
+        <PropertyRef Name="UF" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKDisciplina387436">
+    <End Role="Curso" Type="AprendizadoModel.Store.Curso" Multiplicity="1" />
+    <End Role="Disciplina" Type="AprendizadoModel.Store.Disciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="idCurso" />
+      </Principal>
+      <Dependent Role="Disciplina">
+        <PropertyRef Name="idCurso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKEndereco263487">
+    <End Role="TipoEndereco" Type="AprendizadoModel.Store.TipoEndereco" Multiplicity="1" />
+    <End Role="Endereco" Type="AprendizadoModel.Store.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEndereco">
+        <PropertyRef Name="idTipoEndereco" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="idTipoEndereco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKEndereco362332">
+    <End Role="Cidade" Type="AprendizadoModel.Store.Cidade" Multiplicity="1" />
+    <End Role="Endereco" Type="AprendizadoModel.Store.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cidade">
+        <PropertyRef Name="idCidade" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="idCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKEndereco760014">
+    <End Role="Pessoa" Type="AprendizadoModel.Store.Pessoa" Multiplicity="1" />
+    <End Role="Endereco" Type="AprendizadoModel.Store.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="idPessoa" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="idPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPergunta_A661303">
+    <End Role="Pergunta" Type="AprendizadoModel.Store.Pergunta" Multiplicity="1" />
+    <End Role="Pergunta_Atividade" Type="AprendizadoModel.Store.Pergunta_Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="idPergunta" />
+      </Principal>
+      <Dependent Role="Pergunta_Atividade">
+        <PropertyRef Name="idPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPergunta_A778576">
+    <End Role="Atividade" Type="AprendizadoModel.Store.Atividade" Multiplicity="1" />
+    <End Role="Pergunta_Atividade" Type="AprendizadoModel.Store.Pergunta_Atividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atividade">
+        <PropertyRef Name="idAtividade" />
+      </Principal>
+      <Dependent Role="Pergunta_Atividade">
+        <PropertyRef Name="idAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPergunta396203">
+    <End Role="Tema" Type="AprendizadoModel.Store.Tema" Multiplicity="1" />
+    <End Role="Pergunta" Type="AprendizadoModel.Store.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tema">
+        <PropertyRef Name="idTema" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="idTema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPergunta99368">
+    <End Role="NivelDificuldade" Type="AprendizadoModel.Store.NivelDificuldade" Multiplicity="1" />
+    <End Role="Pergunta" Type="AprendizadoModel.Store.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelDificuldade">
+        <PropertyRef Name="idNivelDificuldade" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="idNivelDificuldade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKProfessor_226359">
+    <End Role="Professor" Type="AprendizadoModel.Store.Professor" Multiplicity="1" />
+    <End Role="Professor_Disciplina" Type="AprendizadoModel.Store.Professor_Disciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="idProfessor" />
+      </Principal>
+      <Dependent Role="Professor_Disciplina">
+        <PropertyRef Name="idProfessor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKProfessor_809341">
+    <End Role="Turma" Type="AprendizadoModel.Store.Turma" Multiplicity="1" />
+    <End Role="Professor_Disciplina" Type="AprendizadoModel.Store.Professor_Disciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turma">
+        <PropertyRef Name="idTurma" />
+      </Principal>
+      <Dependent Role="Professor_Disciplina">
+        <PropertyRef Name="idTurma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKProfessor_869903">
+    <End Role="Disciplina" Type="AprendizadoModel.Store.Disciplina" Multiplicity="1" />
+    <End Role="Professor_Disciplina" Type="AprendizadoModel.Store.Professor_Disciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="idDisciplina" />
+      </Principal>
+      <Dependent Role="Professor_Disciplina">
+        <PropertyRef Name="idDisciplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKProfessor633853">
+    <End Role="Pessoa" Type="AprendizadoModel.Store.Pessoa" Multiplicity="1" />
+    <End Role="Professor" Type="AprendizadoModel.Store.Professor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="idPessoa" />
+      </Principal>
+      <Dependent Role="Professor">
+        <PropertyRef Name="idPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKQuestao_Re577319">
+    <End Role="Alternativa" Type="AprendizadoModel.Store.Alternativa" Multiplicity="1" />
+    <End Role="Questao_Resposta" Type="AprendizadoModel.Store.Questao_Resposta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alternativa">
+        <PropertyRef Name="idAlternativa" />
+      </Principal>
+      <Dependent Role="Questao_Resposta">
+        <PropertyRef Name="idAlternativa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKQuestao_Re616996">
+    <End Role="Pergunta" Type="AprendizadoModel.Store.Pergunta" Multiplicity="1" />
+    <End Role="Questao_Resposta" Type="AprendizadoModel.Store.Questao_Resposta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="idPergunta" />
+      </Principal>
+      <Dependent Role="Questao_Resposta">
+        <PropertyRef Name="idPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKQuestao_Re701385">
+    <End Role="Aluno_Atividade" Type="AprendizadoModel.Store.Aluno_Atividade" Multiplicity="1" />
+    <End Role="Questao_Resposta" Type="AprendizadoModel.Store.Questao_Resposta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno_Atividade">
+        <PropertyRef Name="idAlunoAtividade" />
+      </Principal>
+      <Dependent Role="Questao_Resposta">
+        <PropertyRef Name="idAlunoAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTelefone320442">
+    <End Role="Pessoa" Type="AprendizadoModel.Store.Pessoa" Multiplicity="1" />
+    <End Role="Telefone" Type="AprendizadoModel.Store.Telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="idPessoa" />
+      </Principal>
+      <Dependent Role="Telefone">
+        <PropertyRef Name="idPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTelefone476788">
+    <End Role="TipoTelefone" Type="AprendizadoModel.Store.TipoTelefone" Multiplicity="1" />
+    <End Role="Telefone" Type="AprendizadoModel.Store.Telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTelefone">
+        <PropertyRef Name="idTipoTelefone" />
+      </Principal>
+      <Dependent Role="Telefone">
+        <PropertyRef Name="idTipoTelefone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTema879213">
+    <End Role="Disciplina" Type="AprendizadoModel.Store.Disciplina" Multiplicity="1" />
+    <End Role="Tema" Type="AprendizadoModel.Store.Tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="idDisciplina" />
+      </Principal>
+      <Dependent Role="Tema">
+        <PropertyRef Name="idDisciplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTurma327611">
+    <End Role="Curso" Type="AprendizadoModel.Store.Curso" Multiplicity="1" />
+    <End Role="Turma" Type="AprendizadoModel.Store.Turma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="idCurso" />
+      </Principal>
+      <Dependent Role="Turma">
+        <PropertyRef Name="idCurso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKUsuario624817">
+    <End Role="Pessoa" Type="AprendizadoModel.Store.Pessoa" Multiplicity="1" />
+    <End Role="Usuario" Type="AprendizadoModel.Store.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="idPessoa" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKUsuario752194">
+    <End Role="Perfil" Type="AprendizadoModel.Store.Perfil" Multiplicity="1" />
+    <End Role="Usuario" Type="AprendizadoModel.Store.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="idPerfil" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

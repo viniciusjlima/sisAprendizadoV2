@@ -1,0 +1,157 @@
+﻿@model Aprendizado.Class.cabecalhoAvaliacao
+
+@{
+    ViewBag.Title = "EditCabecalho";
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Editar Atividade</h4>
+        <hr />
+
+        <div class="form-group">
+            Curso
+	        <div class="col-md-10">
+                @Html.DropDownList("idCurso", " -- Selecione um Curso --")
+            </div>
+        </div>
+
+        <div id="divTurmas">
+            <div class="form-group">
+                Turma
+	        <div class="col-md-10">
+                @Html.DropDownList("idTurma", " -- Selecione uma turma -- ")
+            </div>
+            </div>
+        </div>
+
+        <div id="divDisciplinas">
+            <div class="form-group">
+                Disciplina
+	        <div class="col-md-10">
+                @Html.DropDownList("idDisciplina", "Selecione uma disciplina")
+            </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.DataAbertura, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataEncerramento, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+
+        <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+
+    </div>
+}
+
+<script>
+    function validar() {
+        if ($("#idDisciplina").val() == "") {
+            alert('A Disciplina é obrigatória');
+            return false;
+        }
+        if ($("#idTurma").val() == "") {
+            alert('A Turma é obrigatória');
+            return false;
+        }
+
+        if ($("#Identificacao").val() == "") {
+            alert('A Identificação é obrigatória');
+            return false;
+        }
+
+        if ($("#Titulo").val() == "") {
+            alert('O Título é obrigatório');
+            return false;
+        }
+
+        if ($("#Descricao").val() == "") {
+            alert('A Identificação é obrigatória');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+
+<script>
+    $("#divTurmas").hide();
+    $("#idCurso").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AlunoAtividade/ListaTurmas",
+            data: { curso: $("#idCurso").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["turmas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idTurma").html(html);
+                $("#divTurmas").show();
+            }
+        });
+
+    });
+</script>
+
+<script>
+    $("#divDisciplinas").hide();
+    $("#idTurma").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AlunoAtividade/ListaDisciplinas",
+            data: { curso: $("#idTurma").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["disciplinas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idDisciplina").html(html);
+                $("#divDisciplinas").show();
+            }
+        });
+
+    });
+</script>
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Aprendizado.Entity.Professor>
+
+<table>
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Especialização
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especializacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.Telefone)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idPessoa })
+        </td>
+        <td>
+            @Html.ActionLink("Excluir", "Delete", new { id=item.idPessoa })
+        </td>
+    </tr>
+    
+}
+
+</table>
+
+<script>
+    function tipoProfessor(id) {
+        editar(id);
+    }
+</script>

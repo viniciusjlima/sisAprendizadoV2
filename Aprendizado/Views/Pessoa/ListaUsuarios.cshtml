@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Aprendizado.Entity.Usuario>
+
+@{
+    ViewBag.Title = "ListaUsuarios";
+}
+
+<h2>Usuarios do @ViewBag.NomePessoa</h2>
+
+<p>
+    @Html.ActionLink("Novo", "EditUsuario", new { idUsuario = 0, idPessoa = @ViewBag.idPessoa })
+    @Html.ActionLink("Voltar", "Edit", new { id = @ViewBag.idPessoa })
+</p>
+<table>
+    <tr>
+        <th>
+            Login
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Tipo Perfil
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Perfil.Descricao)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "EditUsuario", new { idUsuario = item.idUsuario, idPessoa = @ViewBag.idPessoa }) |
+            @Html.ActionLink("Delete", "DeleteUsuario",
+                new { idUsuario = item.idUsuario }, 
+                new { @onclick = "return confirm('Confirma Exclusão?');" })
+        </td>
+    </tr>
+}
+
+</table>

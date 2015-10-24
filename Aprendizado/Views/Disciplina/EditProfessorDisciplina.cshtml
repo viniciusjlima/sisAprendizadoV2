@@ -1,0 +1,88 @@
+﻿@model Aprendizado.Entity.Professor_Disciplina
+
+@{
+    ViewBag.Title = "EditProfessorDisciplina";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <h4>Incluir Professor na disciplina</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.idProfessorDisciplina)
+
+        @*@Html.HiddenFor(model => model.idProfessor)*@
+
+        @Html.HiddenFor(model => model.idDisciplina)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Turma.Curso, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idCurso")
+            </div>
+        </div>
+
+        <div id="divTurma">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idTurma")
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Professor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idProfessor")
+            </div>
+        </div>
+
+        <br />
+        <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+        <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+
+    </div> 
+}
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Erro)');
+    </script>
+}
+
+<script>
+    //$("#divTurma").hide();
+    $("#idCurso").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaTurmas",
+            data: { estado: $("#idCurso").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["turmas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idTurma").html(html);
+                $("#divTurma").show();
+            }
+        });
+
+    });
+</script>
+<script>
+    function validar() {
+
+
+        return true;
+    }
+
+</script>

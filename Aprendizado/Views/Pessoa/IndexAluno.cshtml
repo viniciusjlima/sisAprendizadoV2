@@ -1,0 +1,65 @@
+﻿@model Aprendizado.ViewModels.AlunoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gerenciamento de Pessoas</h2>
+
+<div id="Form"> <!-- Criar a div de Form -->
+    <div class="editor-label">
+        <b>Pesquisar:</b>
+    </div>
+    <div class="editor-field">
+        @Html.Editor("q")
+    </div>
+
+    <p>
+        @Html.ActionLink("Novo Aluno", "EditPessoa", new { id = 0 })
+    </p>
+</div>
+
+<div id="Lista">
+    @Html.Partial("ListAluno", Model.tiposAluno)
+</div>
+
+<div id="Dados"></div>
+
+<script>
+
+    function carregarTabela(q) {
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "Pessoa/List",
+            data: { q: q },
+            success: function (data) {
+                $("#Lista").html(data);
+                $("#Form").show();
+                $("#Lista").show();
+                $("#Dados").hide();
+            }
+        });
+    }
+
+    function editar(id) {
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "Pessoa/Edit",
+            data: { id: id },
+            success: function (data) {
+                $("#Dados").html(data);
+                $("#Form").hide();
+                $("#Lista").hide();
+                $("#Dados").show();
+            }
+        });
+    }
+
+    $("#q").keyup(function () {
+        carregarTabela($("#q").val());
+
+    });
+
+</script>

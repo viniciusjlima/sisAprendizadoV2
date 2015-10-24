@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Aprendizado.Entity.Alternativa>
+
+@{
+    ViewBag.Title = "alternativa";
+}
+
+<h2>alternativa</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idPergunta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pergunta.Enunciado)
+        </td>
+        <td>
+            <label class="btn btn-primary">
+                @Html.RadioButtonFor(model => item.idAlternativa, "radiobutton1", new
+                {name="login"}) @item.Descricao
+            </label>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idAlternativa }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idAlternativa }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idAlternativa })
+        </td>
+    </tr>
+}
+
+</table>

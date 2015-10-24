@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Aprendizado.Entity.Aluno>
+
+<table class="table table-striped table-bordered table-hover">
+                            <thead>
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Matricula
+        </th>
+        <th>
+            Turma
+        </th>
+        <th>
+            Endereços
+        </th>
+        <th>
+            Telefones
+        </th>
+        <th>
+            Usuarios
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Matricula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turma.Identificacao)
+        </td>
+        <td>
+             @Html.ActionLink("Endereços", "ListaEnderecos", new { idPessoa = item.idPessoa })
+        </td>
+        <td>
+             @Html.ActionLink("Telefones", "ListaTelefones", new { idPessoa = item.idPessoa })
+        </td>
+        <td>
+            @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = item.idPessoa })
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditPessoa", new { id=item.idPessoa })
+        </td>
+        <td>
+            @Html.ActionLink("Excluir", "Delete", new { id=item.idPessoa })
+        </td>
+    </tr>
+    
+}
+
+</table>
+
+<script>
+    function tipoAluno(id) {
+        editar(id);
+    }
+</script>

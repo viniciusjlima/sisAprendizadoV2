@@ -1,0 +1,94 @@
+﻿@model Aprendizado.Entity.Pessoa
+
+@{
+    ViewBag.Title = "EditPessoa";
+}
+
+<h2>EditPessoa</h2>
+
+@using (Html.BeginForm()) {
+
+
+    <fieldset>
+        <legend>Pessoa</legend>
+
+        @Html.HiddenFor(model => model.idPessoa)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CPF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nascimento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nascimento)
+        </div>
+
+        @if (Model.idPessoa != 0)
+    {
+        <h4>@Html.ActionLink("Endereços", "ListaEnderecos", new { idPessoa = Model.idPessoa })
+        @Html.ActionLink("Telefones", "ListaTelefones", new { idPessoa = Model.idPessoa })
+        @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = Model.idPessoa })</h4>
+    }
+
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Error)');
+    </script>
+}
+
+<script>
+    $("#CPF").mask('000.000.000-00');
+    $("#Nascimento").mask('00/00/0000');
+</script>
+
+<script>
+    function validar() {
+        $("#CPF").mask('00000000000');
+        
+        if ($("#Nome").val() == "") {
+            alert("Informe um Nome");
+            return false;
+        }
+
+        if (($("#CPF").val() == "")||($("#CPF").val()<11)) {
+            alert("Informe um CPF");
+            return false;
+        }
+
+        if ($("#Nascimento").val() == "") {
+            alert("Informe uma data de Nascimento");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

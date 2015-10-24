@@ -1,0 +1,61 @@
+﻿@model Aprendizado.Entity.Cidade
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm()) {
+
+   <div class="form-horizontal">
+        <h4>Editar Disciplina</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.idCidade)
+
+         <div class="form-group">
+            @Html.LabelFor(model => model.Estado,  new{ @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UF")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+
+       <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <br />   
+            <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  
+            <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/> 
+          </div>
+        </div>
+    </div>
+}
+
+
+ 
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@ViewBag.Erro');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#Descricao").val() == "") {
+            alert('A descrição é obrigatória');
+            return false;
+        }
+
+        if ($("#Estado").val() == "") {
+            alert('Estado é obrigatório');
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Aprendizado.Entity.Usuario>
+
+@{
+    ViewBag.Title = "ListaUsuarios";
+}
+
+ <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">@ViewBag.NomePessoa<small>Gerenciamento de Usuarios</small>
+            </div>
+            <!-- /. ROW  -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                         <tr>
+
+
+        <th>
+            Login
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Tipo Perfil
+        </th>
+
+        <th></th>
+        <th></th>
+    </tr>
+            
+        </thead>
+                                    <tbody>
+   @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Perfil.Descricao)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "EditUsuario", new { idUsuario = item.idUsuario, idPessoa = @ViewBag.idPessoa })</td>
+            <td>
+            @Html.ActionLink("Delete", "DeleteUsuario",
+                new { idUsuario = item.idUsuario }, 
+                new { @onclick = "return confirm('Confirma Exclusão?');" })
+        </td>
+    </tr>
+}
+}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+        </div>
+    </div>

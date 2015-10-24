@@ -1,0 +1,114 @@
+﻿@model Aprendizado.Entity.Atividade
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Editar Atividade</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.idAtividade)
+
+        <div class="form-group">
+	        @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("idTurma","Selecione uma turma")
+            </div>
+        </div>
+
+        <div class="form-group">
+	        @Html.LabelFor(model => model.Disciplina, new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+		        @Html.DropDownList("idDisciplina","Selecione uma disciplina")
+	        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.DataAbertura, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataEncerramento, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div>
+            @if (Model.idAtividade != 0)
+            {
+                @Html.ActionLink("Perguntas da Atividade", "ListaPerguntaAtividade", new { idAtividade = Model.idAtividade })
+            } 
+            <br />
+<br />   
+<input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/>   
+        </div>
+</div>
+}
+
+
+ 
+ 
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@ViewBag.Erro');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#idDisciplina").val() == "") {
+            alert('A Disciplina é obrigatória');
+            return false;
+        }
+        if ($("#idTurma").val() == "") {
+            alert('A Turma é obrigatória');
+            return false;
+        }
+
+        if ($("#Identificacao").val() == "") {
+            alert('A Identificação é obrigatória');
+            return false;
+        }
+
+        if ($("#Titulo").val() == "") {
+            alert('O Título é obrigatório');
+            return false;
+        }
+
+        if ($("#Descricao").val() == "") {
+            alert('A Identificação é obrigatória');
+            return false;
+        }
+
+        return true;
+    }
+</script>

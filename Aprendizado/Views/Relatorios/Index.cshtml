@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">Perguntas respondidas erradas<small>@ViewBag.NomePessoa</small>
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            
+                            @Html.ActionLink("Respostas Erradas", "PerguntasQueOAlunoErrou", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("Respostas Certas", "PerguntasQueOAlunoAcertou", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("Temas", "Temas", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("errosPorTema", "errosPorTema", new { idAluno = ViewBag.idAluno })
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+@Html.ActionLink("Respostas Erradas", "PerguntasQueOAlunoErrou", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("Respostas Certas", "PerguntasQueOAlunoAcertou", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("Temas", "Temas", new { idAluno = ViewBag.idAluno })
+| @Html.ActionLink("errosPorTema", "errosPorTema", new { idAluno = ViewBag.idAluno })

@@ -1,0 +1,136 @@
+﻿@model Aprendizado.Entity.Endereco
+@{
+    ViewBag.Title = "EditEndereco";
+}
+<h2>Editar Endereço</h2>
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <legend>Endereco</legend>
+        @Html.HiddenFor(model => model.idEndereco)
+        @Html.HiddenFor(model => model.idPessoa)
+        
+        <div class="editor-label">
+            <b>Tipo</b>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idTipoEndereco","Selecione um tipo")
+        </div>
+        
+        <div class="editor-label">
+            <b>Estado</b>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UF")
+        </div>
+
+        <div id="divCidades">
+            <div class="editor-label">
+                <b>Cidade</b>
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("idCidade")
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CEP)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logradouro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Logradouro)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Numero)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Complemento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Complemento)
+        </div>
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Voltar", "ListaEnderecos", new { idPessoa = Model.idPessoa })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $("#divCidades").hide();
+
+    $("#UF").change(function () {
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaCidades",
+            data: { estado: $("#UF").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["cidades"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idCidade").html(html);
+                $("#divCidades").show();
+            }
+        });
+
+    });    
+</script>
+
+ <script>
+     function validar() {
+         
+
+         if ($("#UF").val() == "") {
+             alert("Selecione um estado");
+             return false;
+         }
+
+         if ($("#idCidade").val() == "") {
+             alert("Selecione uma Cidade");
+             return false;
+         }
+
+         if ($("#CEP").val() == "") {
+             alert("Informe um CEP");
+             return false;
+         }
+
+         if ($("#Logradouro").val() == "") {
+             alert("Informe um Logradouro");
+             return false;
+         }
+
+         if ($("#Numero").val() == "") {
+             alert("Informe um Número");
+             return false;
+         }
+
+         if ($("#Complemento").val() == "") {
+             alert("Informe um Complemento");
+             return false;
+         }
+
+         return true;
+     }
+
+</script>

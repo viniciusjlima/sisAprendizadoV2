@@ -1,0 +1,371 @@
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Aprendizado.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Aprendizado.pdb
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Antlr3.Runtime.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.Core.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\EntityFramework.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Newtonsoft.Json.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.Formatting.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.WebRequest.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Helpers.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Http.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Http.WebHost.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Mvc.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Optimization.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Razor.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.Razor.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\WebGrease.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\WebMatrix.Data.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\WebMatrix.WebData.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\EntityFramework.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Newtonsoft.Json.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.Formatting.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Net.Http.WebRequest.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Helpers.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Http.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Http.WebHost.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Mvc.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.Razor.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\System.Web.WebPages.Razor.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\WebMatrix.Data.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\WebMatrix.WebData.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.Core.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\obj\Debug\Aprendizado.dll
+C:\Users\Vinicius Lima\Google Drive\TCC\Sistema\Aprendizado\Aprendizado\obj\Debug\Aprendizado.pdb
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Aprendizado.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Aprendizado.pdb
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Antlr3.Runtime.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.Core.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\EntityFramework.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Newtonsoft.Json.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.Formatting.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.WebRequest.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Helpers.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Http.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Http.WebHost.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Mvc.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Optimization.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Razor.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.Razor.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\WebGrease.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\WebMatrix.Data.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\WebMatrix.WebData.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\EntityFramework.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Newtonsoft.Json.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.Formatting.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Net.Http.WebRequest.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Helpers.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Http.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Http.WebHost.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Mvc.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.Razor.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\System.Web.WebPages.Razor.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\WebMatrix.Data.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\WebMatrix.WebData.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.Core.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\obj\Debug\Aprendizado.dll
+D:\Users\vLima\Desktop\Aprendizado\Aprendizado\obj\Debug\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Antlr3.Runtime.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.Core.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\EntityFramework.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Newtonsoft.Json.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.Formatting.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.WebRequest.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Helpers.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Http.WebHost.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Mvc.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Optimization.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\WebGrease.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\WebMatrix.Data.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\WebMatrix.WebData.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\EntityFramework.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Newtonsoft.Json.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.Formatting.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Net.Http.WebRequest.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Helpers.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Http.WebHost.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Mvc.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\System.Web.WebPages.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\WebMatrix.Data.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\WebMatrix.WebData.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.Core.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\obj\Debug\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizado\Aprendizado\obj\Debug\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Antlr3.Runtime.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.Core.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\EntityFramework.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Newtonsoft.Json.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.Formatting.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.WebRequest.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Helpers.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.WebHost.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Mvc.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Optimization.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\WebGrease.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\WebMatrix.Data.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\WebMatrix.WebData.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\EntityFramework.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Newtonsoft.Json.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.Formatting.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.WebRequest.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Helpers.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.WebHost.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Mvc.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\WebMatrix.Data.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\WebMatrix.WebData.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.Core.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Antlr3.Runtime.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.Core.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\EntityFramework.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Newtonsoft.Json.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.Formatting.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.WebRequest.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Helpers.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.WebHost.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Mvc.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Optimization.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\WebGrease.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\WebMatrix.Data.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\WebMatrix.WebData.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\EntityFramework.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Newtonsoft.Json.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.Formatting.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Net.Http.WebRequest.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Helpers.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Http.WebHost.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Mvc.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\System.Web.WebPages.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\WebMatrix.Data.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\WebMatrix.WebData.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.Core.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\SisAprendizadoV4\SisAprendizadoV2\Aprendizado\obj\Debug\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Aprendizado.pdb
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Antlr3.Runtime.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.Core.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\EntityFramework.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Newtonsoft.Json.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.Formatting.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.WebRequest.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Helpers.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Http.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Http.WebHost.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Mvc.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Optimization.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Razor.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\WebGrease.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\WebMatrix.Data.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\WebMatrix.WebData.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\EntityFramework.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Newtonsoft.Json.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.Formatting.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Net.Http.WebRequest.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Helpers.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Http.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Http.WebHost.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Mvc.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Razor.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\WebMatrix.Data.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\WebMatrix.WebData.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.Core.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.dll
+C:\Users\vLima\Google Drive\Faculdade\TCC\Sistema\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.pdb
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Aprendizado.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Aprendizado.pdb
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Antlr3.Runtime.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.AspNet.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.Core.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\EntityFramework.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.Infrastructure.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Newtonsoft.Json.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.Formatting.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.WebRequest.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Helpers.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Http.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Http.WebHost.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Mvc.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Optimization.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Razor.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Deployment.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Razor.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\WebGrease.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\WebMatrix.Data.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\WebMatrix.WebData.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\EntityFramework.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Newtonsoft.Json.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.Formatting.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Net.Http.WebRequest.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Helpers.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Http.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Http.WebHost.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Mvc.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.Razor.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Deployment.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\System.Web.WebPages.Razor.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\WebMatrix.Data.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\WebMatrix.WebData.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.AspNet.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.Core.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OAuth.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.csprojResolveAssemblyReference.cache
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.dll
+D:\Users\vLima\Desktop\TestePainelAdmin\Aprendizado\obj\Debug\Aprendizado.pdb
