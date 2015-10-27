@@ -1,43 +1,217 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<Aprendizado.Class.ErradaTema>
 
-<h2>Index</h2>
-
-    <div id="page-wrapper">
-        <div id="page-inner">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="page-header">Perguntas respondidas erradas<small>@ViewBag.NomePessoa</small>
-                    </h1>
-                </div>
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Olá @User.Identity.Name!
+                </h1>
             </div>
-            <!-- /. ROW  -->
-
+        </div>
+        <!-- /. ROW  -->
+        @*===============NOTIFICAÇÕES=================*@
+        <div class="row">
             <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
                         <div class="panel-body">
-                            
-                            @Html.ActionLink("Respostas Erradas", "PerguntasQueOAlunoErrou", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("Respostas Certas", "PerguntasQueOAlunoAcertou", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("Temas", "Temas", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("errosPorTema", "errosPorTema", new { idAluno = ViewBag.idAluno })
+                            <span style="font-size: 100px"><i class="glyphicon glyphicon-ok"></i></span>
+                            <h3>@ViewBag.qtdAcertos</h3>
+
+                        </div>
+                        <div class="panel-footer back-footer-green">
+                            Respostas Corretas
+
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+
+                    <div class="panel panel-primary text-center no-boder bg-color-red">
+                        <div class="panel-body">
+                            <span style="font-size: 100px"><i class="glyphicon glyphicon-remove"></i></span>
+                            <h3>@ViewBag.qtdErros</h3>
+                        </div>
+                        <div class="panel-footer back-footer-red">
+                            Respostas Erradas
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-blue">
+                        <div class="panel-body">
+                            <span style="font-size: 100px"><i class="glyphicon glyphicon-list-alt"></i></span>
+                            <h3>15,823 </h3>
+                        </div>
+                        <div class="panel-footer back-footer-blue">
+                            Atividades em Aberto
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-brown">
+                        <div class="panel-body">
+                            <span style="font-size: 118px"><i class="glyphicon glyphicon-cog"></i></span>
+                            <h3></h3>
+                        </div>
+                        <div class="panel-footer back-footer-brown">
+                            Configurações
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        @*=================GRAFICOS==================*@
+        <div class="row">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Respostas Incorretas Por Tema
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Atividades Realizadas
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Donut Chart
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-line-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Respostas Incorretas Por tema
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="teste" value="[]" />
             </div>
         </div>
     </div>
+</div>
 
 
+<script>
 
 
-
-
-@Html.ActionLink("Respostas Erradas", "PerguntasQueOAlunoErrou", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("Respostas Certas", "PerguntasQueOAlunoAcertou", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("Temas", "Temas", new { idAluno = ViewBag.idAluno })
-| @Html.ActionLink("errosPorTema", "errosPorTema", new { idAluno = ViewBag.idAluno })
+    window.onload = function () {
+        
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "relatorios/ListaErradasTema",
+            data: { idAluno: @ViewBag.idAluno },
+            success: function (dados) {
+                if(dados.listaErradasTema.length == 0){
+                    return;
+                }
+                var lista = [];
+                for(var i in dados.listaErradasTema){
+                    var obj = dados.listaErradasTema[i];
+                    lista.push({label:obj.Tema, value:obj.QtdErradas});
+                }
+                Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: lista,
+                    resize: true
+                });
+            }
+        });
+       
+           
+        Morris.Area({
+            element: 'morris-area-chart',
+            data: [{
+                period: '2010 Q1',
+                iphone: 2666,
+                ipad: null,
+                itouch: 2647
+            }, {
+                period: '2010 Q2',
+                iphone: 2778,
+                ipad: 2294,
+                itouch: 2441
+            }, {
+                period: '2010 Q3',
+                iphone: 4912,
+                ipad: 1969,
+                itouch: 2501
+            }, {
+                period: '2010 Q4',
+                iphone: 3767,
+                ipad: 3597,
+                itouch: 5689
+            }, {
+                period: '2011 Q1',
+                iphone: 6810,
+                ipad: 1914,
+                itouch: 2293
+            }, {
+                period: '2011 Q2',
+                iphone: 5670,
+                ipad: 4293,
+                itouch: 1881
+            }, {
+                period: '2011 Q3',
+                iphone: 4820,
+                ipad: 3795,
+                itouch: 1588
+            }, {
+                period: '2011 Q4',
+                iphone: 15073,
+                ipad: 5967,
+                itouch: 5175
+            }, {
+                period: '2012 Q1',
+                iphone: 10687,
+                ipad: 4460,
+                itouch: 2028
+            }, {
+                period: '2012 Q2',
+                iphone: 8432,
+                ipad: 5713,
+                itouch: 1791
+            }],
+            xkey: 'period',
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['iPhone', 'iPad', 'iPod Touch'],
+            pointSize: 2,
+            hideHover: 'auto',
+            resize: true
+        });
+    };
+</script>

@@ -48,6 +48,15 @@ namespace Aprendizado.Controllers
                 ViewBag.idAluno = a.idAluno;
                 ViewBag.Nome = a.Pessoa.Nome;
 
+                int qtdErros = alunoAtividadeModel.listarPerguntasErradas(a.idAluno).Count;
+                int qtdAcertos = alunoAtividadeModel.listarPerguntasCertas(a.idAluno).Count;
+
+                ViewBag.qtdErros = qtdErros;
+                ViewBag.qtdAcertos = qtdAcertos;
+
+                errosPorTema(a.idAluno);
+
+                
                 return View();
             }
 
@@ -93,7 +102,6 @@ namespace Aprendizado.Controllers
             Aluno a = alunoModel.obterAluno(idAluno);
             List<Tema> temas = alunoAtividadeModel.listarTemasPorAluno(idAluno);
             var listaErradasTema = new List<ErradaTema>();
-
             for (int i = 0; i < temas.Count; i++)
             {
                 int idTema = temas[i].idTema;
@@ -107,10 +115,29 @@ namespace Aprendizado.Controllers
             listaErradasTema = listaErradasTema.OrderByDescending(c => c.QtdErradas).ToList();
 
             ViewBag.listaErradasTema = listaErradasTema;
-
+            ViewBag.idAluno = idAluno;
             return View(listaErradasTema);
         }
 
+        public JsonResult ListaErradasTema(int idAluno)
+        {
+            Aluno a = alunoModel.obterAluno(idAluno);
+            List<Tema> temas = alunoAtividadeModel.listarTemasPorAluno(idAluno);
+            var listaErradasTema = new List<ErradaTema>();
+            for (int i = 0; i < temas.Count; i++)
+            {
+                int idTema = temas[i].idTema;
+                listaErradasTema.Add(new ErradaTema()
+                {
+                    Tema = temas[i].Descricao,
+                    QtdErradas = alunoAtividadeModel.listarPerguntasErradasPorTema2(a.idAluno, idTema)
+                });
+            }
+
+            listaErradasTema = listaErradasTema.OrderByDescending(c => c.QtdErradas).ToList();
+
+            return Json(new { listaErradasTema = listaErradasTema });
+        }
 
         public ActionResult prepararSorteio()
         {

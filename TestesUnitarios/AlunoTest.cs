@@ -45,7 +45,7 @@ namespace TestesUnitarios
             aluno2 = new Aluno()
             {
                 idPessoa = 2,
-                idAluno = 1,
+                idAluno = 0,
                 Matricula = 111111
             };
             Assert.AreEqual(aluno1.idAluno, aluno2.idAluno);

@@ -169,6 +169,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Class\cabecalhoAvaliacao.cs" />
     <Compile Include="Class\ErradaTema.cs" />
+    <Compile Include="Class\Estatisticas.cs" />
     <Compile Include="Class\perguntasProva.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlunoAtividadeController.cs" />
@@ -341,7 +342,9 @@
     <Content Include="Global.asax" />
     <Content Include="Icon.png" />
     <Content Include="Images\chapeu.jpg" />
+    <Content Include="Images\correta.jpg" />
     <Content Include="Images\Diploma.png" />
+    <Content Include="Images\errada.jpg" />
     <Content Include="Images\estante.jpg" />
     <Content Include="Images\fundo2.jpg" />
     <Content Include="Images\Home.jpg" />

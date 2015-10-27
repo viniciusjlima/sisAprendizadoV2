@@ -66,8 +66,8 @@
             Morris.Donut({
                 element: 'morris-donut-chart',
                 data: [{
-                    label: "Download Sales",
-                    value: 12
+                    label: "Tema 1",
+                    value: 50
                 }, {
                     label: "In-Store Sales",
                     value: 30
