@@ -4,6 +4,51 @@
     ViewBag.Title = "Edit";
 }
 
+@*<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Disciplina<small> - @ViewBag.Titulo - </small>
+                </h1>
+            </div>
+        </div>
+         @using (Html.BeginForm())
+         {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idCurso)
+
+              <div class="form-group">
+            @Html.LabelFor(model => model.Curso, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("idCurso", null, new { @class = "form-control" })
+            </div>
+        </div>
+             <br />
+             <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @if (Model.idDisciplina != 0)
+                {
+        @Html.ActionLink("Professores da Disciplina", "ListaProfessorDisciplina", new { idDisciplina = Model.idDisciplina })
+                }
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+
+         }
+    </div>
+</div>*@
+
+
 
 @using (Html.BeginForm())
 {
@@ -16,17 +61,17 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Curso, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idCurso", "Selecione um")
+            <div class="col-md-4">
+                @Html.DropDownList("idCurso", null, new { @class = "form-control" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+       <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
 
 

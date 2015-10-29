@@ -444,7 +444,6 @@
     <Content Include="Views\Atividade\Index.cshtml" />
     <Content Include="Views\Atividade\ListaPerguntaAtividade.cshtml" />
     <Content Include="Views\Atividade\prepararSorteio.cshtml" />
-    <Content Include="Views\Cidade\Edit.cshtml" />
     <Content Include="Views\Cidade\Index.cshtml" />
     <Content Include="Views\Curso\Edit.cshtml" />
     <Content Include="Views\Curso\Index.cshtml" />
@@ -532,6 +531,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Estado\Index.cshtml" />
+    <Content Include="Views\Cidade\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
