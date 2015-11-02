@@ -5,9 +5,9 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-header"><small>Gerenciamento de Disciplinas</small>
+                <h1 class="page-header">Gerenciamento de Disciplinas
                 </h1>
-                <h2><small>@Html.ActionLink("Nova Disciplina", "Edit", new { id = 0 })</small></h2>
+                <h2><small>@Html.ActionLink("Incluir", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})</small></h2>
                     <br />
             </div>
         </div>
@@ -54,9 +54,8 @@
         </td>
 
         <td>
-             @Html.ActionLink("Editar", "Edit", new { id=item.idDisciplina })</td><td>   
-            @Html.ActionLink("Delete", "Delete", new { id = item.idDisciplina },
-                new { @onclick = "return confirm('Tem certeza?');" })
+           @Html.ActionLink("Editar", "Edit", new { id=item.idDisciplina }, new { @class = "btn btn-default", @style = "color:#09192A "}) &nbsp &nbsp
+            @Html.ActionLink("Excluir", "Delete", new { id = item.idDisciplina }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
         </td>
     </tr>
 }

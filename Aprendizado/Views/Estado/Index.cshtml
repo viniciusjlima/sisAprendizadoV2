@@ -10,9 +10,11 @@
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento de Estados
                 </h1>
-                                <h2><small>@Html.ActionLink("Novo Estado", "Edit", new { id = 0 })</small></h2>
+                                
+                <h2><small>@Html.ActionLink("Incluir", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })</small></h2>
                     <br />
             </div>
+
         </div>
         <!-- /. ROW  -->
 
@@ -40,7 +42,8 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UF)
@@ -49,13 +52,11 @@
             @Html.DisplayFor(modelItem => item.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UF })
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.UF }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+            @Html.ActionLink("Editar", "Edit", new { id = item.UF }, new { @class = "btn btn-default", @style = "color:#09192A " }) &nbsp &nbsp
+            @Html.ActionLink("Excluir", "Delete", new { id = item.UF }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
         </td>
     </tr>
-}
+    }
 
                                 </tbody>
                             </table>

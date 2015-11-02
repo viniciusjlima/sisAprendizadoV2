@@ -4,50 +4,65 @@
     ViewBag.Title = "EditProfessorDisciplina";
 }
 
-
-@using (Html.BeginForm())
-{
-
-    <div class="form-horizontal">
-        <h4>Incluir Professor na disciplina</h4>
-        <hr />
-
-        @Html.HiddenFor(model => model.idProfessorDisciplina)
-
-        @*@Html.HiddenFor(model => model.idProfessor)*@
-
-        @Html.HiddenFor(model => model.idDisciplina)
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Turma.Curso, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idCurso")
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Curso<small> - @ViewBag.Titulo - </small>
+                </h1>
             </div>
         </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  --> 
+            @Html.HiddenFor(model => model.idProfessorDisciplina)
 
-        <div id="divTurma">
+            @*@Html.HiddenFor(model => model.idProfessor)*@
+
+            @Html.HiddenFor(model => model.idDisciplina)
+            <div></div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("idTurma")
+                @Html.LabelFor(model => model.Turma.Curso, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("idCurso", null, new { @class = "form-control" })
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Professor, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idProfessor")
+            <br />
+            <br />
+            <br />
+            
+            <div id="divTurma">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("idTurma", null, new { @class = "form-control" })
+                    </div>
+                </div>
             </div>
-        </div>
+            
+            <br />
+            <br />
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Professor, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("idProfessor", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-        <br />
-        <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
-        <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
-    </div> 
-}
+
 
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 {
@@ -57,13 +72,13 @@
 }
 
 <script>
-    //$("#divTurma").hide();
+    $("#divTurma").hide();
     $("#idCurso").change(function () {
         $.ajax({
             type: "POST",
             dataType: "JSON",
-            url: "ListaTurmas",
-            data: { estado: $("#idCurso").val() },
+            url: "../ListaTurmas",
+            data: { curso: $("#idCurso").val() },
             success: function (dados) {
                 var html = "";
                 $.each(dados["turmas"], function (index, obj) {
@@ -80,7 +95,6 @@
 </script>
 <script>
     function validar() {
-
 
         return true;
     }

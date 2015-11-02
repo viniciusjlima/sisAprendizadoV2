@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Aprendizado.Entity.Tema>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">Gerenciamento de Temas
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                         <tr>
+
+
+        <th>
+            Disciplina
+        </th>
+        <th>
+            Descricao
+        </th>
+
+        
+    </tr>
+            
+        </thead>
+        <tbody>
+   @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idTema }) </td><td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.idTema }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+        </td>
+    </tr>
+}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+        </div>
+    </div>

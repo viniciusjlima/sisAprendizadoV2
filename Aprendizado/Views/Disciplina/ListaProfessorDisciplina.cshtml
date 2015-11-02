@@ -6,12 +6,12 @@
 
 <div id="page-wrapper">
     <div id="page-inner">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="col-md-12">
                 <h1 class="page-header"><small>Gerenciamento de Disciplinas - Professores de @ViewBag.DescricaoDisciplina</small>
                 </h1>
+                <h2><small>@Html.ActionLink("Incluir", "EditProfessorDisciplina", new { idDisciplina = ViewBag.idDisciplina, idProfessorDisciplina = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})</small></h2>
+                    <br />
             </div>
-        </div>
         <!-- /. ROW  -->
 
         <div class="row">

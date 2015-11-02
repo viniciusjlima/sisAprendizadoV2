@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <h1 class="page-header">Gerenciamento de Status
                     </h1>
-                    <h2><small>@Html.ActionLink("Novo", "Edit", new { id = 0 })</small></h2>
+                    <h2><small>@Html.ActionLink("Incluir", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})</small></h2>
                     <br />
                 </div>
             </div>
@@ -43,9 +43,8 @@
             @Html.DisplayFor(modelItem => item.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idStatus }) </td><td> 
-            @Html.ActionLink("Delete", "Delete", new { id=item.idStatus},
-                new { @onclick = "return confirm('Tem certeza?');"})
+            @Html.ActionLink("Editar", "Edit", new { id=item.idStatus }, new { @class = "btn btn-default", @style = "color:#09192A "}) &nbsp &nbsp
+            @Html.ActionLink("Excluir", "Delete", new { id = item.idStatus }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
         </td>
     </tr>
 }

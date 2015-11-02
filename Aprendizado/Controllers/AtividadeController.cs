@@ -219,6 +219,20 @@ namespace Aprendizado.Controllers
             return Json(new { temas = temas });
         }
 
+        public JsonResult ListaTurmas(int curso)
+        {
+            var turmas
+                = new SelectList(turmaModel.obterTurmasPorCurso(curso), "idTurma", "Identificacao");
+            return Json(new { turmas = turmas });
+        }
+
+        public JsonResult ListadDisciplinas(int curso)
+        {
+            var disciplinas
+                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(curso), "idDisciplina", "Descricao");
+            return Json(new { disciplinas = disciplinas });
+        }
+
         public JsonResult ListaPerguntas(int idTema)
         {
             var perguntas
@@ -717,6 +731,7 @@ namespace Aprendizado.Controllers
         {
             int idTurma2 = c.IdTurma;
             int idTurma3 = t.idTurma;
+            int idDisciplina = c.IdDisciplina;
             return RedirectToAction("GerarAvaliacaoAutomatica", c);
         }
 
@@ -765,7 +780,7 @@ namespace Aprendizado.Controllers
                 string erro = null;
                 erro = atividadeModel.adicionarAtividade(at);
 
-        ///////////////////// INSERIR PERGUTAS NA ATIVIDADE //////////////////////////
+                ///////////////////// INSERIR PERGUTAS NA ATIVIDADE //////////////////////////
 
                 //Me retorna a lista de perguntas para adicionar na prova
                 prepararSorteio(idAlunoA);
@@ -788,8 +803,6 @@ namespace Aprendizado.Controllers
 
             return RedirectToAction("Index");
         }
-                
-                
 
     }
 }

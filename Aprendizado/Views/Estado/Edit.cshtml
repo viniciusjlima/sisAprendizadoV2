@@ -4,37 +4,43 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>ViewBag.Titulo</h2>
-
-@using (Html.BeginForm()) {
-
-    <fieldset>
-        <legend>Estado</legend>
-
-        @Html.HiddenFor(model => model.UF)
-
-        <div class="editor-label">
-            UF
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Curso<small> - @ViewBag.Titulo - </small>
+                </h1>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UF)
-        </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.UF)
 
-        <div class="editor-label">
-            Descrição
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Descricao)
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.UF, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.UF, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                </div>
+            </div>
 
-        <p>
-            <input type="submit" value="Salvar" onclick="return validar()" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Voltar", "Index")
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
+    </div>
 </div>
  
  

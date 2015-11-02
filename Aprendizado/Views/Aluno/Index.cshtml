@@ -4,19 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Lista de Alunos</h2>
-
-<p>
-    @Html.ActionLink("Novo", "Edit", new { id = 0 })
-</p>
-
-
 <div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento de Alunos
                 </h1>
+                <h2><small>@Html.ActionLink("Incluir", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })</small></h2>
+                    <br />
             </div>
         </div>
         <!-- /. ROW  -->

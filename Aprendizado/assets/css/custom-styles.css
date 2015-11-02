@@ -257,7 +257,7 @@ color: #77C0FD;
 }
 .top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {
 text-decoration: none;
-background-color: #225081;
+background-color: #225081 ;
 color: #fff;
 }
 .top-navbar .dropdown-menu{
@@ -287,7 +287,7 @@ line-height: 21px;
 padding-top: 4px;
 }
 .active-menu {
-    background-color:#225081!important;
+    background-color:#fff!important;
 }
 
 .arrow {
@@ -315,6 +315,14 @@ padding-top: 4px;
 .nav-third-level li a {
     padding-left: 55px;
 }
+
+.nav-fourth-level li a{
+    padding-left: 73px;
+}
+
+.nav-fifith-level li a{
+    padding-left: 91px;
+}
 .sidebar-collapse , .sidebar-collapse .nav{
 	background:none;
 }
@@ -338,7 +346,7 @@ background: #172D44;
 }
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	 
+	 background-color:#428BCA;
 	outline:0;
 }
  

@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento Cursos
                 </h1>
-                <h2><small>@Html.ActionLink("Novo Curso", "Edit", new { id = 0 })</small></h2>
+                <h2><small>@Html.ActionLink("Novo", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})</small></h2>
                     <br />
             </div>
         </div>
@@ -27,7 +27,7 @@
                                      <tr>
 
         <th>
-            Descriçãp
+            Descrição
         </th>
 
         <th></th><th></th>
@@ -41,8 +41,8 @@
         </td>
         
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idCurso })</td><td>
-            @Html.ActionLink("Excluir", "Delete", new { id = item.idCurso }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idCurso }, new { @class = "btn btn-default", @style = "color:#09192A "}) &nbsp &nbsp
+            @Html.ActionLink("Excluir", "Delete", new { id = item.idCurso }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
         </td>
     </tr>
 }
