@@ -1,13 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="AprendizadoModelStoreContainer" CdmEntityContainer="AprendizadoEntities">
+    <EntitySetMapping Name="Alternativa">
+      <EntityTypeMapping TypeName="AprendizadoModel.Alternativa">
+        <MappingFragment StoreEntitySet="Alternativa">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idPergunta" ColumnName="idPergunta" />
+          <ScalarProperty Name="idAlternativa" ColumnName="idAlternativa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Aluno">
       <EntityTypeMapping TypeName="AprendizadoModel.Aluno">
         <MappingFragment StoreEntitySet="Aluno">
           <ScalarProperty Name="Matricula" ColumnName="Matricula" />
-          <ScalarProperty Name="TurmaId" ColumnName="TurmaId" />
-          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+          <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
           <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aluno_Atividade">
+      <EntityTypeMapping TypeName="AprendizadoModel.Aluno_Atividade">
+        <MappingFragment StoreEntitySet="Aluno_Atividade">
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+          <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+          <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+          <ScalarProperty Name="idAlunoAtividade" ColumnName="idAlunoAtividade" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -19,18 +38,11 @@
           <ScalarProperty Name="DataEncerramento" ColumnName="DataEncerramento" />
           <ScalarProperty Name="DataAbertura" ColumnName="DataAbertura" />
           <ScalarProperty Name="Identificacao" ColumnName="Identificacao" />
-          <ScalarProperty Name="DisciplinaId" ColumnName="DisciplinaId" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+          <ScalarProperty Name="idDisciplina" ColumnName="idDisciplina" />
           <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Atividade_Aluno">
-      <EntityTypeMapping TypeName="AprendizadoModel.Atividade_Aluno">
-        <MappingFragment StoreEntitySet="Atividade_Aluno">
-          <ScalarProperty Name="Nota" ColumnName="Nota" />
-          <ScalarProperty Name="AlunoPessoaId" ColumnName="AlunoPessoaId" />
-          <ScalarProperty Name="AlunoId" ColumnName="AlunoId" />
-          <ScalarProperty Name="AtividadeId" ColumnName="AtividadeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -38,25 +50,25 @@
       <EntityTypeMapping TypeName="AprendizadoModel.Cidade">
         <MappingFragment StoreEntitySet="Cidade">
           <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="UF" ColumnName="EstadoUF" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
           <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curso">
+      <EntityTypeMapping TypeName="AprendizadoModel.Curso">
+        <MappingFragment StoreEntitySet="Curso">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idCurso" ColumnName="idCurso" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Disciplina">
       <EntityTypeMapping TypeName="AprendizadoModel.Disciplina">
         <MappingFragment StoreEntitySet="Disciplina">
+          <ScalarProperty Name="idCurso" ColumnName="idCurso" />
           <ScalarProperty Name="Descricao" ColumnName="Descricao" />
           <ScalarProperty Name="idDisciplina" ColumnName="idDisciplina" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Disciplina_Turma">
-      <EntityTypeMapping TypeName="AprendizadoModel.Disciplina_Turma">
-        <MappingFragment StoreEntitySet="Disciplina_Turma">
-          <ScalarProperty Name="dataRegistro" ColumnName="dataRegistro" />
-          <ScalarProperty Name="TurmaId" ColumnName="TurmaId" />
-          <ScalarProperty Name="DisciplinaId" ColumnName="DisciplinaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,7 +79,9 @@
           <ScalarProperty Name="Numero" ColumnName="Numero" />
           <ScalarProperty Name="CEP" ColumnName="CEP" />
           <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
-          <ScalarProperty Name="CidadeId" ColumnName="CidadeId" />
+          <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
+          <ScalarProperty Name="idTipoEndereco" ColumnName="idTipoEndereco" />
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
           <ScalarProperty Name="idEndereco" ColumnName="idEndereco" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -80,10 +94,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NivelDificuldade">
+      <EntityTypeMapping TypeName="AprendizadoModel.NivelDificuldade">
+        <MappingFragment StoreEntitySet="NivelDificuldade">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idNivelDificuldade" ColumnName="idNivelDificuldade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Perfil">
       <EntityTypeMapping TypeName="AprendizadoModel.Perfil">
         <MappingFragment StoreEntitySet="Perfil">
-          <ScalarProperty Name="Descricao" ColumnName="Descrição" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
           <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -91,15 +113,12 @@
     <EntitySetMapping Name="Pergunta">
       <EntityTypeMapping TypeName="AprendizadoModel.Pergunta">
         <MappingFragment StoreEntitySet="Pergunta">
-          <ScalarProperty Name="Incorreta4" ColumnName="Incorreta4" />
-          <ScalarProperty Name="Incorreta3" ColumnName="Incorreta3" />
-          <ScalarProperty Name="Incorreta2" ColumnName="Incorreta2" />
-          <ScalarProperty Name="Incorreta1" ColumnName="Incorreta1" />
           <ScalarProperty Name="Correta" ColumnName="Correta" />
           <ScalarProperty Name="Identificacao" ColumnName="Identificacao" />
           <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
           <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-          <ScalarProperty Name="TemaId" ColumnName="TemaId" />
+          <ScalarProperty Name="idNivelDificuldade" ColumnName="idNivelDificuldade" />
+          <ScalarProperty Name="idTema" ColumnName="idTema" />
           <ScalarProperty Name="idPergunta" ColumnName="idPergunta" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -107,20 +126,18 @@
     <EntitySetMapping Name="Pergunta_Atividade">
       <EntityTypeMapping TypeName="AprendizadoModel.Pergunta_Atividade">
         <MappingFragment StoreEntitySet="Pergunta_Atividade">
-          <ScalarProperty Name="Questoes" ColumnName="Questoes" />
-          <ScalarProperty Name="AtividadeId" ColumnName="AtividadeId" />
-          <ScalarProperty Name="PerguntaId" ColumnName="PerguntaId" />
+          <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+          <ScalarProperty Name="idPergunta" ColumnName="idPergunta" />
+          <ScalarProperty Name="idPerguntaAtividade" ColumnName="idPerguntaAtividade" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pessoa">
       <EntityTypeMapping TypeName="AprendizadoModel.Pessoa">
         <MappingFragment StoreEntitySet="Pessoa">
-          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
           <ScalarProperty Name="Nascimento" ColumnName="Nascimento" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="EnderecoId" ColumnName="EnderecoId" />
-          <ScalarProperty Name="TelefoneId" ColumnName="TelefoneId" />
           <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -129,7 +146,7 @@
       <EntityTypeMapping TypeName="AprendizadoModel.Professor">
         <MappingFragment StoreEntitySet="Professor">
           <ScalarProperty Name="Especializacao" ColumnName="Especializacao" />
-          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
           <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -137,20 +154,28 @@
     <EntitySetMapping Name="Professor_Disciplina">
       <EntityTypeMapping TypeName="AprendizadoModel.Professor_Disciplina">
         <MappingFragment StoreEntitySet="Professor_Disciplina">
-          <ScalarProperty Name="dataRegistro" ColumnName="dataRegistro" />
-          <ScalarProperty Name="DisciplinaId" ColumnName="DisciplinaId" />
-          <ScalarProperty Name="ProfessorPessoaId" ColumnName="ProfessorPessoaId" />
-          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+          <ScalarProperty Name="idDisciplina" ColumnName="idDisciplina" />
+          <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
+          <ScalarProperty Name="idProfessorDisciplina" ColumnName="idProfessorDisciplina" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Professor_Turma">
-      <EntityTypeMapping TypeName="AprendizadoModel.Professor_Turma">
-        <MappingFragment StoreEntitySet="Professor_Turma">
-          <ScalarProperty Name="dataRegistro" ColumnName="dataRegistro" />
-          <ScalarProperty Name="TurmaId" ColumnName="TurmaId" />
-          <ScalarProperty Name="ProfessorPessoaId" ColumnName="ProfessorPessoaId" />
-          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+    <EntitySetMapping Name="Questao_Resposta">
+      <EntityTypeMapping TypeName="AprendizadoModel.Questao_Resposta">
+        <MappingFragment StoreEntitySet="Questao_Resposta">
+          <ScalarProperty Name="idPergunta" ColumnName="idPergunta" />
+          <ScalarProperty Name="idAlternativa" ColumnName="idAlternativa" />
+          <ScalarProperty Name="idAlunoAtividade" ColumnName="idAlunoAtividade" />
+          <ScalarProperty Name="idQuestaoResposta" ColumnName="idQuestaoResposta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="AprendizadoModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -158,7 +183,8 @@
       <EntityTypeMapping TypeName="AprendizadoModel.Telefone">
         <MappingFragment StoreEntitySet="Telefone">
           <ScalarProperty Name="Numero" ColumnName="Numero" />
-          <ScalarProperty Name="idTipoTelefone" ColumnName="TipoTelefoneId" />
+          <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
+          <ScalarProperty Name="idTipoTelefone" ColumnName="idTipoTelefone" />
           <ScalarProperty Name="idTelefone" ColumnName="idTelefone" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -166,9 +192,25 @@
     <EntitySetMapping Name="Tema">
       <EntityTypeMapping TypeName="AprendizadoModel.Tema">
         <MappingFragment StoreEntitySet="Tema">
-          <ScalarProperty Name="DisciplinaId" ColumnName="DisciplinaId" />
           <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="IdTema" ColumnName="IdTema" />
+          <ScalarProperty Name="idDisciplina" ColumnName="idDisciplina" />
+          <ScalarProperty Name="idTema" ColumnName="idTema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo">
+      <EntityTypeMapping TypeName="AprendizadoModel.Tipo">
+        <MappingFragment StoreEntitySet="Tipo">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEndereco">
+      <EntityTypeMapping TypeName="AprendizadoModel.TipoEndereco">
+        <MappingFragment StoreEntitySet="TipoEndereco">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="idTipoEndereco" ColumnName="idTipoEndereco" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -184,6 +226,7 @@
       <EntityTypeMapping TypeName="AprendizadoModel.Turma">
         <MappingFragment StoreEntitySet="Turma">
           <ScalarProperty Name="Identificacao" ColumnName="Identificacao" />
+          <ScalarProperty Name="idCurso" ColumnName="idCurso" />
           <ScalarProperty Name="idTurma" ColumnName="idTurma" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -191,8 +234,10 @@
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="AprendizadoModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Senha" ColumnName="Senha" />
           <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
           <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
         </MappingFragment>

@@ -49,7 +49,7 @@ namespace Aprendizado.Controllers
         public ActionResult Edit(int id)
         {
             Atividade a = new Atividade();
-            ViewBag.Titulo = "Nova Cidade";
+            ViewBag.Titulo = "Nova Atividade";
 
             int idDisciplina = 1;
             int idTurma = 1;

@@ -4,55 +4,66 @@
     ViewBag.Title = "Edit";
 }
 
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal">
-        <h4>Editar Atividade</h4>
-        <hr />
 
-        @Html.HiddenFor(model => model.idAtividade)
-
-        <div class="form-group">
-	        @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
-	        <div class="col-md-10">
-		        @Html.DropDownList("idTurma","Selecione uma turma")
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Atividade<small> - @ViewBag.Titulo - </small>
+                </h1>
             </div>
         </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idAtividade)
 
+              <div class="form-group">
+	        @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
+	        <div class="col-md-3">
+		        @Html.DropDownList("idTurma", null, new{@class= "form-control"})
+            </div>
+        </div>
+            <br /><br />
+            <br />
+            
         <div class="form-group">
 	        @Html.LabelFor(model => model.Disciplina, new { @class = "control-label col-md-2" })
-	        <div class="col-md-10">
-		        @Html.DropDownList("idDisciplina","Selecione uma disciplina")
+	        <div class="col-md-3">
+		       @Html.DropDownList("idDIsciplina", null, new{@class= "form-control"})
 	        </div>
         </div>
-
+            <br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
             </div>
         </div>
-
+            <br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
             </div>
         </div>
-
+<br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
             </div>
         </div>
-
+            <br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-    	        @Html.TextBoxFor(model => model.DataAbertura, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.DataAbertura, String.Format("{0:MM/dd/yyyy}", Model.DataAbertura), new { @class = "form-control" })
             </div>
         </div>
+            <br /><br />
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.DataEncerramento, new { @class = "control-label col-md-2" })
@@ -60,21 +71,32 @@
     	        @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
             </div>
         </div>
-
+            <br /><br />
         <div>
             @if (Model.idAtividade != 0)
             {
                 @Html.ActionLink("Perguntas da Atividade", "ListaPerguntaAtividade", new { idAtividade = Model.idAtividade })
             } 
-            <br />
-<br />   
-<input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/>   
+
         </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
+    </div>
 </div>
-}
 
 
- 
+
+
+
+
+
  
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 {
@@ -111,4 +133,14 @@
 
         return true;
     }
+</script>
+
+
+
+<script>
+    $.datetimepicker.setLocale('pt');
+
+    $('#DataAbertura').datetimepicker();
+    $('#DataEncerramento').datetimepicker();
+
 </script>
