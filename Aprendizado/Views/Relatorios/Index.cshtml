@@ -49,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="panel panel-primary text-center no-boder bg-color-brown">
                         <div class="panel-body">
@@ -81,16 +82,18 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-6 col-sm-12 col-xs-12">                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Atividades Realizadas
+                            Atividades Realizadas Por Disciplina
                         </div>
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <div id="morris-bar-chart-Disciplina"></div>
                         </div>
-                    </div>
+                    </div>            
                 </div>
+
+
 
             </div>
         </div>
@@ -98,26 +101,29 @@
         <div class="row">
             <div class="row">
 
-                <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-6 col-sm-12 col-xs-12">                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Donut Chart
+                            Ranking de Acertos
                         </div>
                         <div class="panel-body">
-                            <div id="morris-line-chart"></div>
+                            <div id="morris-bar-chart-Acertos"></div>
                         </div>
-                    </div>
+                    </div>            
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="col-md-6 col-sm-12 col-xs-12">                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Respostas Incorretas Por tema
+                            Ranking de Erros
                         </div>
                         <div class="panel-body">
-                            <div id="morris-bar-chart"></div>
+                            <div id="morris-bar-chart-Erros"></div>
                         </div>
-                    </div>
+                    </div>            
                 </div>
+
+                    
                 <input type="hidden" id="teste" value="[]" />
             </div>
         </div>
@@ -133,7 +139,7 @@
         $.ajax({
             type: "POST",
             dataType: "JSON",
-            url: "relatorios/ListaErradasTema",
+            url: "ListaErradasTema",
             data: { idAluno: @ViewBag.idAluno },
             success: function (dados) {
                 if(dados.listaErradasTema.length == 0){
@@ -152,66 +158,136 @@
             }
         });
        
-           
-        Morris.Area({
-            element: 'morris-area-chart',
-            data: [{
-                period: '2010 Q1',
-                iphone: 2666,
-                ipad: null,
-                itouch: 2647
-            }, {
-                period: '2010 Q2',
-                iphone: 2778,
-                ipad: 2294,
-                itouch: 2441
-            }, {
-                period: '2010 Q3',
-                iphone: 4912,
-                ipad: 1969,
-                itouch: 2501
-            }, {
-                period: '2010 Q4',
-                iphone: 3767,
-                ipad: 3597,
-                itouch: 5689
-            }, {
-                period: '2011 Q1',
-                iphone: 6810,
-                ipad: 1914,
-                itouch: 2293
-            }, {
-                period: '2011 Q2',
-                iphone: 5670,
-                ipad: 4293,
-                itouch: 1881
-            }, {
-                period: '2011 Q3',
-                iphone: 4820,
-                ipad: 3795,
-                itouch: 1588
-            }, {
-                period: '2011 Q4',
-                iphone: 15073,
-                ipad: 5967,
-                itouch: 5175
-            }, {
-                period: '2012 Q1',
-                iphone: 10687,
-                ipad: 4460,
-                itouch: 2028
-            }, {
-                period: '2012 Q2',
-                iphone: 8432,
-                ipad: 5713,
-                itouch: 1791
-            }],
-            xkey: 'period',
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['iPhone', 'iPad', 'iPod Touch'],
-            pointSize: 2,
-            hideHover: 'auto',
-            resize: true
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaAtividadesDisciplina",
+            data: { idAluno: @ViewBag.idAluno },
+            success: function (dados) {
+                if(dados.listaAtividadesDisciplina.length == 0){
+                    return;
+                }
+                var lista = [];
+                for(var i in dados.listaAtividadesDisciplina){
+                    var obj = dados.listaAtividadesDisciplina[i];
+                    lista.push({y:obj.Descricao, a:obj.QtdAtividades, b:obj.QtdAvaliacoes});
+                }
+                Morris.Bar({
+                    element: 'morris-bar-chart-Disciplina',
+                    data: lista,
+                    xkey: 'y',
+                    ykeys: ['a', 'b'],
+                    labels: ['Avaliacoes','Atividades'],
+                    hideHover: 'auto',
+                    resize: true
+                });
+            }
         });
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaCorretasDisciplina",
+            data: { idAluno: @ViewBag.idAluno },
+            success: function (dados) {
+                if(dados.listaCorretasDisciplina.length == 0){
+                    return;
+                }
+                var lista = [];
+                for(var i in dados.listaCorretasDisciplina){
+                    var obj = dados.listaCorretasDisciplina[i];
+                    lista.push({y:obj.Disciplina, b:obj.QtdCorretas});
+                }
+                Morris.Bar({
+                    element: 'morris-bar-chart-Acertos',
+                    data: lista,
+                    xkey: 'y',
+                    ykeys: ['b'],
+                    labels: ['Acertos'],
+                    hideHover: 'auto',
+                    resize: true
+                });
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaErradasDisciplina",
+            data: { idAluno: @ViewBag.idAluno },
+            success: function (dados) {
+                if(dados.listaErradasDisciplina.length == 0){
+                    return;
+                }
+                var lista = [];
+                for(var i in dados.listaErradasDisciplina){
+                    var obj = dados.listaErradasDisciplina[i];
+                    lista.push({y:obj.Disciplina, b:obj.QtdErradas});
+                }
+                Morris.Bar({
+                    element: 'morris-bar-chart-Erros',
+                    data: lista,
+                    xkey: 'y',
+                    ykeys: ['b'],
+                    labels: ['Erros'],
+                    hideHover: 'auto',
+                    resize: true
+                });
+            }
+        });
+
+        //Morris.Bar({
+        //    element: 'morris-bar-chart',
+        //    data: [{
+        //        y: 'Disciplina1',
+        //        b: 90
+        //    }, {
+        //        y: 'Disciplina2',
+        //        b: 65
+        //    }, {
+        //        y: 'Disciplina3',
+        //        b: 40
+        //    }, {
+        //        y: 'Disciplina4',
+        //        b: 65
+        //    }],
+        //    xkey: 'y',
+        //    ykeys: ['b'],
+        //    labels: ['Erros'],
+        //    hideHover: 'auto',
+        //    resize: true
+        //});
+
+
+        //Morris.Bar({
+        //    element: 'morris-bar-chart',
+        //    data: [{
+        //        y: 'Disciplina1',
+        //        a: 100,
+        //        b: 90
+        //    }, {
+        //        y: 'Disciplina2',
+        //        a: 75,
+        //        b: 65
+        //    }, {
+        //        y: 'Disciplina3',
+        //        a: 50,
+        //        b: 40
+        //    }, {
+        //        y: 'Disciplina4',
+        //        a: 75,
+        //        b: 65
+        //    }],
+        //    xkey: 'y',
+        //    ykeys: ['a', 'b'],
+        //    labels: ['Atividades', 'Avaliações'],
+        //    hideHover: 'auto',
+        //    resize: true
+        //});
+
+        
+
+           
     };
 </script>

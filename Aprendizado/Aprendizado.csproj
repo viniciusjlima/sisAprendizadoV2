@@ -168,6 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Class\cabecalhoAvaliacao.cs" />
+    <Compile Include="Class\AtividadeDisciplina.cs" />
+    <Compile Include="Class\CorretaDisciplina.cs" />
+    <Compile Include="Class\ErradaDisciplina.cs" />
     <Compile Include="Class\ErradaTema.cs" />
     <Compile Include="Class\Estatisticas.cs" />
     <Compile Include="Class\perguntasProva.cs" />
@@ -350,6 +353,7 @@
     <Content Include="Images\Home.jpg" />
     <Content Include="Images\Icones\correto.png" />
     <Content Include="Images\Icones\errado.png" />
+    <Content Include="Images\Preloader_7.gif" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -532,6 +536,8 @@
     <Content Include="Views\Estado\Index.cshtml" />
     <Content Include="Views\Cidade\Edit.cshtml" />
     <Content Include="Views\Estado\Edit.cshtml" />
+    <Content Include="Views\Atividade\Insuficientes.cshtml" />
+    <Content Include="Views\Atividade\PerguntasInsuficientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

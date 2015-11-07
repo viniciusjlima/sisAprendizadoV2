@@ -108,6 +108,18 @@ namespace Aprendizado.Models
             return lista.ToList();
         }
 
+        public List<Pergunta> listarPerguntasPorDisciplinaPorDificuldade(int idDisciplina, int idNDificuldade)
+        {
+            var lista = from p in db.Pergunta
+                        join t in db.Tema
+                        on p.idTema equals t.idTema
+                        join d in db.Disciplina
+                        on t.idDisciplina equals d.idDisciplina
+                        where d.idDisciplina == idDisciplina && p.idNivelDificuldade == idNDificuldade
+                        select p;
+            return lista.ToList();
+        }
+
         public List<Pergunta> listarPerguntasParaSorteio(int idTema, int idNivelDificuldade)
         {
             var lista = from p in db.Pergunta

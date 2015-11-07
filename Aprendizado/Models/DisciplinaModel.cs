@@ -97,5 +97,16 @@ namespace Aprendizado.Models
             return erro;
         }
 
+        public List<Disciplina> listarDisciplinaPorAluno(int idAluno)
+        {
+            var lista = from d in db.Disciplina
+                        join c in db.Curso on d.idCurso equals c.idCurso
+                        join t in db.Turma on c.idCurso equals t.idCurso
+                        join a in db.Aluno on t.idTurma equals a.idTurma
+                        where a.idAluno == idAluno
+                        select d;
+            return lista.ToList();
+        }
+
     }
 }

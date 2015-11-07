@@ -143,6 +143,18 @@ namespace Aprendizado.Models
             return lista.ToList();
         }
 
+        public List<Tema> listarTemasPorAlunoDisciplina(int idAluno, int idDisciplina)
+        {
+            var lista = from t in db.Tema
+                        join d in db.Disciplina on t.idDisciplina equals d.idDisciplina
+                        join c in db.Curso on d.idCurso equals c.idCurso
+                        join tu in db.Turma on c.idCurso equals tu.idCurso
+                        join al in db.Aluno on tu.idTurma equals al.idTurma
+                        where al.idAluno == idAluno && d.idDisciplina == idDisciplina
+                        select t;
+            return lista.ToList();
+        }
+
         public List<Pergunta> listarPerguntasErradasPorTema(int idAluno, int idTema)
         {
             var lista = from p in db.Pessoa
@@ -170,6 +182,60 @@ namespace Aprendizado.Models
                         join nd in db.NivelDificuldade on per.idNivelDificuldade equals nd.idNivelDificuldade
                         where qr.idAlternativa != per.Correta && alu.idAluno == idAluno && t.idTema == idTema
                         select per;
+            return lista.Count();
+        }
+
+        public int listarPerguntasErradasPorDisciplina(int idAluno, int idDisciplina)
+        {
+            var lista = from p in db.Pessoa
+                        join alu in db.Aluno on p.idPessoa equals alu.idAluno
+                        join aa in db.Aluno_Atividade on alu.idAluno equals aa.idAluno
+                        join qr in db.Questao_Resposta on aa.idAlunoAtividade equals qr.idAlunoAtividade
+                        join al in db.Alternativa on qr.idAlternativa equals al.idAlternativa
+                        join per in db.Pergunta on qr.idPergunta equals per.idPergunta
+                        join t in db.Tema on per.idTema equals t.idTema
+                        join nd in db.NivelDificuldade on per.idNivelDificuldade equals nd.idNivelDificuldade
+                        join d in db.Disciplina on t.idDisciplina equals d.idDisciplina
+                        where qr.idAlternativa != per.Correta && alu.idAluno == idAluno && d.idDisciplina == idDisciplina
+                        select per;
+            return lista.Count();
+        }
+
+        public int listarPerguntasCorretasPorDisciplina(int idAluno, int idDisciplina)
+        {
+            var lista = from p in db.Pessoa
+                        join alu in db.Aluno on p.idPessoa equals alu.idAluno
+                        join aa in db.Aluno_Atividade on alu.idAluno equals aa.idAluno
+                        join qr in db.Questao_Resposta on aa.idAlunoAtividade equals qr.idAlunoAtividade
+                        join al in db.Alternativa on qr.idAlternativa equals al.idAlternativa
+                        join per in db.Pergunta on qr.idPergunta equals per.idPergunta
+                        join t in db.Tema on per.idTema equals t.idTema
+                        join nd in db.NivelDificuldade on per.idNivelDificuldade equals nd.idNivelDificuldade
+                        join d in db.Disciplina on t.idDisciplina equals d.idDisciplina
+                        where qr.idAlternativa == per.Correta && alu.idAluno == idAluno && d.idDisciplina == idDisciplina
+                        select per;
+            return lista.Count();
+        }
+
+        public int listarAtividadesFeitasPorAluno(int idAluno, int idDisciplina)
+        {
+            var lista = from aa in db.Aluno_Atividade
+                        join a in db.Atividade on aa.idAtividade equals a.idAtividade
+                        join d in db.Disciplina on a.idDisciplina equals d.idDisciplina
+                        where aa.idAluno == idAluno && aa.idStatus == 3 && a.idTipo == 1 && d.idDisciplina == idDisciplina
+                        select aa;
+
+            return lista.Count();
+        }
+
+        public int listarAvaliacoesFeitasPorAluno(int idAluno, int idDisciplina)
+        {
+            var lista = from aa in db.Aluno_Atividade
+                        join a in db.Atividade on aa.idAtividade equals a.idAtividade
+                        join d in db.Disciplina on a.idDisciplina equals d.idDisciplina
+                        where aa.idAluno == idAluno && aa.idStatus == 3 && a.idTipo == 2 && d.idDisciplina == idDisciplina
+                        select aa;
+
             return lista.Count();
         }
 

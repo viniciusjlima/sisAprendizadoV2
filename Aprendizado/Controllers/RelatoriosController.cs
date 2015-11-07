@@ -23,6 +23,7 @@ namespace Aprendizado.Controllers
         private PerguntaModel perguntaModel = new PerguntaModel();
         private TemaModel temaModel = new TemaModel();
         private NivelDificuldadeModel ndModel = new NivelDificuldadeModel();
+        private DisciplinaModel disciplinaModel = new DisciplinaModel();
 
         private List<int> NumerosSorteados;
         private int contadorPergunta = 0;
@@ -56,7 +57,7 @@ namespace Aprendizado.Controllers
 
                 errosPorTema(a.idAluno);
 
-                
+
                 return View();
             }
 
@@ -134,9 +135,68 @@ namespace Aprendizado.Controllers
                 });
             }
 
-            listaErradasTema = listaErradasTema.OrderByDescending(c => c.QtdErradas).ToList();
 
             return Json(new { listaErradasTema = listaErradasTema });
+        }
+
+        public JsonResult ListaAtividadesDisciplina(int idAluno)
+        {
+            Aluno a = alunoModel.obterAluno(idAluno);
+
+            List<Disciplina> disciplinas = disciplinaModel.listarDisciplinaPorAluno(idAluno);
+            var listaAtividadesDisciplina = new List<AtividadeDisciplina>();
+            for (int i = 0; i < disciplinas.Count; i++)
+            {
+                int idDisciplina = disciplinas[i].idDisciplina;
+                listaAtividadesDisciplina.Add(new AtividadeDisciplina()
+                {
+                    Descricao = disciplinas[i].Descricao,
+                    QtdAtividades = alunoAtividadeModel.listarAtividadesFeitasPorAluno(a.idAluno, idDisciplina),
+                    QtdAvaliacoes = alunoAtividadeModel.listarAvaliacoesFeitasPorAluno(a.idAluno, idDisciplina)
+                });
+            }
+
+
+            return Json(new { listaAtividadesDisciplina = listaAtividadesDisciplina });
+        }
+
+        public JsonResult ListaErradasDisciplina(int idAluno)
+        {
+            Aluno a = alunoModel.obterAluno(idAluno);
+            
+            List<Disciplina> disciplinas = disciplinaModel.listarDisciplinaPorAluno(idAluno);
+            var listaErradasDisciplina = new List<ErradaDisciplina>();
+            for (int i = 0; i < disciplinas.Count; i++)
+            {
+                int idDisciplina = disciplinas[i].idDisciplina;
+                listaErradasDisciplina.Add(new ErradaDisciplina()
+                {
+                    Disciplina = disciplinas[i].Descricao,
+                    QtdErradas = alunoAtividadeModel.listarPerguntasErradasPorDisciplina(a.idAluno, idDisciplina)
+                });
+            }
+
+
+            return Json(new { listaErradasDisciplina = listaErradasDisciplina });
+        }
+
+        public JsonResult ListaCorretasDisciplina(int idAluno)
+        {
+            Aluno a = alunoModel.obterAluno(idAluno);
+
+            List<Disciplina> disciplinas = disciplinaModel.listarDisciplinaPorAluno(idAluno);
+            var listaCorretasDisciplina = new List<CorretaDisciplina>();
+            for (int i = 0; i < disciplinas.Count; i++)
+            {
+                int idDisciplina = disciplinas[i].idDisciplina;
+                listaCorretasDisciplina.Add(new CorretaDisciplina()
+                {
+                    Disciplina = disciplinas[i].Descricao,
+                    QtdCorretas = alunoAtividadeModel.listarPerguntasCorretasPorDisciplina(a.idAluno, idDisciplina)
+                });
+            }
+
+            return Json(new { listaCorretasDisciplina = listaCorretasDisciplina });
         }
 
         public ActionResult prepararSorteio()
@@ -149,9 +209,9 @@ namespace Aprendizado.Controllers
             int idTema2 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[1].Tema).idTema;
             int idTema3 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[2].Tema).idTema;
 
-//==================  1º TEMA QUE O ALUNO MAIS ERROU ====================================================
+            //==================  1º TEMA QUE O ALUNO MAIS ERROU ====================================================
 
-     //----------------------- DIFICEIS --------------------------------------------------
+            //----------------------- DIFICEIS --------------------------------------------------
             List<Pergunta> PerguntasDificeisASortearT1 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
 
@@ -178,7 +238,7 @@ namespace Aprendizado.Controllers
                 });
             }
 
-    //------ MEDIAS ------------------------------------------------------------------------------------
+            //------ MEDIAS ------------------------------------------------------------------------------------
             List<Pergunta> PerguntasMediasASortearT1 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
 
@@ -205,8 +265,8 @@ namespace Aprendizado.Controllers
                 });
             }
 
-    
-    //-------- FACEIS ----------------------------------------------------------------------------------
+
+            //-------- FACEIS ----------------------------------------------------------------------------------
             List<Pergunta> PerguntasFaceisASortearT1 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
 
@@ -234,9 +294,9 @@ namespace Aprendizado.Controllers
             }
 
 
-//==================  2º TEMA QUE O ALUNO MAIS ERROU ====================================================
+            //==================  2º TEMA QUE O ALUNO MAIS ERROU ====================================================
 
-    //----------------------- DIFICEIS --------------------------------------------------
+            //----------------------- DIFICEIS --------------------------------------------------
             List<Pergunta> PerguntasDificeisASortearT2 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
 
@@ -264,7 +324,7 @@ namespace Aprendizado.Controllers
             }
 
 
-    //----------------------- MEDIAS --------------------------------------------------
+            //----------------------- MEDIAS --------------------------------------------------
             List<Pergunta> PerguntasMediasASortearT2 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
 
@@ -292,7 +352,7 @@ namespace Aprendizado.Controllers
             }
 
 
-   //----------------------- FACEIS --------------------------------------------------
+            //----------------------- FACEIS --------------------------------------------------
             List<Pergunta> PerguntasFaceisASortearT2 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
 
@@ -320,9 +380,9 @@ namespace Aprendizado.Controllers
             }
 
 
-//==================  3º TEMA QUE O ALUNO MAIS ERROU ====================================================
+            //==================  3º TEMA QUE O ALUNO MAIS ERROU ====================================================
 
-   //----------------------- MEDIAS --------------------------------------------------
+            //----------------------- MEDIAS --------------------------------------------------
             List<Pergunta> PerguntasMediasASortearT3 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
 
@@ -349,7 +409,7 @@ namespace Aprendizado.Controllers
                 });
             }
 
-  //----------------------- FACEIS --------------------------------------------------
+            //----------------------- FACEIS --------------------------------------------------
             List<Pergunta> PerguntasFaceisASortearT3 =
                 perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
 
@@ -376,11 +436,11 @@ namespace Aprendizado.Controllers
                 });
             }
 
-    //------------------------ MONTA LISTA COM PERGUNTAS PARA A ATIVIDADE--------------------------
+            //------------------------ MONTA LISTA COM PERGUNTAS PARA A ATIVIDADE--------------------------
 
             var listaFinalPerguntas = new List<Pergunta>();
 
-        // Adiciona perguntas do tema 1
+            // Adiciona perguntas do tema 1
             //DIFICEIS
             for (int i = 0; i < listaPerguntasDIficeisT1.Count; i++)
             {
@@ -435,7 +495,7 @@ namespace Aprendizado.Controllers
                 });
             }
 
-       // Adiciona perguntas do Tema 2
+            // Adiciona perguntas do Tema 2
             //DIFICEIS
             for (int i = 0; i < listaPerguntasDificeisT2.Count; i++)
             {
@@ -490,7 +550,7 @@ namespace Aprendizado.Controllers
                 });
             }
 
-         // Adiciona perguntas do Tema 2
+            // Adiciona perguntas do Tema 2
             //MEDIAS
             for (int i = 0; i < listaPerguntasMediasT3.Count; i++)
             {

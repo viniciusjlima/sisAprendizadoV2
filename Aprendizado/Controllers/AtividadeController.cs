@@ -226,7 +226,7 @@ namespace Aprendizado.Controllers
             return Json(new { turmas = turmas });
         }
 
-        public JsonResult ListadDisciplinas(int curso)
+        public JsonResult ListaDisciplinas(int curso)
         {
             var disciplinas
                 = new SelectList(disciplinaModel.obterDisciplinaPorCurso(curso), "idDisciplina", "Descricao");
@@ -289,10 +289,43 @@ namespace Aprendizado.Controllers
             return View(listaErradasTema);
         }
 
-        private List<Pergunta> prepararSorteio(int idAlunoA)
+        private List<ErradaTema> errosPorTemaDisciplina(int idAluno, int idDisciplina)
+        {
+            Aluno a = alunoModel.obterAluno(idAluno);
+            Disciplina d = disciplinaModel.obterDisciplina(idDisciplina);
+
+            List<Tema> temas = alunoAtividadeModel.listarTemasPorAlunoDisciplina(idAluno, idDisciplina);
+
+            var listaErradasTema = new List<ErradaTema>();
+
+            for (int i = 0; i < temas.Count; i++)
+            {
+                int idTema = temas[i].idTema;
+                listaErradasTema.Add(new ErradaTema()
+                {
+                    Tema = temas[i].Descricao,
+                    QtdErradas = alunoAtividadeModel.listarPerguntasErradasPorTema2(a.idAluno, idTema)
+                });
+            }
+
+            if (listaErradasTema.Count < 2)
+            {
+                ViewBag.listaErradasTema = temas;
+            }
+
+            listaErradasTema = listaErradasTema.OrderByDescending(c => c.QtdErradas).ToList();
+
+            ViewBag.listaErradasTema = listaErradasTema;
+
+            return listaErradasTema;
+        }
+
+        private List<Pergunta> prepararSorteio(int idAlunoA, int idDisciplinaA)
         {
             int idAluno = idAlunoA;
-            errosPorTema(idAluno);
+            int idDisciplina = idDisciplinaA;
+
+            errosPorTemaDisciplina(idAluno, idDisciplina);
             NumerosSorteados = new List<int>();
 
             int idTema1 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[0].Tema).idTema;
@@ -732,7 +765,33 @@ namespace Aprendizado.Controllers
             int idTurma2 = c.IdTurma;
             int idTurma3 = t.idTurma;
             int idDisciplina = c.IdDisciplina;
-            return RedirectToAction("GerarAvaliacaoAutomatica", c);
+
+            if (perguntaModel.listarPerguntasPorDisciplinaPorDificuldade(idDisciplina, 3).Count < 10)
+            {
+                ViewBag.Insuficientes = "É necessário ao menos 10 perguntas dificeis desta disciplina para gerar uma avaliação.";
+                return View("PerguntasInsuficientes");
+            }
+            else
+            {
+                if (perguntaModel.listarPerguntasPorDisciplinaPorDificuldade(idDisciplina, 2).Count < 10)
+                {
+                    ViewBag.Insuficientes = "É necessário ao menos 10 perguntas médias desta disciplina para gerar uma avaliação.";
+                    return View("PerguntasInsuficientes");
+                }
+                else
+                {
+                    if (perguntaModel.listarPerguntasPorDisciplinaPorDificuldade(idDisciplina, 1).Count < 10)
+                    {
+                        ViewBag.Insuficientes = "É necessário ao menos 10 perguntas fáceis desta disciplina para gerar uma avaliação.";
+                        return View("PerguntasInsuficientes");
+                    }
+                    else
+                    {
+                        return RedirectToAction("GerarAvaliacaoAutomatica", c);
+                    }
+                }
+            }
+
         }
 
         public ActionResult GerarAvaliacaoAutomatica(cabecalhoAvaliacao c)
@@ -783,7 +842,7 @@ namespace Aprendizado.Controllers
                 ///////////////////// INSERIR PERGUTAS NA ATIVIDADE //////////////////////////
 
                 //Me retorna a lista de perguntas para adicionar na prova
-                prepararSorteio(idAlunoA);
+                prepararSorteio(idAlunoA, c.IdDisciplina);
                 for (int j = 0; j < listaFinalPerguntas.Count; j++)
                 {
                     Pergunta_Atividade pa = new Pergunta_Atividade();
