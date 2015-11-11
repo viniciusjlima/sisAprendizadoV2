@@ -89,7 +89,15 @@ namespace Aprendizado.Controllers
             }
             if (erro == null)
             {
-                return RedirectToAction("EditAlternativa", new { idAlternativa = 0, p.idPergunta });
+                if (p.Correta == 0)
+                {
+                    return RedirectToAction("EditAlternativa", new { idAlternativa = 0, p.idPergunta });
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
             else
             {
@@ -176,6 +184,42 @@ namespace Aprendizado.Controllers
             Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
             alternativaModel.excluirAlternativa(a);
             return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+        }
+
+
+        
+
+        public ActionResult EscolheCorreta(int idPergunta, int idAlternativa)
+        {
+            Pergunta p = perguntaModel.obterPergunta(idPergunta);
+            Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
+
+            p.Correta = a.idAlternativa;
+
+            if (!validarPergunta(p))
+            {
+                ViewBag.Erro = "Erro na validação da Pergunta";
+                return View(p);
+            }
+
+            string erro = null;
+            if (p.idPergunta == 0)
+            {
+                erro = perguntaModel.adicionarPergunta(p);
+            }
+            else
+            {
+                erro = perguntaModel.editarPergunta(p);
+            }
+            if (erro == null)
+            {
+                return RedirectToAction("Edit", new { id = p.idPergunta });
+            }
+            else
+            {
+                ViewBag.Erro = erro;
+                return View(p);
+            }
         }
 
     }

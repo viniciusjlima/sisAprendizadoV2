@@ -5,6 +5,7 @@
 }
 
 
+
 <div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
@@ -30,6 +31,9 @@
             @Html.LabelFor(model => model.CPF, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.CPF, new { @class = "form-control" })
+
+                <input type="text" name="cpf" onBlur="ValidarCPF(form1.cpf);" 
+onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
             </div>
         </div>
 

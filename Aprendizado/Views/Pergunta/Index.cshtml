@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento de Perguntas
                 </h1>
-                <h2><small>@Html.ActionLink("Nova Cidade", "Edit", new { id = 0 })</small></h2>
+                <h2><small>@Html.ActionLink("Nova Pergunta", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })</small></h2>
                     <br />
             </div>
         </div>
@@ -36,8 +36,6 @@
                                             Correta
                                         </th>
                                         <th></th>
-
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,16 +53,18 @@
                                                 @Html.DisplayFor(modelItem => item.Identificacao)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Correta)
-                                            </td>
-                                            <td>
-                                               @Html.ActionLink("Alternativas", "ListaAlternativas", new { idPergunta = item.idPergunta })
-                                            </td>
+                                                @if (item.Correta == 0)
+                                                {
+                                                }else{
 
+                                                @Html.DisplayFor(modelItem => item.Correta)}
+                                            </td>
                                             <td>
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.idPergunta }) </td>
-                                            <td>
-                                                @Html.ActionLink("Deletar", "Delete", new { id = item.idPergunta }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+                                               @Html.ActionLink("Alternativas", "ListaAlternativas", new { idPergunta = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            &nbsp &nbsp
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            &nbsp &nbsp
+                                                @Html.ActionLink("Excluir", "Delete", new { id = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
                                             </td>
                                         </tr>
                                     }

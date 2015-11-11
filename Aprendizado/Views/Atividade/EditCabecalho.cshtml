@@ -9,7 +9,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-header">Gerenciamento de Curso<small> - @ViewBag.Titulo - </small>
+                <h1 class="page-header">Gerenciamento de Avaliações<small> - Nova Avaliação Automática - </small>
                 </h1>
             </div>
         </div>
@@ -24,8 +24,6 @@
                     @Html.DropDownList("idCurso", null, new { @class = "form-control" })
                 </div>
             </div>
-            
-            <br />
             <br />
             
             <div id="divTurmas">
@@ -38,7 +36,6 @@
             </div>
             
             <br />
-            
             <div id="divDisciplinas">
                 <div class="form-group">
                     @Html.Label("Disciplina", new { @class = "control-label col-md-2" })
@@ -46,16 +43,16 @@
                         @Html.DropDownList("idDisciplina", null, new { @class = "form-control" })
                     </div>
                 </div>
-                <br />
             </div>
-            
+            <br />
+            <br />
             <div class="form-group">
                 @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
                 </div>
             </div>
-            <br />
+            <br /><br />
             <div class="form-group">
                 @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
@@ -83,7 +80,6 @@
                     @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
                 </div>
             </div>
-            
             <br />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

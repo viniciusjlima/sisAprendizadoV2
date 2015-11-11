@@ -226,6 +226,8 @@ namespace Aprendizado.Controllers
                 = new SelectList(alternativaModel.listarAlternativasPorPergunta(idPergunta),
                     "idAlternativa", "Descricao", idAlternativa);
 
+            ViewBag.Pergunta = p.Enunciado;
+
             return View(qr);
         }
         [HttpPost]

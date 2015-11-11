@@ -4,38 +4,49 @@
     ViewBag.Title = "AcessarAtividade";
 }
 
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal">
-        <h4>Editar Atividade</h4>
-        <hr />
-
-
-        @Html.HiddenFor(model => model.idAlunoAtividade)
-        @Html.HiddenFor(model => model.idAluno)
-        @Html.HiddenFor(model => model.idAtividade)
-
-        
-        @if(Model.idAlunoAtividade !=0 )
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Acessar Atividade @ViewBag.Atividade
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
         {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idAlunoAtividade)
+            @Html.HiddenFor(model => model.idAluno)
+            @Html.HiddenFor(model => model.idAtividade)
+
+            if (Model.idAlunoAtividade != 0)
+            {
             <p>Veja no link abaixo suas respostas: </p>
                 
             @Html.ActionLink("Respostas", "Respostas", new { idAlunoAtividade = Model.idAlunoAtividade })
-        }else {
 
-        <p>Voce aluno com id @Html.DisplayFor(model => model.idAluno) deseja realizar a atividade de id @Html.DisplayFor(model => model.idAtividade) ?</p>
-        <input type="submit" value="Realizar Atividade"  class="btn btn-default" onclick="    return validar();"/> 
-        }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                </div>
+            </div>
+            
+            }
+            else
+            {
+                <p>Você deseja realizar esta atividade?</p>
+            
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <br />
+                        <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                        <input type="submit" value="Realizar Atividade"  class="btn btn-default" onclick="    return validar();"/> 
+                    </div>
+                </div>
+            }
 
-<br />   
-        <br />  
-        <br />  
-        <br />  
-        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  
-
-        </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        }   
+    </div>
+</div>
