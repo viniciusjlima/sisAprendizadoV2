@@ -10,8 +10,9 @@
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento de Atividades
                 </h1>
-                <h2><small>@Html.ActionLink("Nova Atividade", "Edit", new { id = 0 })</small></h2>
-                    <br />
+                <h2><small>@Html.ActionLink("Nova Atividade", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                </small></h2>
+                <br />
             </div>
         </div>
         <!-- /. ROW  -->
@@ -24,70 +25,66 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
-                                     <tr>
+                                    <tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Identificacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            Disciplina
-        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Identificacao)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Titulo)
+                                        </th>
+                                        <th>
+                                            Disciplina
+                                        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            Status
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataAbertura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataEncerramento)
-        </th>
-        <th>
-            Perguntas
-        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Descricao)
+                                        </th>
+                                        <th>Status
+                                        </th>
+                                        <th>Abertura
+                                        </th>
+                                        <th>Encerramento
+                                        </th>
+                                        <th>Perguntas
+                                        </th>
 
-        <th></th>
-    </tr>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Identificacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataAbertura.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataEncerramento.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Inserir", "ListaPerguntaAtividade", new { idAtividade = item.idAtividade })
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idAtividade })<br /><br />
-            @Html.ActionLink("Excluir", "Delete", new { id = item.idAtividade }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
-        </td>
-    </tr>
-}
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Identificacao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Titulo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataAbertura)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataEncerramento)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Inserir", "ListaPerguntaAtividade", new { idAtividade = item.idAtividade }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.idAtividade }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            </td>
+
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

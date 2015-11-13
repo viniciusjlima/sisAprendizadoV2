@@ -26,6 +26,17 @@ namespace Aprendizado.Models
             return lista.ToList();
         }
 
+        public int  listarQuestoesRespostaCorretasPorAlunoAtividade(int idAlunoAtividade)
+        {
+            var lista = from qr in db.Questao_Resposta
+                        join al in db.Alternativa on qr.idAlternativa equals al.idAlternativa
+                        join p in db.Pergunta on qr.idPergunta equals p.idPergunta
+                        where qr.idAlunoAtividade == idAlunoAtividade && al.idAlternativa == p.Correta
+                        select qr;
+
+            return lista.ToList().Count;
+        }
+
         public Questao_Resposta verficaRespostaAluno(int idAlunoAtividade, int idPergunta)
         {
             var lista = from qr in db.Questao_Resposta

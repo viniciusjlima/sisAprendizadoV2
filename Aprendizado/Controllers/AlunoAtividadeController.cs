@@ -78,24 +78,16 @@ namespace Aprendizado.Controllers
             Aluno_Atividade aa = new Aluno_Atividade();
             aa = alunoAtividadeModel.verficaAlunoAtividade(idAluno, idAtividade);
 
-            Aluno_Atividade a = alunoAtividadeModel.verficaAlunoAtividade(idAluno, idAtividade);
-
-            if (a == null)
+            if ((aa.idStatus == 1) || (aa.idStatus == 0))
             {
                 int idAlunoAtividade = 0;
                 return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
             }
             else
             {
-                if (a.Atividade.Tipo.idTipo == 2)
-                {
-                    int idAlunoAtividade = 0;
-                    return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
-                }
                 aa.idStatus = 3;
                 return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
             }
-            
         }
 
         public ActionResult AcessarAtividade(int idAluno, int idAtividade, int idAlunoAtividade)
@@ -103,6 +95,7 @@ namespace Aprendizado.Controllers
             Aluno_Atividade aa = new Aluno_Atividade();
             aa.idAluno = idAluno;
             aa.idAtividade = idAtividade;
+            aa.idAlunoAtividade = idAlunoAtividade;
 
             if (idAlunoAtividade != 0)
             {
@@ -167,6 +160,7 @@ namespace Aprendizado.Controllers
         public ActionResult RealizarAtividade(int idAlunoAtividade)
         {
             Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
+
 
             if (aa.idStatus == 1)
             {
@@ -281,6 +275,32 @@ namespace Aprendizado.Controllers
             Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
             ViewBag.IdentificacaoAtividade = aa.Atividade.Identificacao;
             ViewBag.TiTuloAtividade = aa.Atividade.Titulo;
+
+            int qtdRespostas = questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade).Count;
+            int certas = questaoRespostaModel.listarQuestoesRespostaCorretasPorAlunoAtividade(idAlunoAtividade);
+            int porcentagem = (certas * 100) / 10;
+
+            if (aa.Atividade.idTipo == 1)
+            {
+                ViewBag.Tipo = "Atividade";
+            }
+            else
+            {
+                ViewBag.Tipo = "Avaliação";
+            }
+
+            ViewBag.QtdRespostas = qtdRespostas;
+
+            if (ViewBag.QtdRespostas < 10)
+            {
+                ViewBag.MsgRespostas = "Apenas " + ViewBag.QtdRespostas;
+            }
+            else
+            {
+                ViewBag.MsgRespostas = "Todas";
+            }
+
+            ViewBag.Porcentagem = porcentagem;
 
             return View(Respostas);
         }

@@ -33,7 +33,26 @@ namespace Aprendizado.Controllers
 
         public ActionResult Index()
         {
-            return View(atividadeModel.listarAtividadesEAvaliacoes());
+            var atividades = new List<Atividade>();
+             atividades = atividadeModel.listarAtividadesEAvaliacoes();
+            DateTime data = DateTime.Now;
+            
+
+            for (int i = 0; i < atividades.Count; i++)
+            {
+                Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
+                int result = DateTime.Compare(data, at.DataEncerramento);
+                string erro = null;
+
+                if (result > 0)
+                {
+                    at.idStatus = 2;
+                    erro = atividadeModel.editarAtividade(at);
+                }
+            }
+
+
+            return View(atividades);
         }
 
         public ActionResult Atividades()

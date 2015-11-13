@@ -70,9 +70,6 @@
             @Html.DisplayFor(modelItem => item.DataEncerramento.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.idAtividade)
-        </td>
-        <td>
             @Html.ActionLink("Acessar", "VerificaAlunoAtividade", new { idAluno = ViewBag.IdAluno, idAtividade = item.idAtividade }, new { @class = "btn btn-default", @style = "color:#09192A "})
         </td>
     </tr>
