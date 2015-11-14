@@ -45,7 +45,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/Relatorios/Index">Sis&nbsp;Aprendizado</a>
+                    <a class="navbar-brand" href="/Home">Sis&nbsp;Aprendizado</a>
                 </div>
 
                 <ul class="nav navbar-top-links navbar-right">
@@ -76,7 +76,7 @@
 
                     @if (Request.IsAuthenticated)
                     {
-                        <li class="active"><<a class="active-menu" href="/Relatorios/Index"><i class="fa fa-home"></i>Home</a>
+                        <li class="active"><<a class="active-menu" href="/Home"><i class="fa fa-home"></i>Home</a>
                         </li>
                     }
 
@@ -140,17 +140,15 @@
                             <a href="#"><i class="glyphicon glyphicon-pencil"></i>Atividades<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>@Html.ActionLink("Ver Todas", "Index", "Atividade")</li>
-                                <li>@Html.ActionLink("Nova Atividade", "Edit","Atividade", new { id = 0 })</li>
-                                <li><a href="Atividade/Edit/0">Criar Nova</a></li>
-                                <li><a href="@Url.Action("Edit", "Atividade", new { id = 0 })"><span>Text</span></a></li>
+                                <li><a href="@Url.Action("Edit", "Atividade", new { id = 0 })"><span>Criar Nova</span></a></li>
                             </ul>
                         </li>
                         
                         <li class="page-scroll">
                             <a href="#"><i class="glyphicon glyphicon-list-alt"></i>Avaliações<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>@Html.ActionLink("Ver Todas", "Index", "Avaliacao")</li>
-                                <li><a href="Atividade/editcabecalho">Criar Nova</a></li>
+                                <li>@Html.ActionLink("Ver Todas", "IndexAvaliacao", "Atividade")</li>
+                                <li><a href="@Url.Action("EditCabacalho", "Atividade", new { id = 0 })"><span>Criar Nova</span></a></li>
                             </ul>
                         </li>
                         
@@ -159,15 +157,19 @@
                             <ul class="nav nav-second-level">
                                 <li>@Html.ActionLink("Ver Todas", "Index", "Pergunta")</li>
                                 <li><a href="@Url.Action("Edit", "Pergunta", new { id = 0 })">Criar Nova</a></li>
-                                <li>@Html.ActionLink("Tema", "Index", "Tema")</li>
+                                
+                                <li>
+                                    <a href="#">Tema<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                            <li>@Html.ActionLink("Ver Todos", "Index", "Tema")</li>
+                                            <li><a href="@Url.Action("Edit", "Tema", new { id = 0 })">Criar Novo</a></li>
+                                    </ul>
+                                </li>
                                 
                             </ul>
                         </li>
                             
                         <li><a href="@Url.Action("Index", "Turma")"><i class="fa fa-group"></i>Turmas</a></li>
-                        
-                        <li><a href="Turma/Index"><i class="fa fa-signal"></i>Estatísticas</a></li>
-                        
                         
                     }
 

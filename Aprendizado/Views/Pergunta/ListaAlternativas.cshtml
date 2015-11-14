@@ -8,7 +8,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-header">Gerenciamento de Perguntas<small> - Alternativas da pergunta @ViewBag.Descricao - </small>
+                <h1 class="page-header">Gerenciamento de Perguntas<small> - Alternativas da pergunta @ViewBag.DescricaoP - </small>
                 </h1>
             </div>
         </div>
@@ -22,33 +22,40 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
-                                     <tr>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Descricao)
+                                        </th>
 
+                                        <th>Correta
+                                        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th></th>
+                                        <th></th>
 
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditAlternativa", new { idAlternativa = item.idAlternativa, idPergunta = @ViewBag.idPergunta }) |
-            @Html.ActionLink("Delete", "DeleteAlternativa",
-                new { idAlternativa = item.idAlternativa }, 
-                new { @onclick = "return confirm('Confirma Exclusão?');" }) |
-            
-            @Html.ActionLink("Escolher como Correta", "EscolheCorreta", new { idAlternativa = item.idAlternativa, idPergunta = @ViewBag.idPergunta })
-        </td>
-    </tr>
-}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                            </td>
+                                            <td>
+                                                @if (item.idAlternativa == item.Pergunta.Correta)
+                                                {
+                                                    <img src="~/Images/Icones/correto.png" width="10%" />
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Escolher como Correta", "EscolheCorreta", new { idAlternativa = item.idAlternativa, idPergunta = @ViewBag.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                                                @Html.ActionLink("Editar", "EditAlternativa",new { idAlternativa = item.idAlternativa, idPergunta = @ViewBag.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                                                @Html.ActionLink("Excluir", "DeleteAlternativa", new { idAlternativa = item.idAlternativa }, new { @onclick = "return confirm('Confirma Exclusão?');", @class = "btn btn-default", @style = "color:#09192A "})
+                                            </td>
+                                            <td></td>
+                                            
+                                        </tr>
+                                    }
 
                                 </tbody>
                             </table>

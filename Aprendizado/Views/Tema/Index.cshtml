@@ -8,9 +8,12 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-header">Gerenciamento de Temas
-                    </h1>
-                </div>
+                <h1 class="page-header">Gerenciamento de Temas
+                </h1>
+                <h2><small>@Html.ActionLink("Novo Tema", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                </small></h2>
+                <br />
+            </div>
             </div>
             <!-- /. ROW  -->
 
@@ -46,8 +49,9 @@
             @Html.DisplayFor(modelItem => item.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTema }) </td><td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.idTema }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idTema }, new { @class = "btn btn-default", @style = "color:#09192A "})
+        
+            @Html.ActionLink("Excluir", "Delete", new { id = item.idTema }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')", @class = "btn btn-default", @style = "color:#09192A "})
         </td>
     </tr>
 }

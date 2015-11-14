@@ -19,66 +19,84 @@
             <!-- /. ROW  -->
             @Html.HiddenFor(model => model.idAtividade)
 
-              <div class="form-group">
-	        @Html.LabelFor(model => model.Turma, new { @class = "control-label col-md-2" })
-	        <div class="col-md-3">
-		        @Html.DropDownList("idTurma", null, new{@class= "form-control"})
+            <div class="form-group">
+                @Html.Label("Curso", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("idCurso", null, "Selecione um Curso", new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-            <br /><br />
             <br />
             
-        <div class="form-group">
-	        @Html.LabelFor(model => model.Disciplina, new { @class = "control-label col-md-2" })
-	        <div class="col-md-3">
-		       @Html.DropDownList("idDIsciplina", null, new{@class= "form-control"})
-	        </div>
-        </div>
-            <br /><br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-    	        @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
+            <div id="divTurmas">
+                <div class="form-group">
+                    @Html.Label("Turma", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("idTurma", null,"Selecione uma Turma", new { @class = "form-control" })
+                    </div>
+                </div>
             </div>
-        </div>
-            <br /><br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-    	        @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+            
+            <br />
+            <div id="divDisciplinas">
+                <div class="form-group">
+                    @Html.Label("Disciplina", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("idDisciplina", null,"Selecione uma Disciplina", new { @class = "form-control" })
+                    </div>
+                </div>
             </div>
-        </div>
-<br /><br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-    	        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.Identificacao, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-            <br /><br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.TextBoxFor(model => model.DataAbertura, String.Format("{0:MM/dd/yyyy}", Model.DataAbertura), new { @class = "form-control" })
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-            <br /><br />
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.DataAbertura, String.Format("{0:MM/dd/yyyy}", Model.DataAbertura), new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <br />
         
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataEncerramento, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-    	        @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataEncerramento, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.DataEncerramento, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-            <br /><br />
-        <div>
-            @if (Model.idAtividade != 0)
-            {
-                @Html.ActionLink("Perguntas da Atividade", "ListaPerguntaAtividade", new { idAtividade = Model.idAtividade })
-            } 
+            <br />
+            <br />
+            <div>
+                @if (Model.idAtividade != 0)
+                {
+                    @Html.ActionLink("Perguntas da Atividade", "ListaPerguntaAtividade", new { idAtividade = Model.idAtividade })
+                }
 
-        </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -93,17 +111,60 @@
 
 
 
-
-
-
-
- 
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 {
+
     <script>
         alert('@ViewBag.Erro');
     </script>
 }
+
+<script>
+    $("#divTurmas").hide();
+    $("#idCurso").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Atividade/ListaTurmas",
+            data: { curso: $("#idCurso").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["turmas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idTurma").html(html);
+                $("#divTurmas").show();
+            }
+        });
+
+    });
+</script>
+
+<script>
+    $("#divDisciplinas").hide();
+    $("#idCurso").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Atividade/ListaDisciplinas",
+            data: { curso: $("#idCurso").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["disciplinas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idDisciplina").html(html);
+                $("#divDisciplinas").show();
+            }
+        });
+
+    });
+</script>
+
 
 <script>
     function validar() {

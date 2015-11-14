@@ -16,8 +16,7 @@ namespace Aprendizado.Controllers
         private DisciplinaModel disciplinaModel = new DisciplinaModel();
         private AlternativaModel alternativaModel = new AlternativaModel();
         private NivelDificuldadeModel nivelDificuldadeModel = new NivelDificuldadeModel();
-
-
+        private CursoModel cursoModel = new CursoModel();
 
         public ActionResult Index()
         {
@@ -29,22 +28,36 @@ namespace Aprendizado.Controllers
             Pergunta p = new Pergunta();
             ViewBag.Titulo = "Nova Pergunta";
 
-            int idTemaSeleciondo = 1;
+            int idCurso = 1;
+            int idDisciplina = 1;
+
+            int idTema = 1;
             int idNivelDificuldadeSelecionado = 1;
-            int correta = 0;
+            int correta = 1;
 
             if (id != 0)
             {
                 p = perguntaModel.obterPergunta(id);
-                idTemaSeleciondo = p.idTema;
+                idCurso = p.Tema.Disciplina.idCurso;
+                idDisciplina = p.Tema.idDisciplina;
+                idTema = p.idTema;
                 idNivelDificuldadeSelecionado = p.idNivelDificuldade;
                 correta = p.Correta;
                 ViewBag.Titulo = "Editar Pergunta";
             }
 
+
+            ViewBag.idCurso
+                = new SelectList(cursoModel.todosCursos(),
+                    "idCurso", "Descricao", idCurso);
+
+            ViewBag.idDisciplina
+                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
+                    "idDisciplina", "Descricao", idDisciplina);
+
             ViewBag.idTema
-                = new SelectList(temaModel.todosTemas(),
-                    "idTema", "Descricao", idTemaSeleciondo);
+                = new SelectList(temaModel.obterTemasPorDisciplina(idCurso),
+                    "idTema", "Descricao", idTema);
 
             ViewBag.idNivelDificuldade
                 = new SelectList(nivelDificuldadeModel.todosNiveisDificuldade(),
@@ -129,6 +142,21 @@ namespace Aprendizado.Controllers
         }
 
 
+        public JsonResult ListaDisciplinas(int curso)
+        {
+            var disciplinas
+                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(curso), "idDisciplina", "Descricao");
+            return Json(new { disciplinas = disciplinas });
+        }
+
+        public JsonResult ListaTemas(int disciplina)
+        {
+            var temas
+                = new SelectList(temaModel.obterTemasPorDisciplina(disciplina), "idTema", "Descricao");
+            return Json(new { temas = temas });
+        }
+
+        
 //////////////////////////////// ALTERNATIVAS DA PERGUNTA ////////////////////////////////////////////////////////
 
         public ActionResult ListaAlternativas(int idPergunta)
@@ -213,7 +241,7 @@ namespace Aprendizado.Controllers
             }
             if (erro == null)
             {
-                return RedirectToAction("Edit", new { id = p.idPergunta });
+                return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
             }
             else
             {

@@ -34,9 +34,33 @@ namespace Aprendizado.Controllers
         public ActionResult Index()
         {
             var atividades = new List<Atividade>();
-             atividades = atividadeModel.listarAtividadesEAvaliacoes();
+             atividades = atividadeModel.todasAtividades();
             DateTime data = DateTime.Now;
             
+
+            for (int i = 0; i < atividades.Count; i++)
+            {
+                Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
+                int result = DateTime.Compare(data, at.DataEncerramento);
+                string erro = null;
+
+                if (result > 0)
+                {
+                    at.idStatus = 2;
+                    erro = atividadeModel.editarAtividade(at);
+                }
+            }
+
+
+            return View(atividades);
+        }
+
+        public ActionResult IndexAvaliacao()
+        {
+            var atividades = new List<Atividade>();
+            atividades = atividadeModel.todasAvaliacoes();
+            DateTime data = DateTime.Now;
+
 
             for (int i = 0; i < atividades.Count; i++)
             {
@@ -70,24 +94,33 @@ namespace Aprendizado.Controllers
             Atividade a = new Atividade();
             ViewBag.Titulo = "Nova Atividade";
 
-            int idDisciplina = 1;
-            int idTurma = 1;
+            int idDisciplina = 0;
+            int idTurma = 0;
+            int idCurso = 0;
+
 
             if (id != 0)
             {
                 a = atividadeModel.obterAtividade(id);
                 idDisciplina = a.idDisciplina;
                 idTurma = a.idTurma;
+                idCurso = a.Disciplina.idCurso;
                 ViewBag.Titulo = "Editar Atividade";
             }
 
-            ViewBag.idDisciplina    
-                = new SelectList(disciplinaModel.todasDisciplinas(),
-                    "idDisciplina", "Descricao", idDisciplina);
+            
+            ViewBag.idCurso
+                = new SelectList(cursoModel.todosCursos(),
+                    "idCurso", "Descricao", idCurso);
 
             ViewBag.idTurma
-                = new SelectList(turmaModel.todasTurmas(),
+                = new SelectList(turmaModel.obterTurmasPorCurso(idCurso),
                     "idTurma", "Identificacao", idTurma);
+
+            ViewBag.idDisciplina
+                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
+                    "idDisciplina", "Descricao", idDisciplina);
+
 
             return View(a);
         }
@@ -173,17 +206,23 @@ namespace Aprendizado.Controllers
 
             Atividade a = atividadeModel.obterAtividade(idAtividade);
 
-            int idPergunta = 1;
+            int idDisciplina = a.idDisciplina;
+            int idTema = 0;
+            int idPergunta = 0;
 
             if (idPerguntaAtividade != 0)
             {
                 pa = perguntaAtividadeModel.obterPerguntaAtividade(idPerguntaAtividade);
                 idPergunta = pa.idPergunta;
+                idTema = pa.Pergunta.idTema;
             }
 
+            ViewBag.idTema
+                    = new SelectList(temaModel.obterTemasPorDisciplina(idDisciplina),
+                        "idTema", "Descricao", idTema);
 
             ViewBag.idPergunta
-                = new SelectList(perguntaModel.todasPerguntas(),
+                = new SelectList(perguntaModel.obterPerguntasPorTema(idTema),
                     "idPergunta", "Identificacao", idPergunta);
 
             return View(pa);
@@ -245,6 +284,14 @@ namespace Aprendizado.Controllers
             return Json(new { turmas = turmas });
         }
 
+        public JsonResult ListaP(int tema)
+        {
+            var perguntas
+                = new SelectList(perguntaModel.listarPerguntasPorTema(tema), "idPergunta", "Identificacao");
+            return Json(new { perguntas = perguntas });
+        }
+
+
         public JsonResult ListaDisciplinas(int curso)
         {
             var disciplinas
@@ -259,7 +306,7 @@ namespace Aprendizado.Controllers
             return Json(new { perguntas = perguntas });
         }
 
-
+        
 //////////////// GERAR PROVA AUTOMATICA ///////////////////////////////////////////////////
         private List<Aluno> EditProvaAutomatica(int id)
         {

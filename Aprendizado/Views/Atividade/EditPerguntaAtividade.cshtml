@@ -18,14 +18,23 @@
             <!-- /. ROW  -->
             @Html.HiddenFor(model => model.idPerguntaAtividade)
 
-        @*@Html.HiddenFor(model => model.idPergunta)*@
+@*@Html.HiddenFor(model => model.idPergunta)*@
 
-        @Html.HiddenFor(model => model.idAtividade)
+            @Html.HiddenFor(model => model.idAtividade)
 
-             <div class="form-group">
-                @Html.LabelFor(model => model.Pergunta,  new{ @class = "control-label col-md-2" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pergunta.Tema, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.DropDownList("idPergunta", null, new { @class = "form-control" })
+                    @Html.DropDownList("idTema", null, "Selecione um Tema", new { @class = "form-control" })
+                </div>
+            </div>
+             <br /><br />
+            <div id="divPerguntas">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pergunta, new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("idPergunta", null, new { @class = "form-control" })
+                    </div>
                 </div>
             </div>
             
@@ -47,6 +56,30 @@
         alert('@Html.Raw(ViewBag.Erro)');
     </script>
 }
+
+
+<script>
+    $("#divPerguntas").hide();
+    $("#idTema").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Atividade/ListaP",
+            data: { tema: $("#idTema").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["perguntas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idPergunta").html(html);
+                $("#divPerguntas").show();
+            }
+        });
+
+    });
+</script>
 
 <script>
     function validar() {

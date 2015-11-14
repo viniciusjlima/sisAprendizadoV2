@@ -19,25 +19,47 @@
             <!-- /. ROW  -->
             
             @Html.HiddenFor(model => model.idPergunta)
-        
+            
+            
             <div class="form-group">
-                @Html.LabelFor(model => model.Tema, new { @class = "control-label col-md-2" })
+                @Html.Label("Curso", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.DropDownList("idTema", null, new { @class = "form-control" })
+                    @Html.DropDownList("idCurso", null, "Selecione um Curso", new { @class = "form-control" })
                 </div>
             </div>
             <br />
             <br />
+            <div id="divDisciplinas">
+                <div class="form-group">
+                    @Html.Label("Disciplina", new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("idDisciplina", null,"Selecione uma Disciplina", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+               <br /> 
+            <br />
+            <div id="divTemas">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tema, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("idTema", null, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
             <br />
 
+            <div id="info">
             <div class="form-group">
                 @Html.LabelFor(model => model.NivelDificuldade, new { @class = "control-label col-md-2" })
-                
+
                 <div class="col-md-3">
                     @Html.DropDownList("idNivelDificuldade", null, new { @class = "form-control" })
                 </div>
             </div>
             <br />
+                <br />
             <br />
             <div class="form-group">
                 @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
@@ -61,18 +83,18 @@
                     @Html.TextBoxFor(model => model.Enunciado, new { @class = "form-control" })
                 </div>
             </div>
-
+                </div>
             <br />
             <br />
             
             if (Model.idPergunta != 0)
             {
-                <div class="form-group">
-	                @Html.LabelFor(model => model.Correta, new { @class = "control-label col-md-2" })
-                    <div class="col-md-3">
-                        @Html.DropDownList("Correta", null, new { @class = "form-control" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Correta, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Correta", null, new { @class = "form-control" })
                 </div>
+            </div>
             
                 
             }
@@ -87,6 +109,54 @@
         }
     </div>
 </div>
+
+
+
+<script>
+    $("#divDisciplinas").hide();
+    $("#idCurso").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Pergunta/ListaDisciplinas",
+            data: { curso: $("#idCurso").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["disciplinas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idDisciplina").html(html);
+                $("#divDisciplinas").show();
+            }
+        });
+
+    });
+</script>
+
+<script>
+    $("#divTemas").hide();
+    $("#idDisciplina").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Pergunta/ListaTemas",
+            data: { disciplina: $("#idDisciplina").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["temas"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#idTema").html(html);
+                $("#divTemas").show();
+            }
+        });
+
+    });
+</script>
 
 
 

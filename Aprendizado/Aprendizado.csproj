@@ -401,7 +401,9 @@
     <Content Include="Views\pages\typography.html" />
     <Content Include="Views\Pergunta\data.html" />
     <Content Include="Views\Pergunta\tables.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -548,6 +550,7 @@
     <Content Include="Views\Estado\Edit.cshtml" />
     <Content Include="Views\Atividade\Insuficientes.cshtml" />
     <Content Include="Views\Atividade\PerguntasInsuficientes.cshtml" />
+    <Content Include="Views\Atividade\IndexAvaliacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

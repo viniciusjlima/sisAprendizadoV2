@@ -55,15 +55,18 @@
                                             <td>
                                                 @if (item.Correta == 0)
                                                 {
+                                                   @Html.DisplayName("Falta escolher alternativa correta")
                                                 }else{
 
                                                 @Html.DisplayFor(modelItem => item.Correta)}
                                             </td>
                                             <td>
                                                @Html.ActionLink("Alternativas", "ListaAlternativas", new { idPergunta = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A " })
-                                            &nbsp &nbsp
+                                            </td>
+                                            <td>
                                                 @Html.ActionLink("Editar", "Edit", new { id = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A " })
-                                            &nbsp &nbsp
+                                            </td>
+                                            <td>
                                                 @Html.ActionLink("Excluir", "Delete", new { id = item.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A ", @onclick = "return confirm('Tem certeza que deseja excluir?')" })
                                             </td>
                                         </tr>

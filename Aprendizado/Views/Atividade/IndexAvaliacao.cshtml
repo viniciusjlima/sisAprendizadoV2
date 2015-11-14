@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Aprendizado.Entity.Atividade>
+
+@{
+    ViewBag.Title = "IndexAvaliacao";
+}
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Avaliações
+                </h1>
+                <h2><small>@Html.ActionLink("Nova Avaliação", "EditCabecalho", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                </small></h2>
+                <br />
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Identificacao)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Titulo)
+                                        </th>
+                                        <th>
+                                            Disciplina
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Descricao)
+                                        </th>
+                                        <th>Status
+                                        </th>
+                                        <th>Abertura
+                                        </th>
+                                        <th>Encerramento
+                                        </th>
+                                        <th>Perguntas
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Identificacao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Titulo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataAbertura)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DataEncerramento)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Inserir", "ListaPerguntaAtividade", new { idAtividade = item.idAtividade }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.idAtividade }, new { @class = "btn btn-default", @style = "color:#09192A " })
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
