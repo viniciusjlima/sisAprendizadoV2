@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Entity;
 using Aprendizado.Models;
 
 namespace Aprendizado.Controllers
 {
+    [Authorize]
     public class TelefoneController : Controller
     {
         private TelefoneModel telefoneModel = new TelefoneModel();
@@ -21,56 +23,64 @@ namespace Aprendizado.Controllers
 
         public ActionResult Edit(int id)
         {
-            Telefone t = new Telefone();
-            ViewBag.Titulo = "Novo Telefone";
-
-            int idTipoTelefoneSelecionado = 1;
-
-            if (id != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                t = telefoneModel.obterTelefone(id);
-                idTipoTelefoneSelecionado = t.idTipoTelefone;
-                ViewBag.Titulo = "Editar Telefone";
+                Telefone t = new Telefone();
+                ViewBag.Titulo = "Novo Telefone";
+
+                int idTipoTelefoneSelecionado = 1;
+
+                if (id != 0)
+                {
+                    t = telefoneModel.obterTelefone(id);
+                    idTipoTelefoneSelecionado = t.idTipoTelefone;
+                    ViewBag.Titulo = "Editar Telefone";
+                }
+
+                ViewBag.idTipoTelefone
+                    = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
+                        "idTipoTelefone", "Descricao", idTipoTelefoneSelecionado);
+
+                return View(t);
             }
-
-            ViewBag.idTipoTelefone
-                = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
-                    "idTipoTelefone", "Descricao", idTipoTelefoneSelecionado);
-
-            return View(t);
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Edit(Telefone t, TipoTelefone te)
         {
-            ViewBag.idTipoTelefone
-               = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
-                   "idTipoTelefone", "Descricao", te);
-            
-            if (!validarTelefone(t))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                ViewBag.Erro = "Erro na validação do Telefone";
-                return View(t);
-            }
+                ViewBag.idTipoTelefone
+                   = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
+                       "idTipoTelefone", "Descricao", te);
 
-            string erro = null;
-            if (t.idTipoTelefone == 0)
-            {
-                erro = telefoneModel.adicionarTelefone(t);
+                if (!validarTelefone(t))
+                {
+                    ViewBag.Erro = "Erro na validação do Telefone";
+                    return View(t);
+                }
+
+                string erro = null;
+                if (t.idTipoTelefone == 0)
+                {
+                    erro = telefoneModel.adicionarTelefone(t);
+                }
+                else
+                {
+                    erro = telefoneModel.editarTelefone(t);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(t);
+                }
             }
-            else
-            {
-                erro = telefoneModel.editarTelefone(t);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(t);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarTelefone(Telefone telefone)
@@ -85,9 +95,13 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(int id)
         {
-            Telefone t = telefoneModel.obterTelefone(id);
-            telefoneModel.excluirTelefone(t);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                Telefone t = telefoneModel.obterTelefone(id);
+                telefoneModel.excluirTelefone(t);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
     }

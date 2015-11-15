@@ -61,45 +61,64 @@ namespace Aprendizado.Controllers
                 return View();
             }
 
-            return Redirect("/Shared/Error");
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult PerguntasQueOAlunoErrou(int idAluno)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+{
+
             int qtdErros = alunoAtividadeModel.listarPerguntasErradas(idAluno).Count;
             ViewBag.qtdErros = qtdErros;
 
             return View(alunoAtividadeModel.listarPerguntasErradas(idAluno));
+}
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult PerguntasQueOAlunoAcertou(int idAluno)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+            {
             int qtdAcertos = alunoAtividadeModel.listarPerguntasCertas(idAluno).Count;
             ViewBag.qtdAcertos = qtdAcertos;
 
             return View(alunoAtividadeModel.listarPerguntasCertas(idAluno));
+            }
+return Redirect("/Shared/Restrito");
         }
 
 
         public ActionResult Temas(int idAluno)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+{
             int qtdErros = alunoAtividadeModel.listarPerguntasErradasPorTema(idAluno, 3).Count;
             ViewBag.qtdErros = qtdErros;
 
             return View(temaModel.listarTemaPorCurso(idAluno));
+}
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult PerguntasQueOAlunoErrouPorTema(int idAluno, int idTema)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+            {
             int qtdErros = alunoAtividadeModel.listarPerguntasErradasPorTema(idAluno, idTema).Count;
             ViewBag.qtdErros = qtdErros;
 
             return View(alunoAtividadeModel.listarPerguntasErradasPorTema(idAluno, idTema));
+            }
+return Redirect("/Shared/Restrito");
         }
 
 
         public ActionResult errosPorTema(int idAluno)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+{
             Aluno a = alunoModel.obterAluno(idAluno);
             List<Tema> temas = alunoAtividadeModel.listarTemasPorAluno(idAluno);
             var listaErradasTema = new List<ErradaTema>();
@@ -118,10 +137,13 @@ namespace Aprendizado.Controllers
             ViewBag.listaErradasTema = listaErradasTema;
             ViewBag.idAluno = idAluno;
             return View(listaErradasTema);
+}
+            return Redirect("/Shared/Restrito");
         }
 
         public JsonResult ListaErradasTema(int idAluno)
         {
+            
             Aluno a = alunoModel.obterAluno(idAluno);
             List<Tema> temas = alunoAtividadeModel.listarTemasPorAluno(idAluno);
             var listaErradasTema = new List<ErradaTema>();
@@ -199,435 +221,435 @@ namespace Aprendizado.Controllers
             return Json(new { listaCorretasDisciplina = listaCorretasDisciplina });
         }
 
-        public ActionResult prepararSorteio()
-        {
-            int idAluno = 1;
-            errosPorTema(idAluno);
-            NumerosSorteados = new List<int>();
-
-            int idTema1 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[0].Tema).idTema;
-            int idTema2 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[1].Tema).idTema;
-            int idTema3 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[2].Tema).idTema;
-
-            //==================  1º TEMA QUE O ALUNO MAIS ERROU ====================================================
-
-            //----------------------- DIFICEIS --------------------------------------------------
-            List<Pergunta> PerguntasDificeisASortearT1 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
-
-            contadorPergunta = PerguntasDificeisASortearT1.Count;
-            nPerguntas = 3;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasDIficeisT1 = new List<Pergunta>();
-
-            for (int i = 0; i < 3; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasDIficeisT1.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //------ MEDIAS ------------------------------------------------------------------------------------
-            List<Pergunta> PerguntasMediasASortearT1 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
-
-            contadorPergunta = PerguntasMediasASortearT1.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasMediasT1 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasMediasASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasMediasT1.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-
-            //-------- FACEIS ----------------------------------------------------------------------------------
-            List<Pergunta> PerguntasFaceisASortearT1 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
-
-            contadorPergunta = PerguntasFaceisASortearT1.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasFaceisT1 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasFaceisT1.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-
-            //==================  2º TEMA QUE O ALUNO MAIS ERROU ====================================================
-
-            //----------------------- DIFICEIS --------------------------------------------------
-            List<Pergunta> PerguntasDificeisASortearT2 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
-
-            contadorPergunta = PerguntasDificeisASortearT2.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasDificeisT2 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasDificeisT2.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-
-            //----------------------- MEDIAS --------------------------------------------------
-            List<Pergunta> PerguntasMediasASortearT2 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
-
-            contadorPergunta = PerguntasMediasASortearT2.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasMediasT2 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasMediasT2.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-
-            //----------------------- FACEIS --------------------------------------------------
-            List<Pergunta> PerguntasFaceisASortearT2 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
-
-            contadorPergunta = PerguntasFaceisASortearT2.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasFaceisT2 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasFaceisT2.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-
-            //==================  3º TEMA QUE O ALUNO MAIS ERROU ====================================================
-
-            //----------------------- MEDIAS --------------------------------------------------
-            List<Pergunta> PerguntasMediasASortearT3 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
-
-            contadorPergunta = PerguntasMediasASortearT3.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasMediasT3 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasMediasT3.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //----------------------- FACEIS --------------------------------------------------
-            List<Pergunta> PerguntasFaceisASortearT3 =
-                perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
-
-            contadorPergunta = PerguntasFaceisASortearT3.Count;
-            nPerguntas = 1;
-            Sortear(contadorPergunta, nPerguntas);
-
-            var listaPerguntasFaceisT3 = new List<Pergunta>();
-
-            for (int i = 0; i < 1; i++)
-            {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaPerguntasMediasT2.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //------------------------ MONTA LISTA COM PERGUNTAS PARA A ATIVIDADE--------------------------
-
-            var listaFinalPerguntas = new List<Pergunta>();
-
-            // Adiciona perguntas do tema 1
-            //DIFICEIS
-            for (int i = 0; i < listaPerguntasDIficeisT1.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasDIficeisT1[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //MEDIAS
-            for (int i = 0; i < listaPerguntasMediasT1.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasMediasT1[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //FACEIS
-            for (int i = 0; i < listaPerguntasFaceisT1.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasFaceisT1[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            // Adiciona perguntas do Tema 2
-            //DIFICEIS
-            for (int i = 0; i < listaPerguntasDificeisT2.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasDificeisT2[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //MEDIAS
-            for (int i = 0; i < listaPerguntasMediasT2.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasMediasT2[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //FACEIS
-            for (int i = 0; i < listaPerguntasFaceisT2.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasFaceisT2[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            // Adiciona perguntas do Tema 2
-            //MEDIAS
-            for (int i = 0; i < listaPerguntasMediasT3.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasMediasT3[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            //FACEIS
-            for (int i = 0; i < listaPerguntasFaceisT3.Count; i++)
-            {
-                int idPerguntaSorteada = listaPerguntasFaceisT3[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
-
-                listaFinalPerguntas.Add(new Pergunta()
-                {
-                    idPergunta = pergunta.idPergunta,
-                    idTema = pergunta.idTema,
-                    idNivelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            var testeView = new List<perguntasProva>();
-
-            for (int i = 0; i < listaFinalPerguntas.Count; i++)
-            {
-                int idPergunta = listaFinalPerguntas[i].idPergunta;
-                Pergunta pergunta = perguntaModel.obterPergunta(idPergunta);
-
-                testeView.Add(new perguntasProva()
-                {
-                    IdPergunta = pergunta.idPergunta,
-                    IdTema = pergunta.idTema,
-                    IdNIvelDificuldade = pergunta.idNivelDificuldade,
-                    Titulo = pergunta.Titulo,
-                    Enunciado = pergunta.Enunciado,
-                    Identificacao = pergunta.Identificacao,
-                    Correta = pergunta.Correta
-                });
-            }
-
-            return View(testeView);
-        }
-
-        private List<int> Sortear(int contadorPergunta, int nPergunta)
-        {
-            NumerosSorteados.Clear();
-            Random random = new Random();
-            int nPerguntaSorteada = 0;
-
-            for (int i = 0; i < nPergunta; i++)
-            {
-                do
-                {
-                    nPerguntaSorteada = random.Next(0, contadorPergunta);
-                } while (NumerosSorteados.Contains(nPerguntaSorteada));
-
-                NumerosSorteados.Add(nPerguntaSorteada);
-            }
-
-
-            return NumerosSorteados;
-        }
+        //public ActionResult prepararSorteio()
+        //{
+        //    int idAluno = 1;
+        //    errosPorTema(idAluno);
+        //    NumerosSorteados = new List<int>();
+
+        //    int idTema1 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[0].Tema).idTema;
+        //    int idTema2 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[1].Tema).idTema;
+        //    int idTema3 = temaModel.obterTemaPorDescricao(ViewBag.listaErradasTema[2].Tema).idTema;
+
+        //    //==================  1º TEMA QUE O ALUNO MAIS ERROU ====================================================
+
+        //    //----------------------- DIFICEIS --------------------------------------------------
+        //    List<Pergunta> PerguntasDificeisASortearT1 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
+
+        //    contadorPergunta = PerguntasDificeisASortearT1.Count;
+        //    nPerguntas = 3;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasDIficeisT1 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasDIficeisT1.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //------ MEDIAS ------------------------------------------------------------------------------------
+        //    List<Pergunta> PerguntasMediasASortearT1 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
+
+        //    contadorPergunta = PerguntasMediasASortearT1.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasMediasT1 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasMediasASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasMediasT1.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+
+        //    //-------- FACEIS ----------------------------------------------------------------------------------
+        //    List<Pergunta> PerguntasFaceisASortearT1 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
+
+        //    contadorPergunta = PerguntasFaceisASortearT1.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasFaceisT1 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasFaceisT1.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+
+        //    //==================  2º TEMA QUE O ALUNO MAIS ERROU ====================================================
+
+        //    //----------------------- DIFICEIS --------------------------------------------------
+        //    List<Pergunta> PerguntasDificeisASortearT2 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 3); // 3 = Nivel de Dificuldade DIFICIL
+
+        //    contadorPergunta = PerguntasDificeisASortearT2.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasDificeisT2 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasDificeisT2.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+
+        //    //----------------------- MEDIAS --------------------------------------------------
+        //    List<Pergunta> PerguntasMediasASortearT2 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
+
+        //    contadorPergunta = PerguntasMediasASortearT2.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasMediasT2 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasMediasT2.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+
+        //    //----------------------- FACEIS --------------------------------------------------
+        //    List<Pergunta> PerguntasFaceisASortearT2 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
+
+        //    contadorPergunta = PerguntasFaceisASortearT2.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasFaceisT2 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasFaceisT2.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+
+        //    //==================  3º TEMA QUE O ALUNO MAIS ERROU ====================================================
+
+        //    //----------------------- MEDIAS --------------------------------------------------
+        //    List<Pergunta> PerguntasMediasASortearT3 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 2); // 2 = Nivel de Dificuldade MEDIO
+
+        //    contadorPergunta = PerguntasMediasASortearT3.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasMediasT3 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasMediasT3.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //----------------------- FACEIS --------------------------------------------------
+        //    List<Pergunta> PerguntasFaceisASortearT3 =
+        //        perguntaModel.listarPerguntasParaSorteio(idTema1, 1); // 1 = Nivel de Dificuldade FACIL
+
+        //    contadorPergunta = PerguntasFaceisASortearT3.Count;
+        //    nPerguntas = 1;
+        //    Sortear(contadorPergunta, nPerguntas);
+
+        //    var listaPerguntasFaceisT3 = new List<Pergunta>();
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaPerguntasMediasT2.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //------------------------ MONTA LISTA COM PERGUNTAS PARA A ATIVIDADE--------------------------
+
+        //    var listaFinalPerguntas = new List<Pergunta>();
+
+        //    // Adiciona perguntas do tema 1
+        //    //DIFICEIS
+        //    for (int i = 0; i < listaPerguntasDIficeisT1.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasDIficeisT1[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //MEDIAS
+        //    for (int i = 0; i < listaPerguntasMediasT1.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasMediasT1[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //FACEIS
+        //    for (int i = 0; i < listaPerguntasFaceisT1.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasFaceisT1[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    // Adiciona perguntas do Tema 2
+        //    //DIFICEIS
+        //    for (int i = 0; i < listaPerguntasDificeisT2.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasDificeisT2[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //MEDIAS
+        //    for (int i = 0; i < listaPerguntasMediasT2.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasMediasT2[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //FACEIS
+        //    for (int i = 0; i < listaPerguntasFaceisT2.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasFaceisT2[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    // Adiciona perguntas do Tema 2
+        //    //MEDIAS
+        //    for (int i = 0; i < listaPerguntasMediasT3.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasMediasT3[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    //FACEIS
+        //    for (int i = 0; i < listaPerguntasFaceisT3.Count; i++)
+        //    {
+        //        int idPerguntaSorteada = listaPerguntasFaceisT3[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
+
+        //        listaFinalPerguntas.Add(new Pergunta()
+        //        {
+        //            idPergunta = pergunta.idPergunta,
+        //            idTema = pergunta.idTema,
+        //            idNivelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    var testeView = new List<perguntasProva>();
+
+        //    for (int i = 0; i < listaFinalPerguntas.Count; i++)
+        //    {
+        //        int idPergunta = listaFinalPerguntas[i].idPergunta;
+        //        Pergunta pergunta = perguntaModel.obterPergunta(idPergunta);
+
+        //        testeView.Add(new perguntasProva()
+        //        {
+        //            IdPergunta = pergunta.idPergunta,
+        //            IdTema = pergunta.idTema,
+        //            IdNIvelDificuldade = pergunta.idNivelDificuldade,
+        //            Titulo = pergunta.Titulo,
+        //            Enunciado = pergunta.Enunciado,
+        //            Identificacao = pergunta.Identificacao,
+        //            Correta = pergunta.Correta
+        //        });
+        //    }
+
+        //    return View(testeView);
+        //}
+
+        //private List<int> Sortear(int contadorPergunta, int nPergunta)
+        //{
+        //    NumerosSorteados.Clear();
+        //    Random random = new Random();
+        //    int nPerguntaSorteada = 0;
+
+        //    for (int i = 0; i < nPergunta; i++)
+        //    {
+        //        do
+        //        {
+        //            nPerguntaSorteada = random.Next(0, contadorPergunta);
+        //        } while (NumerosSorteados.Contains(nPerguntaSorteada));
+
+        //        NumerosSorteados.Add(nPerguntaSorteada);
+        //    }
+
+
+        //    return NumerosSorteados;
+        //}
 
     }
 }

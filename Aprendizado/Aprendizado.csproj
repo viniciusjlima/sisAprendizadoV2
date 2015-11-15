@@ -551,6 +551,8 @@
     <Content Include="Views\Atividade\Insuficientes.cshtml" />
     <Content Include="Views\Atividade\PerguntasInsuficientes.cshtml" />
     <Content Include="Views\Atividade\IndexAvaliacao.cshtml" />
+    <Content Include="Views\Shared\Restrito.cshtml" />
+    <Content Include="Views\Shared\Erro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,8 @@
             <div class="col-md-12">
                 <h1 class="page-header">Gerenciamento de Perguntas<small> - Alternativas da pergunta @ViewBag.DescricaoP - </small>
                 </h1>
+                @Html.ActionLink("Nova Alternativa", "EditAlternativa", new { idAlternativa = 0, idPergunta = @ViewBag.idPergunta }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                <br /><br />
             </div>
         </div>
         <!-- /. ROW  -->

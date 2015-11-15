@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Entity;
 using Aprendizado.Models;
@@ -36,50 +37,41 @@ namespace Aprendizado.Controllers
             }
 
             return PartialView(e);
+           
         }
 
         [HttpPost]
         public ActionResult Edit(Estado e)
         {
-            //string erro = null;
-            //if (e.UF == "")
-            //    erro = estadoModel.adicionarEstado(e);
-            //else
-            //    erro = estadoModel.editarEstado(e);
-            //if (erro == null)
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    ViewBag.Erro = erro;
-            //    return View(e);
-            //}
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
 
-            if (!validarEstado(e))
-            {
-                ViewBag.Erro = "Erro na validação do Estado";
-                return View(e);
-            }
+                if (!validarEstado(e))
+                {
+                    ViewBag.Erro = "Erro na validação do Estado";
+                    return View(e);
+                }
 
-            string erro = null;
-            if (e.UF == "")
-            {
-                erro = estadoModel.adicionarEstado(e);
+                string erro = null;
+                if (e.UF == "")
+                {
+                    erro = estadoModel.adicionarEstado(e);
+                }
+                else
+                {
+                    erro = estadoModel.editarEstado(e);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(e);
+                }
             }
-            else
-            {
-                erro = estadoModel.editarEstado(e);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(e);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarEstado(Estado estado)
@@ -98,9 +90,13 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(string uf)
         {
-            Estado e = estadoModel.obterEstado(uf);
-            estadoModel.excluirEstado(e);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                Estado e = estadoModel.obterEstado(uf);
+                estadoModel.excluirEstado(e);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
     }

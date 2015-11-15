@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Entity;
 using Aprendizado.Models;
@@ -19,46 +20,54 @@ namespace Aprendizado.Controllers
 
         public ActionResult Edit(int id)
         {
-            Tipo tt = new Tipo();
-            ViewBag.Titulo = "Novo Tipo";
-
-            if (id != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                tt = tipoModel.obterTipo(id);
-                ViewBag.Titulo = "Editar Tipo";
-            }
+                Tipo tt = new Tipo();
+                ViewBag.Titulo = "Novo Tipo";
 
-            return View(tt);
+                if (id != 0)
+                {
+                    tt = tipoModel.obterTipo(id);
+                    ViewBag.Titulo = "Editar Tipo";
+                }
+
+                return View(tt);
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Edit(Tipo tt)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
 
-            if (!validarTipo(tt))
-            {
-                ViewBag.Erro = "Erro na validação do Tipo";
-                return View(tt);
-            }
+                if (!validarTipo(tt))
+                {
+                    ViewBag.Erro = "Erro na validação do Tipo";
+                    return View(tt);
+                }
 
-            string erro = null;
-            if (tt.idTipo == 0)
-            {
-                erro = tipoModel.adicionarTipo(tt);
+                string erro = null;
+                if (tt.idTipo == 0)
+                {
+                    erro = tipoModel.adicionarTipo(tt);
+                }
+                else
+                {
+                    erro = tipoModel.editarTipo(tt);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(tt);
+                }
             }
-            else
-            {
-                erro = tipoModel.editarTipo(tt);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(tt);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarTipo(Tipo tipo)
@@ -71,9 +80,14 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(int id)
         {
-            Tipo t = tipoModel.obterTipo(id);
-            tipoModel.excluirTipo(t);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+
+                Tipo t = tipoModel.obterTipo(id);
+                tipoModel.excluirTipo(t);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
     }

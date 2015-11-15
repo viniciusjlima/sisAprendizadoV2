@@ -4,23 +4,27 @@
     ViewBag.Title = "Edit";
 }
 
-@using (Html.BeginForm())
-{
-
-    <div class="form-horizontal">
-        <h4>Editar Turma</h4>
-        <hr />
-
-        @Html.HiddenFor(model => model.idTurma)
-
-        
-        <div class="form-group">
-	        @Html.LabelFor(model => model.Curso, new { @class = "control-label col-md-2" })
-	        <div class="col-md-10">
-		        @Html.DropDownList("idCurso")
-	        </div>
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Curso<small> - @ViewBag.Titulo - </small>
+                </h1>
+            </div>
         </div>
-        
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idTurma)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Curso,  new{ @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("idCurso", null, new { @class = "form-control" })
+                </div>
+            </div>
+        <br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.Identificacao, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
@@ -28,16 +32,27 @@
             </div>
         </div>
 
-        @if (Model.idTurma != 0)
-        {
-        @Html.ActionLink("Disciplinas da Turma", "ListaDisciplinaTurma", new { idTurma = Model.idTurma })
-        }
-        <br />   
-        <br />  
-        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Save"  class="btn btn-default" onclick="    return validar();"/> 
+           
 
-        </div>
-}
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    @if (Model.idTurma != 0)
+                    {
+                        @Html.ActionLink("Disciplinas da Turma", "ListaDisciplinaTurma", new { idTurma = Model.idTurma }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                    }
+                    <br />
+                    <br />
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
 
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 {

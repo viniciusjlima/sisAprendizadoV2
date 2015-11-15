@@ -51,38 +51,42 @@ namespace Aprendizado.Controllers
                 }
                 return View(p);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditPessoa(Pessoa p)
         {
-            string erro = pessoaModel.validarPessoa(p);
-            if (erro == null)
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                if (p.idPessoa == 0)
+                string erro = pessoaModel.validarPessoa(p);
+                if (erro == null)
                 {
-                    erro = pessoaModel.adicionarPessoa(p);
+                    if (p.idPessoa == 0)
+                    {
+                        erro = pessoaModel.adicionarPessoa(p);
+                    }
+                    else
+                    {
+                        erro = pessoaModel.editarPessoa(p);
+                    }
+                }
+
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("EditAluno", new { idAluno = 0, p.idPessoa });
                 }
                 else
                 {
-                    erro = pessoaModel.editarPessoa(p);
+                    ViewBag.Error = erro;
+                    return View(p);
                 }
             }
-
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
-                {
-                    erro = "p.idPEssoa vazio";
-                }
-                return RedirectToAction("EditAluno", new { idAluno = 0, p.idPessoa });
-            }
-            else
-            {
-                ViewBag.Error = erro;
-                return View(p);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         public PartialViewResult List(string q)
@@ -121,38 +125,42 @@ namespace Aprendizado.Controllers
 
                 return View(a);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditAluno(Aluno a, Pessoa p, Turma t)
         {
-            ViewBag.idTurma
-                = new SelectList(turmaModel.todasTurmas(), "idTurma", "Identificacao",
-                    t);
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.idTurma
+                    = new SelectList(turmaModel.todasTurmas(), "idTurma", "Identificacao",
+                        t);
 
-            string erro = null;
-            if (a.idAluno == 0)
-            {
-                erro = alunoModel.adicionarAluno(a);
-            }
-            else
-            {
-                erro = alunoModel.editarAluno(a);
-            }
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
+                string erro = null;
+                if (a.idAluno == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = alunoModel.adicionarAluno(a);
                 }
-                return RedirectToAction("EditUsuario", new { idUsuario = 0, p.idPessoa });
+                else
+                {
+                    erro = alunoModel.editarAluno(a);
+                }
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("EditUsuario", new { idUsuario = 0, p.idPessoa });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(a);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(a);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         /////////////////////// USUARIO ///////////////////////////////////////////////////////////
@@ -187,36 +195,40 @@ namespace Aprendizado.Controllers
 
                 return View(u);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditUsuario(Usuario u, Perfil p, Pessoa pa)
         {
-            u.idPerfil = 1;
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                u.idPerfil = 1;
 
-            string erro = null;
-            if (u.idUsuario == 0)
-            {
-                erro = usuarioModel.adicionarUsuario(u);
-            }
-            else
-            {
-                erro = usuarioModel.editarUsuario(u);
-            }
-            if (erro == null)
-            {
-                if (pa.idPessoa == 0)
+                string erro = null;
+                if (u.idUsuario == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = usuarioModel.adicionarUsuario(u);
                 }
-                return RedirectToAction("EditEndereco", new { idEndereco = 0, pa.idPessoa });
+                else
+                {
+                    erro = usuarioModel.editarUsuario(u);
+                }
+                if (erro == null)
+                {
+                    if (pa.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("EditEndereco", new { idEndereco = 0, pa.idPessoa });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(u);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(u);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         ///////////////  ENDERECO  ////////////////////////////////////////////////////////////
@@ -265,52 +277,60 @@ namespace Aprendizado.Controllers
 
                 return View(e);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditEndereco(Endereco e, Estado estado, Cidade cidade, TipoEndereco tipo, Pessoa p)
         {
-            ViewBag.UF
-                = new SelectList(estadoModel.todosEstados(), "UF", "Descricao",
-                    estado);
-            ViewBag.idCidade
-                = new SelectList(cidadeModel.obterCidadesPorEstado(estado.UF),
-                    "idCidade", "Descricao", cidade);
-            ViewBag.idTipoEndereco
-                = new SelectList(tipoEnderecoModel.todosTiposEnderecos(),
-                    "idTipoEndereco", "Descricao", tipo);
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.UF
+                    = new SelectList(estadoModel.todosEstados(), "UF", "Descricao",
+                        estado);
+                ViewBag.idCidade
+                    = new SelectList(cidadeModel.obterCidadesPorEstado(estado.UF),
+                        "idCidade", "Descricao", cidade);
+                ViewBag.idTipoEndereco
+                    = new SelectList(tipoEnderecoModel.todosTiposEnderecos(),
+                        "idTipoEndereco", "Descricao", tipo);
 
-            string erro = null;
-            if (e.idEndereco == 0)
-            {
-                erro = enderecoModel.adicionarEndereco(e);
-            }
-            else
-            {
-                erro = enderecoModel.editarEndereco(e);
-            }
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
+                string erro = null;
+                if (e.idEndereco == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = enderecoModel.adicionarEndereco(e);
                 }
+                else
+                {
+                    erro = enderecoModel.editarEndereco(e);
+                }
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
 
-                return RedirectToAction("EditTelefone", new { idTelefone = 0, p.idPessoa });
+                    return RedirectToAction("EditTelefone", new { idTelefone = 0, p.idPessoa });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(e);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(e);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult DeleteEndereco(int idEndereco)
         {
-            Endereco e = enderecoModel.obterEndereco(idEndereco);
-            enderecoModel.excluirEndereco(e);
-            return RedirectToAction("ListaEnderecos", new { idPessoa = e.idPessoa });
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                Endereco e = enderecoModel.obterEndereco(idEndereco);
+                enderecoModel.excluirEndereco(e);
+                return RedirectToAction("ListaEnderecos", new { idPessoa = e.idPessoa });
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public JsonResult ListaCidades(string estado)
@@ -324,10 +344,14 @@ namespace Aprendizado.Controllers
 
         public ActionResult ListaTelefones(int idPessoa)
         {
-            ViewBag.idPessoa = idPessoa;
-            Pessoa p = pessoaModel.obterPessoa(idPessoa);
-            ViewBag.NomePessoa = p.Nome;
-            return View(telefoneModel.obterTelefonesPessoas(idPessoa));
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.idPessoa = idPessoa;
+                Pessoa p = pessoaModel.obterPessoa(idPessoa);
+                ViewBag.NomePessoa = p.Nome;
+                return View(telefoneModel.obterTelefonesPessoas(idPessoa));
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         [Authorize]
@@ -355,38 +379,42 @@ namespace Aprendizado.Controllers
 
                 return View(t);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditTelefone(Telefone t, TipoTelefone tt, Pessoa p)
         {
-            ViewBag.idTipoTelefone
-                = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
-                    "idTipoTelefone", "Descricao", tt);
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.idTipoTelefone
+                    = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
+                        "idTipoTelefone", "Descricao", tt);
 
-            string erro = null;
-            if (t.idTelefone == 0)
-            {
-                erro = telefoneModel.adicionarTelefone(t);
-            }
-            else
-            {
-                erro = telefoneModel.editarTelefone(t);
-            }
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
+                string erro = null;
+                if (t.idTelefone == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = telefoneModel.adicionarTelefone(t);
                 }
-                return RedirectToAction("IndexAluno");
+                else
+                {
+                    erro = telefoneModel.editarTelefone(t);
+                }
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("IndexAluno");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(t);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(t);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         [Authorize]
@@ -414,38 +442,42 @@ namespace Aprendizado.Controllers
 
                 return View(t);
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditTelefoneProfessor(Telefone t, TipoTelefone tt, Pessoa p)
         {
-            ViewBag.idTipoTelefone
-                = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
-                    "idTipoTelefone", "Descricao", tt);
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.idTipoTelefone
+                    = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
+                        "idTipoTelefone", "Descricao", tt);
 
-            string erro = null;
-            if (t.idTelefone == 0)
-            {
-                erro = telefoneModel.adicionarTelefone(t);
-            }
-            else
-            {
-                erro = telefoneModel.editarTelefone(t);
-            }
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
+                string erro = null;
+                if (t.idTelefone == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = telefoneModel.adicionarTelefone(t);
                 }
-                return RedirectToAction("IndexAluno");
+                else
+                {
+                    erro = telefoneModel.editarTelefone(t);
+                }
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("IndexAluno");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(t);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(t);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         [Authorize]
@@ -457,7 +489,7 @@ namespace Aprendizado.Controllers
                 telefoneModel.excluirTelefone(t);
                 return RedirectToAction("ListaTelefones", new { idPessoa = t.idPessoa });
             }
-            return Redirect("/Shared/Login");
+            return Redirect("/Shared/Restrito");
         }
 
     }

@@ -10,7 +10,9 @@
                 <div class="col-md-12">
                     <h1 class="page-header">Gerenciamento de Turmas
                     </h1>
-                    <h2><small>@Html.ActionLink("Nova Turma", "Edit", new { id = 0 })</small></h2>
+                    <h2><small>
+                        @Html.ActionLink("Nova Turma", "Edit", new { id = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                        </small></h2>
                     <br />
                 </div>
             </div>
@@ -43,9 +45,11 @@
             @Html.DisplayFor(modelItem => item.Identificacao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTurma }) </td><td> 
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTurma},
-                new { @onclick = "return confirm('Tem certeza?');"})
+            @Html.ActionLink("Disciplinas da Turma", "ListaDisciplinaTurma", new { idTurma = item.idTurma }, new { @class = "btn btn-default", @style = "color:#09192A "})
+        
+            @Html.ActionLink("Editar", "Edit", new { id=item.idTurma }, new { @class = "btn btn-default", @style = "color:#09192A "})
+            
+            @Html.ActionLink("Excluir", "Delete", new { id=item.idTurma}, new { @onclick = "return confirm('Tem certeza?');",@class = "btn btn-default", @style = "color:#09192A "})
         </td>
     </tr>
 }

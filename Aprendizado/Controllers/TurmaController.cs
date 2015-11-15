@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Entity;
 using Aprendizado.Models;
@@ -12,6 +13,7 @@ namespace Aprendizado.Controllers
     {
         private TurmaModel turmaModel = new TurmaModel();
         private CursoModel cursoModel = new CursoModel();
+        private DisciplinaModel disciplinaModel = new DisciplinaModel();
 
         public ActionResult Index()
         {
@@ -20,56 +22,65 @@ namespace Aprendizado.Controllers
 
         public ActionResult Edit(int id)
         {
-            Turma t = new Turma();
-            ViewBag.Titulo = "Nova Turma";
-
-            int idCurso = 1;
-
-            if (id != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                t = turmaModel.obterTurma(id);
-                idCurso = t.idCurso;
-                ViewBag.Titulo = "Editar Turma";
+
+                Turma t = new Turma();
+                ViewBag.Titulo = "Nova Turma";
+
+                int idCurso = 1;
+
+                if (id != 0)
+                {
+                    t = turmaModel.obterTurma(id);
+                    idCurso = t.idCurso;
+                    ViewBag.Titulo = "Editar Turma";
+                }
+
+                ViewBag.idCurso
+                    = new SelectList(cursoModel.todosCursos(),
+                        "idCurso", "Descricao", idCurso);
+
+                return View(t);
             }
-
-            ViewBag.idCurso
-                = new SelectList(cursoModel.todosCursos(),
-                    "idCurso", "Descricao", idCurso);
-
-            return View(t);
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Edit(Turma t, Curso c)
         {
-            ViewBag.idCurso
-                = new SelectList(cursoModel.todosCursos(),
-                    "idCurso", "Descricao", c);
-            
-            if (!validarTurma(t))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
-                ViewBag.Erro = "Erro na validação da Turma";
-                return View(t);
-            }
+                ViewBag.idCurso
+                    = new SelectList(cursoModel.todosCursos(),
+                        "idCurso", "Descricao", c);
 
-            string erro = null;
-            if (t.idTurma == 0)
-            {
-                erro = turmaModel.adicionarTurma(t);
+                if (!validarTurma(t))
+                {
+                    ViewBag.Erro = "Erro na validação da Turma";
+                    return View(t);
+                }
+
+                string erro = null;
+                if (t.idTurma == 0)
+                {
+                    erro = turmaModel.adicionarTurma(t);
+                }
+                else
+                {
+                    erro = turmaModel.editarTurma(t);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(t);
+                }
             }
-            else
-            {
-                erro = turmaModel.editarTurma(t);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(t);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarTurma(Turma turma)
@@ -82,10 +93,30 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(int id)
         {
-            Turma t = turmaModel.obterTurma(id);
-            turmaModel.excluirTurma(t);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                Turma t = turmaModel.obterTurma(id);
+                turmaModel.excluirTurma(t);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
+
+/////////////// DISCIPLINAS DA TURMA   ////////////////////////////////
+
+        public ActionResult ListaDisciplinaTurma(int idTurma)
+        {
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
+            {
+                ViewBag.idTurma = idTurma;
+                Turma t = turmaModel.obterTurma(idTurma);
+                ViewBag.IdentificacaoTurma = t.Identificacao;
+                ViewBag.Curso = t.Curso.Descricao;
+                return View(disciplinaModel.obterDisciplinaPorTurma(idTurma));
+            }
+            return Redirect("/Shared/Restrito");
+        }
+
 
     }
 }

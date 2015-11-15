@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Entity;
 using Aprendizado.Models;
@@ -43,6 +44,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditPessoa(int id)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
             {
                 Pessoa p;
 
@@ -58,47 +60,54 @@ namespace Aprendizado.Controllers
                 }
                 return View(p);
             }
-           
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult EditPessoa(Pessoa p)
         {
-            string erro = pessoaModel.validarPessoa(p);
-            if (erro == null)
+            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
             {
-                if (p.idPessoa == 0)
+                string erro = pessoaModel.validarPessoa(p);
+                if (erro == null)
                 {
-                    erro = pessoaModel.adicionarPessoa(p);
+                    if (p.idPessoa == 0)
+                    {
+                        erro = pessoaModel.adicionarPessoa(p);
+                    }
+                    else
+                    {
+                        erro = pessoaModel.editarPessoa(p);
+                    }
+                }
+
+                if (erro == null)
+                {
+                    if (p.idPessoa == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("EditAluno", new { idAluno = 0, p.idPessoa });
                 }
                 else
                 {
-                    erro = pessoaModel.editarPessoa(p);
+                    ViewBag.Error = erro;
+                    return View(p);
                 }
             }
-
-            if (erro == null)
-            {
-                if (p.idPessoa == 0)
-                {
-                    erro = "p.idPEssoa vazio";
-                }
-                return RedirectToAction("EditAluno", new { idAluno = 0, p.idPessoa });
-            }
-            else
-            {
-                ViewBag.Error = erro;
-                return View(p);
-            }
+            return Redirect("/Shared/Restrito");
         }
-        
+
         public ActionResult DeletePessoa(int id)
         {
-            Pessoa p = pessoaModel.obterPessoa(id);
-            pessoaModel.excluirPessoa(p);
-            return RedirectToAction("IndexAluno");
+            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            {
 
-
+                Pessoa p = pessoaModel.obterPessoa(id);
+                pessoaModel.excluirPessoa(p);
+                return RedirectToAction("IndexAluno");
+            }
+            return Redirect("/Shared/Restrito");
 
         }
 
@@ -180,7 +189,7 @@ namespace Aprendizado.Controllers
                 {
                     erro = "p.idPEssoa vazio";
                 }
-                
+
                 return RedirectToAction("EditTelefone", new { idTelefone = 0, p.idPessoa });
             }
             else
@@ -571,7 +580,7 @@ namespace Aprendizado.Controllers
             return RedirectToAction("IndexAluno", new { idPessoa = a.idPessoa });
         }
 
-//////////////////////////// PROFESSOR  //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////// PROFESSOR  //////////////////////////////////////////////////////////////////////////////////
 
         public ActionResult IndexProfessor()
         {
@@ -592,7 +601,7 @@ namespace Aprendizado.Controllers
 
             int pessoaSelecionada = idPessoa;
 
-            if (idProfessor  != 0)
+            if (idProfessor != 0)
             {
                 pessoaSelecionada = p.idPessoa;
             }

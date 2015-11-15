@@ -25,7 +25,7 @@ namespace Aprendizado.Controllers
         private QuestaoRespostaModel questaoRespostaModel = new QuestaoRespostaModel();
         private AlternativaModel alternativaModel = new AlternativaModel();
 
-        
+
 
         public ActionResult Index()
         {
@@ -47,7 +47,7 @@ namespace Aprendizado.Controllers
                 return View(atividadeModel.listarAtividadesPorTurma(a.idTurma));
             }
 
-            return Redirect("/Shared/Error");
+            return View("/Shared/Restrito");
         }
 
         public ActionResult Avaliacoes()
@@ -70,69 +70,82 @@ namespace Aprendizado.Controllers
                 return View(atividadeModel.listarAvaliacaoPorAluno(a.idAluno));
             }
 
-            return Redirect("/Shared/Error");
+            return View("/Shared/Restrito");
         }
 
         public ActionResult VerificaAlunoAtividade(int idAluno, int idAtividade)
         {
-            Aluno_Atividade aa = new Aluno_Atividade();
-            aa = alunoAtividadeModel.verficaAlunoAtividade(idAluno, idAtividade);
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+            {
+                Aluno_Atividade aa = new Aluno_Atividade();
+                aa = alunoAtividadeModel.verficaAlunoAtividade(idAluno, idAtividade);
 
-            if ((aa.idStatus == 1) || (aa.idStatus == 0))
-            {
-                int idAlunoAtividade = 0;
-                return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
+                if ((aa.idStatus == 1) || (aa.idStatus == 0))
+                {
+                    int idAlunoAtividade = 0;
+                    return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
+                }
+                else
+                {
+                    aa.idStatus = 3;
+                    return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
+                }
             }
-            else
-            {
-                aa.idStatus = 3;
-                return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
-            }
+            return View("/Shared/Restrito");
         }
 
         public ActionResult AcessarAtividade(int idAluno, int idAtividade, int idAlunoAtividade)
         {
-            Aluno_Atividade aa = new Aluno_Atividade();
-            aa.idAluno = idAluno;
-            aa.idAtividade = idAtividade;
-            aa.idAlunoAtividade = idAlunoAtividade;
-
-            if (idAlunoAtividade != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
-                aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
-                idAtividade = aa.idAtividade;
-                idAluno = aa.idAluno;
-                aa.idStatus = 3;
+                Aluno_Atividade aa = new Aluno_Atividade();
+                aa.idAluno = idAluno;
+                aa.idAtividade = idAtividade;
+                aa.idAlunoAtividade = idAlunoAtividade;
+
+                if (idAlunoAtividade != 0)
+                {
+                    aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
+                    idAtividade = aa.idAtividade;
+                    idAluno = aa.idAluno;
+                    aa.idStatus = 3;
+                }
+
+
+                return View(aa);
             }
-
-
-            return View(aa);
+            return Redirect("/Shared/Restrito");
         }
 
 
         [HttpPost]
         public ActionResult AcessarAtividade(Aluno_Atividade aa)
         {
-            string erro = null;
-            if (aa.idAlunoAtividade == 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
-                aa.idStatus = 1; // Acessando Atividade pela primeira vez: idStatus = Aberto
-                erro = alunoAtividadeModel.adicionarAlunoAtividade(aa);
+
+                string erro = null;
+                if (aa.idAlunoAtividade == 0)
+                {
+                    aa.idStatus = 1; // Acessando Atividade pela primeira vez: idStatus = Aberto
+                    erro = alunoAtividadeModel.adicionarAlunoAtividade(aa);
+                }
+                else
+                {
+                    aa.idStatus = 2; // Tentando acessar atividade novamente: idStatus = Realizado
+                    erro = alunoAtividadeModel.editarAlunoAtividade(aa);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = aa.idAlunoAtividade });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(aa);
+                }
             }
-            else
-            {
-                aa.idStatus = 2; // Tentando acessar atividade novamente: idStatus = Realizado
-                erro = alunoAtividadeModel.editarAlunoAtividade(aa);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = aa.idAlunoAtividade });
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(aa);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
 
@@ -159,150 +172,170 @@ namespace Aprendizado.Controllers
 
         public ActionResult RealizarAtividade(int idAlunoAtividade)
         {
-            Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
-
-
-            if (aa.idStatus == 1)
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
-
-                List<Pergunta_Atividade> PerguntaAtividadeAtividades =
-                     perguntaAtividadeModel.listarPerguntaAtividadePorAtividade(aa.idAtividade);
+                Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
 
 
-                ViewBag.idAtividade = aa.idAtividade;
-                ViewBag.NomeAluno = aa.Aluno.Pessoa.Nome;
-                ViewBag.Atividade = aa.Atividade.Identificacao;
-                ViewBag.idAlunoAtividade = aa.idAlunoAtividade;
+                if (aa.idStatus == 1)
+                {
+
+                    List<Pergunta_Atividade> PerguntaAtividadeAtividades =
+                         perguntaAtividadeModel.listarPerguntaAtividadePorAtividade(aa.idAtividade);
 
 
-                return View(PerguntaAtividadeAtividades);
+                    ViewBag.idAtividade = aa.idAtividade;
+                    ViewBag.NomeAluno = aa.Aluno.Pessoa.Nome;
+                    ViewBag.Atividade = aa.Atividade.Identificacao;
+                    ViewBag.idAlunoAtividade = aa.idAlunoAtividade;
+
+
+                    return View(PerguntaAtividadeAtividades);
+                }
+                else
+                {
+                    return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
+                }
             }
-            else
-            {
-                return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
-            }
-            
+            return Redirect("/Shared/Restrito");
+
         }
 
         public ActionResult EditResposta(int idAlunoAtividade, int idPergunta)
         {
-            Questao_Resposta qr = new Questao_Resposta();
-
-            Questao_Resposta q = questaoRespostaModel.verficaRespostaAluno(idAlunoAtividade, idPergunta);
-
-            int idQuestaoResposta = 1;
-            
-            if (q == null)
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
-                idQuestaoResposta = 0;
+                Questao_Resposta qr = new Questao_Resposta();
+
+                Questao_Resposta q = questaoRespostaModel.verficaRespostaAluno(idAlunoAtividade, idPergunta);
+
+                int idQuestaoResposta = 1;
+
+                if (q == null)
+                {
+                    idQuestaoResposta = 0;
+                }
+                else
+                {
+
+                    idQuestaoResposta = questaoRespostaModel.verficaRespostaAluno(idAlunoAtividade, idPergunta).idQuestaoResposta;
+                }
+
+                qr.idAlunoAtividade = idAlunoAtividade;
+                qr.idPergunta = idPergunta;
+
+                Pergunta p = perguntaModel.obterPergunta(idPergunta);
+                ViewBag.Enunciado = p.Enunciado;
+
+                int idAlternativa = 1;
+
+                if (idQuestaoResposta != 0)
+                {
+                    qr = questaoRespostaModel.obterQuestaoResposta(idQuestaoResposta);
+                    idAlternativa = qr.idAlternativa;
+                }
+
+                ViewBag.idAlternativa
+                    = new SelectList(alternativaModel.listarAlternativasPorPergunta(idPergunta),
+                        "idAlternativa", "Descricao", idAlternativa);
+
+                ViewBag.Pergunta = p.Enunciado;
+
+                return View(qr);
             }
-            else
-            {
-
-                idQuestaoResposta = questaoRespostaModel.verficaRespostaAluno(idAlunoAtividade, idPergunta).idQuestaoResposta;
-            }
-
-            qr.idAlunoAtividade = idAlunoAtividade;
-            qr.idPergunta = idPergunta;
-
-            Pergunta p = perguntaModel.obterPergunta(idPergunta);
-            ViewBag.Enunciado = p.Enunciado;
-
-            int idAlternativa = 1;
-
-            if (idQuestaoResposta != 0)
-            {
-                qr = questaoRespostaModel.obterQuestaoResposta(idQuestaoResposta);
-                idAlternativa = qr.idAlternativa;
-            }
-
-            ViewBag.idAlternativa
-                = new SelectList(alternativaModel.listarAlternativasPorPergunta(idPergunta),
-                    "idAlternativa", "Descricao", idAlternativa);
-
-            ViewBag.Pergunta = p.Enunciado;
-
-            return View(qr);
+            return Redirect("/Shared/Restrito");
         }
         [HttpPost]
         public ActionResult EditResposta(Questao_Resposta qr, Alternativa a)
         {
-            ViewBag.idAlternativa
-                = new SelectList(alternativaModel.listarAlternativasPorPergunta(a.idPergunta),
-                    "idAlternativa", "Descricao", a.idAlternativa);
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+            {
+                ViewBag.idAlternativa
+                    = new SelectList(alternativaModel.listarAlternativasPorPergunta(a.idPergunta),
+                        "idAlternativa", "Descricao", a.idAlternativa);
 
-            string erro = null;
-            if (qr.idQuestaoResposta == 0)
-            {
-                erro = questaoRespostaModel.adicionarQuestaoResposta(qr);
+                string erro = null;
+                if (qr.idQuestaoResposta == 0)
+                {
+                    erro = questaoRespostaModel.adicionarQuestaoResposta(qr);
+                }
+                else
+                {
+                    erro = questaoRespostaModel.editarQuestaoResposta(qr);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = qr.idAlunoAtividade });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(qr);
+                }
             }
-            else
-            {
-                erro = questaoRespostaModel.editarQuestaoResposta(qr);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = qr.idAlunoAtividade });
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(qr);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult Finalizar(int idAlunoAtividade)
         {
-            List<Questao_Resposta> Respostas =
-                questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade);
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
+            {
+                List<Questao_Resposta> Respostas =
+                    questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade);
 
-            Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
-            ViewBag.IdentificacaoAtividade = aa.Atividade.Identificacao;
-            ViewBag.TiTuloAtividade = aa.Atividade.Titulo;
+                Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
+                ViewBag.IdentificacaoAtividade = aa.Atividade.Identificacao;
+                ViewBag.TiTuloAtividade = aa.Atividade.Titulo;
 
-            string erro = null;
-            aa.idStatus = 3;
-            erro = alunoAtividadeModel.editarAlunoAtividade(aa);
+                string erro = null;
+                aa.idStatus = 3;
+                erro = alunoAtividadeModel.editarAlunoAtividade(aa);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult Respostas(int idAlunoAtividade)
         {
-            List<Questao_Resposta> Respostas =
-                questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade);
-
-            Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
-            ViewBag.IdentificacaoAtividade = aa.Atividade.Identificacao;
-            ViewBag.TiTuloAtividade = aa.Atividade.Titulo;
-
-            int qtdRespostas = questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade).Count;
-            int certas = questaoRespostaModel.listarQuestoesRespostaCorretasPorAlunoAtividade(idAlunoAtividade);
-            int porcentagem = (certas * 100) / 10;
-
-            if (aa.Atividade.idTipo == 1)
+            if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
-                ViewBag.Tipo = "Atividade";
-            }
-            else
-            {
-                ViewBag.Tipo = "Avaliação";
-            }
+                List<Questao_Resposta> Respostas =
+                    questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade);
 
-            ViewBag.QtdRespostas = qtdRespostas;
+                Aluno_Atividade aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
+                ViewBag.IdentificacaoAtividade = aa.Atividade.Identificacao;
+                ViewBag.TiTuloAtividade = aa.Atividade.Titulo;
 
-            if (ViewBag.QtdRespostas < 10)
-            {
-                ViewBag.MsgRespostas = "Apenas " + ViewBag.QtdRespostas;
+                int qtdRespostas = questaoRespostaModel.listarQuestoesRespostaPorAlunoAtividade(idAlunoAtividade).Count;
+                int certas = questaoRespostaModel.listarQuestoesRespostaCorretasPorAlunoAtividade(idAlunoAtividade);
+                int porcentagem = (certas * 100) / 10;
+
+                if (aa.Atividade.idTipo == 1)
+                {
+                    ViewBag.Tipo = "Atividade";
+                }
+                else
+                {
+                    ViewBag.Tipo = "Avaliação";
+                }
+
+                ViewBag.QtdRespostas = qtdRespostas;
+
+                if (ViewBag.QtdRespostas < 10)
+                {
+                    ViewBag.MsgRespostas = "Apenas " + ViewBag.QtdRespostas;
+                }
+                else
+                {
+                    ViewBag.MsgRespostas = "Todas";
+                }
+
+                ViewBag.Porcentagem = porcentagem;
+
+                return View(Respostas);
             }
-            else
-            {
-                ViewBag.MsgRespostas = "Todas";
-            }
-
-            ViewBag.Porcentagem = porcentagem;
-
-            return View(Respostas);
+            return Redirect("/Shared/Restrito");
         }
 
         public JsonResult ListaTurmas(int curso)

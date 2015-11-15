@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using Aprendizado.Models;
 using Aprendizado.Entity;
@@ -25,98 +26,107 @@ namespace Aprendizado.Controllers
 
         public ActionResult Edit(int id)
         {
-            Pergunta p = new Pergunta();
-            ViewBag.Titulo = "Nova Pergunta";
-
-            int idCurso = 1;
-            int idDisciplina = 1;
-
-            int idTema = 1;
-            int idNivelDificuldadeSelecionado = 1;
-            int correta = 1;
-
-            if (id != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                p = perguntaModel.obterPergunta(id);
-                idCurso = p.Tema.Disciplina.idCurso;
-                idDisciplina = p.Tema.idDisciplina;
-                idTema = p.idTema;
-                idNivelDificuldadeSelecionado = p.idNivelDificuldade;
-                correta = p.Correta;
-                ViewBag.Titulo = "Editar Pergunta";
+
+                Pergunta p = new Pergunta();
+                ViewBag.Titulo = "Nova Pergunta";
+
+                int idCurso = 1;
+                int idDisciplina = 1;
+
+                int idTema = 1;
+                int idNivelDificuldadeSelecionado = 1;
+                int correta = 1;
+
+                if (id != 0)
+                {
+                    p = perguntaModel.obterPergunta(id);
+                    idCurso = p.Tema.Disciplina.idCurso;
+                    idDisciplina = p.Tema.idDisciplina;
+                    idTema = p.idTema;
+                    idNivelDificuldadeSelecionado = p.idNivelDificuldade;
+                    correta = p.Correta;
+                    ViewBag.Titulo = "Editar Pergunta";
+                }
+
+
+                ViewBag.idCurso
+                    = new SelectList(cursoModel.todosCursos(),
+                        "idCurso", "Descricao", idCurso);
+
+                ViewBag.idDisciplina
+                    = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
+                        "idDisciplina", "Descricao", idDisciplina);
+
+                ViewBag.idTema
+                    = new SelectList(temaModel.obterTemasPorDisciplina(idCurso),
+                        "idTema", "Descricao", idTema);
+
+                ViewBag.idNivelDificuldade
+                    = new SelectList(nivelDificuldadeModel.todosNiveisDificuldade(),
+                        "idNivelDificuldade", "Descricao", idNivelDificuldadeSelecionado);
+
+                ViewBag.Correta
+                    = new SelectList(alternativaModel.obterAlternativasPorPergunta(id),
+                        "idAlternativa", "Descricao", correta);
+
+                return View(p);
             }
-
-
-            ViewBag.idCurso
-                = new SelectList(cursoModel.todosCursos(),
-                    "idCurso", "Descricao", idCurso);
-
-            ViewBag.idDisciplina
-                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
-                    "idDisciplina", "Descricao", idDisciplina);
-
-            ViewBag.idTema
-                = new SelectList(temaModel.obterTemasPorDisciplina(idCurso),
-                    "idTema", "Descricao", idTema);
-
-            ViewBag.idNivelDificuldade
-                = new SelectList(nivelDificuldadeModel.todosNiveisDificuldade(),
-                    "idNivelDificuldade", "Descricao", idNivelDificuldadeSelecionado);
-
-            ViewBag.Correta
-                = new SelectList(alternativaModel.obterAlternativasPorPergunta(id),
-                    "idAlternativa", "Descricao", correta);
-
-            return View(p);
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Edit(Pergunta p, Tema t, NivelDificuldade nd, Alternativa al)
         {
-            ViewBag.idTema
-                = new SelectList(temaModel.todosTemas(),
-                    "idTema", "Descricao", t);
-
-            ViewBag.idNivelDificuldade
-                = new SelectList(nivelDificuldadeModel.todosNiveisDificuldade(),
-                    "idNivelDificuldade", "Descricao", nd);
-
-            ViewBag.Correta
-                = new SelectList(alternativaModel.obterAlternativasPorPergunta(p.idPergunta),
-                    "idAlternativa", "Descricao", al);
-
-            if (!validarPergunta(p))
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                ViewBag.Erro = "Erro na validação da Pergunta";
-                return View(p);
-            }
+                ViewBag.idTema
+                    = new SelectList(temaModel.todosTemas(),
+                        "idTema", "Descricao", t);
 
-            string erro = null;
-            if (p.idPergunta == 0)
-            {
-                erro = perguntaModel.adicionarPergunta(p);
-            }
-            else
-            {
-                erro = perguntaModel.editarPergunta(p);
-            }
-            if (erro == null)
-            {
-                if (p.Correta == 0)
+                ViewBag.idNivelDificuldade
+                    = new SelectList(nivelDificuldadeModel.todosNiveisDificuldade(),
+                        "idNivelDificuldade", "Descricao", nd);
+
+                ViewBag.Correta
+                    = new SelectList(alternativaModel.obterAlternativasPorPergunta(p.idPergunta),
+                        "idAlternativa", "Descricao", al);
+
+                if (!validarPergunta(p))
                 {
-                    return RedirectToAction("EditAlternativa", new { idAlternativa = 0, p.idPergunta });
+                    ViewBag.Erro = "Erro na validação da Pergunta";
+                    return View(p);
+                }
+
+                string erro = null;
+                if (p.idPergunta == 0)
+                {
+                    erro = perguntaModel.adicionarPergunta(p);
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    erro = perguntaModel.editarPergunta(p);
                 }
-                
+                if (erro == null)
+                {
+                    if (p.Correta == 0)
+                    {
+                        return RedirectToAction("EditAlternativa", new { idAlternativa = 0, p.idPergunta });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(p);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(p);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarPergunta(Pergunta pergunta)
@@ -136,9 +146,13 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(int id)
         {
-            Pergunta p = perguntaModel.obterPergunta(id);
-            perguntaModel.excluirPergunta(p);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                Pergunta p = perguntaModel.obterPergunta(id);
+                perguntaModel.excluirPergunta(p);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
 
@@ -156,98 +170,115 @@ namespace Aprendizado.Controllers
             return Json(new { temas = temas });
         }
 
-        
-//////////////////////////////// ALTERNATIVAS DA PERGUNTA ////////////////////////////////////////////////////////
+
+        //////////////////////////////// ALTERNATIVAS DA PERGUNTA ////////////////////////////////////////////////////////
 
         public ActionResult ListaAlternativas(int idPergunta)
         {
-            ViewBag.idPergunta = idPergunta;
-            Pergunta p = perguntaModel.obterPergunta(idPergunta);
-            ViewBag.IdentificacaoPergunta = p.Identificacao;
-            ViewBag.TituloPergunta = p.Titulo;
-            return View(alternativaModel.obterAlternativasPorPergunta(idPergunta));
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                ViewBag.idPergunta = idPergunta;
+                Pergunta p = perguntaModel.obterPergunta(idPergunta);
+                ViewBag.IdentificacaoPergunta = p.Identificacao;
+                ViewBag.TituloPergunta = p.Titulo;
+                return View(alternativaModel.obterAlternativasPorPergunta(idPergunta));
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult EditAlternativa(int idAlternativa, int idPergunta)
         {
-            Alternativa a = new Alternativa();
-            a.idPergunta = idPergunta;
-            if (idAlternativa != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                a = alternativaModel.obterAlternativa(idAlternativa);
-            }
+                Alternativa a = new Alternativa();
+                a.idPergunta = idPergunta;
+                if (idAlternativa != 0)
+                {
+                    a = alternativaModel.obterAlternativa(idAlternativa);
+                }
 
-            return View(a);
+                return View(a);
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Editalternativa(Alternativa a, Pergunta p)
         {
-            string erro = null;
-            if (a.idAlternativa == 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                erro = alternativaModel.adicionarAlternativa(a);
-            }
-            else
-            {
-                erro = alternativaModel.editarAlternativa(a);
-            }
-            if (erro == null)
-            {
-                if (p.idPergunta == 0)
+                string erro = null;
+                if (a.idAlternativa == 0)
                 {
-                    erro = "p.idPEssoa vazio";
+                    erro = alternativaModel.adicionarAlternativa(a);
                 }
-                return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+                else
+                {
+                    erro = alternativaModel.editarAlternativa(a);
+                }
+                if (erro == null)
+                {
+                    if (p.idPergunta == 0)
+                    {
+                        erro = "p.idPEssoa vazio";
+                    }
+                    return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(a);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(a);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult DeleteAlternativa(int idAlternativa)
         {
-            Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
-            alternativaModel.excluirAlternativa(a);
-            return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
+                alternativaModel.excluirAlternativa(a);
+                return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+            }
+            return Redirect("/Shared/Restrito");
         }
-
-
-        
 
         public ActionResult EscolheCorreta(int idPergunta, int idAlternativa)
         {
-            Pergunta p = perguntaModel.obterPergunta(idPergunta);
-            Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                Pergunta p = perguntaModel.obterPergunta(idPergunta);
+                Alternativa a = alternativaModel.obterAlternativa(idAlternativa);
 
-            p.Correta = a.idAlternativa;
+                p.Correta = a.idAlternativa;
 
-            if (!validarPergunta(p))
-            {
-                ViewBag.Erro = "Erro na validação da Pergunta";
-                return View(p);
-            }
+                if (!validarPergunta(p))
+                {
+                    ViewBag.Erro = "Erro na validação da Pergunta";
+                    return View(p);
+                }
 
-            string erro = null;
-            if (p.idPergunta == 0)
-            {
-                erro = perguntaModel.adicionarPergunta(p);
+                string erro = null;
+                if (p.idPergunta == 0)
+                {
+                    erro = perguntaModel.adicionarPergunta(p);
+                }
+                else
+                {
+                    erro = perguntaModel.editarPergunta(p);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(p);
+                }
             }
-            else
-            {
-                erro = perguntaModel.editarPergunta(p);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("ListaAlternativas", new { idPergunta = a.idPergunta });
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(p);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
     }

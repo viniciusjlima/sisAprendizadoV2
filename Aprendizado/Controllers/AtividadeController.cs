@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Aprendizado.Models;
 using Aprendizado.Entity;
 using Aprendizado.Class;
+using System.Web.Security;
 
 namespace Aprendizado.Controllers
 {
+    [Authorize]
     public class AtividadeController : Controller
     {
         private AtividadeModel atividadeModel = new AtividadeModel();
@@ -33,136 +35,160 @@ namespace Aprendizado.Controllers
 
         public ActionResult Index()
         {
-            var atividades = new List<Atividade>();
-             atividades = atividadeModel.todasAtividades();
-            DateTime data = DateTime.Now;
-            
-
-            for (int i = 0; i < atividades.Count; i++)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
-                int result = DateTime.Compare(data, at.DataEncerramento);
-                string erro = null;
+                var atividades = new List<Atividade>();
+                atividades = atividadeModel.todasAtividades();
+                DateTime data = DateTime.Now;
 
-                if (result > 0)
+
+                for (int i = 0; i < atividades.Count; i++)
                 {
-                    at.idStatus = 2;
-                    erro = atividadeModel.editarAtividade(at);
+                    Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
+                    int result = DateTime.Compare(data, at.DataEncerramento);
+                    string erro = null;
+
+                    if (result > 0)
+                    {
+                        at.idStatus = 2;
+                        erro = atividadeModel.editarAtividade(at);
+                    }
                 }
+
+
+                return View(atividades);
             }
-
-
-            return View(atividades);
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult IndexAvaliacao()
         {
-            var atividades = new List<Atividade>();
-            atividades = atividadeModel.todasAvaliacoes();
-            DateTime data = DateTime.Now;
-
-
-            for (int i = 0; i < atividades.Count; i++)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
-                int result = DateTime.Compare(data, at.DataEncerramento);
-                string erro = null;
+                var atividades = new List<Atividade>();
+                atividades = atividadeModel.todasAvaliacoes();
+                DateTime data = DateTime.Now;
 
-                if (result > 0)
+
+                for (int i = 0; i < atividades.Count; i++)
                 {
-                    at.idStatus = 2;
-                    erro = atividadeModel.editarAtividade(at);
+                    Atividade at = atividadeModel.obterAtividade(atividades[i].idAtividade);
+                    int result = DateTime.Compare(data, at.DataEncerramento);
+                    string erro = null;
+
+                    if (result > 0)
+                    {
+                        at.idStatus = 2;
+                        erro = atividadeModel.editarAtividade(at);
+                    }
                 }
+
+
+                return View(atividades);
             }
-
-
-            return View(atividades);
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult Atividades()
         {
-            return View(atividadeModel.todasAtividades());
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                return View(atividadeModel.todasAtividades());
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult AvaliacoesPorAluno()
         {
-            return View(atividadeModel.listarAtividadesEAvaliacoes());
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                return View(atividadeModel.listarAtividadesEAvaliacoes());
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public ActionResult Edit(int id)
         {
-            Atividade a = new Atividade();
-            ViewBag.Titulo = "Nova Atividade";
-
-            int idDisciplina = 0;
-            int idTurma = 0;
-            int idCurso = 0;
-
-
-            if (id != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                a = atividadeModel.obterAtividade(id);
-                idDisciplina = a.idDisciplina;
-                idTurma = a.idTurma;
-                idCurso = a.Disciplina.idCurso;
-                ViewBag.Titulo = "Editar Atividade";
+                Atividade a = new Atividade();
+                ViewBag.Titulo = "Nova Atividade";
+
+                int idDisciplina = 0;
+                int idTurma = 0;
+                int idCurso = 0;
+
+
+                if (id != 0)
+                {
+                    a = atividadeModel.obterAtividade(id);
+                    idDisciplina = a.idDisciplina;
+                    idTurma = a.idTurma;
+                    idCurso = a.Disciplina.idCurso;
+                    ViewBag.Titulo = "Editar Atividade";
+                }
+
+
+                ViewBag.idCurso
+                    = new SelectList(cursoModel.todosCursos(),
+                        "idCurso", "Descricao", idCurso);
+
+                ViewBag.idTurma
+                    = new SelectList(turmaModel.obterTurmasPorCurso(idCurso),
+                        "idTurma", "Identificacao", idTurma);
+
+                ViewBag.idDisciplina
+                    = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
+                        "idDisciplina", "Descricao", idDisciplina);
+
+
+                return View(a);
             }
-
-            
-            ViewBag.idCurso
-                = new SelectList(cursoModel.todosCursos(),
-                    "idCurso", "Descricao", idCurso);
-
-            ViewBag.idTurma
-                = new SelectList(turmaModel.obterTurmasPorCurso(idCurso),
-                    "idTurma", "Identificacao", idTurma);
-
-            ViewBag.idDisciplina
-                = new SelectList(disciplinaModel.obterDisciplinaPorCurso(idCurso),
-                    "idDisciplina", "Descricao", idDisciplina);
-
-
-            return View(a);
+            return Redirect("/Shared/Restrito");
         }
 
         [HttpPost]
         public ActionResult Edit(Atividade a, Disciplina d, Turma t)
         {
-            ViewBag.idDisciplina
-                = new SelectList(disciplinaModel.todasDisciplinas(),
-                    "idDisciplina", "Descricao", d);
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                ViewBag.idDisciplina
+                    = new SelectList(disciplinaModel.todasDisciplinas(),
+                        "idDisciplina", "Descricao", d);
 
-            ViewBag.idTurma
-                = new SelectList(turmaModel.todasTurmas(),
-                    "idTurma", "Identificacao", t);
+                ViewBag.idTurma
+                    = new SelectList(turmaModel.todasTurmas(),
+                        "idTurma", "Identificacao", t);
 
-            a.idStatus = 1; //Definindo Atividade como aberta
-            a.idTipo = 1; //TIPO ATIVIDADE
+                a.idStatus = 1; //Definindo Atividade como aberta
+                a.idTipo = 1; //TIPO ATIVIDADE
 
-            if (!validarAtividade(a))
-            {
-                ViewBag.Erro = "Erro na validação da Atividade";
-                return View(a);
-            }
+                if (!validarAtividade(a))
+                {
+                    ViewBag.Erro = "Erro na validação da Atividade";
+                    return View(a);
+                }
 
-            string erro = null;
-            if (a.idAtividade == 0)
-            {
-                erro = atividadeModel.adicionarAtividade(a);
+                string erro = null;
+                if (a.idAtividade == 0)
+                {
+                    erro = atividadeModel.adicionarAtividade(a);
+                }
+                else
+                {
+                    erro = atividadeModel.editarAtividade(a);
+                }
+                if (erro == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(a);
+                }
             }
-            else
-            {
-                erro = atividadeModel.editarAtividade(a);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(a);
-            }
+            return Redirect("/Shared/Restrito");
         }
 
         private bool validarAtividade(Atividade a)
@@ -177,90 +203,109 @@ namespace Aprendizado.Controllers
 
         public ActionResult Delete(int id)
         {
-            Atividade a = atividadeModel.obterAtividade(id);
-            atividadeModel.excluirAtividade(a);
-            return RedirectToAction("Index");
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+
+                Atividade a = atividadeModel.obterAtividade(id);
+                atividadeModel.excluirAtividade(a);
+                return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Restrito");
         }
 
-///////////////////// PERGUNTAS DA ATIVIDADE ////////////////////////////////////////////////////////
+        ///////////////////// PERGUNTAS DA ATIVIDADE ////////////////////////////////////////////////////////
 
         public ActionResult ListaPerguntaAtividade(int idAtividade)
         {
-            List<Pergunta_Atividade> PerguntaAtividadeAtividades = 
-                perguntaAtividadeModel.listarPerguntaAtividadePorAtividade(idAtividade);
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                List<Pergunta_Atividade> PerguntaAtividadeAtividades =
+                    perguntaAtividadeModel.listarPerguntaAtividadePorAtividade(idAtividade);
 
-            Atividade a = atividadeModel.obterAtividade(idAtividade);
+                Atividade a = atividadeModel.obterAtividade(idAtividade);
 
-            ViewBag.idAtividade = a.idAtividade;
-            ViewBag.IdentificacaoAtividade = a.Identificacao;
-            return View(PerguntaAtividadeAtividades);
+                ViewBag.idAtividade = a.idAtividade;
+                ViewBag.IdentificacaoAtividade = a.Identificacao;
+                return View(PerguntaAtividadeAtividades);
+            }
+            return Redirect("/Shared/Restrito");
         }
 
 
-            
-
         public ActionResult EditPerguntaAtividade(int idAtividade, int idPerguntaAtividade)
         {
-            Pergunta_Atividade pa = new Pergunta_Atividade();
-            pa.idAtividade = idAtividade;
-
-            Atividade a = atividadeModel.obterAtividade(idAtividade);
-
-            int idDisciplina = a.idDisciplina;
-            int idTema = 0;
-            int idPergunta = 0;
-
-            if (idPerguntaAtividade != 0)
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
-                pa = perguntaAtividadeModel.obterPerguntaAtividade(idPerguntaAtividade);
-                idPergunta = pa.idPergunta;
-                idTema = pa.Pergunta.idTema;
+                Pergunta_Atividade pa = new Pergunta_Atividade();
+                pa.idAtividade = idAtividade;
+
+                Atividade a = atividadeModel.obterAtividade(idAtividade);
+
+                int idDisciplina = a.idDisciplina;
+                int idTema = 0;
+                int idPergunta = 0;
+
+                if (idPerguntaAtividade != 0)
+                {
+                    pa = perguntaAtividadeModel.obterPerguntaAtividade(idPerguntaAtividade);
+                    idPergunta = pa.idPergunta;
+                    idTema = pa.Pergunta.idTema;
+                }
+
+                ViewBag.idTema
+                        = new SelectList(temaModel.obterTemasPorDisciplina(idDisciplina),
+                            "idTema", "Descricao", idTema);
+
+                ViewBag.idPergunta
+                    = new SelectList(perguntaModel.obterPerguntasPorTema(idTema),
+                        "idPergunta", "Identificacao", idPergunta);
+
+                return View(pa);
             }
-
-            ViewBag.idTema
-                    = new SelectList(temaModel.obterTemasPorDisciplina(idDisciplina),
-                        "idTema", "Descricao", idTema);
-
-            ViewBag.idPergunta
-                = new SelectList(perguntaModel.obterPerguntasPorTema(idTema),
-                    "idPergunta", "Identificacao", idPergunta);
-
-            return View(pa);
+            return Redirect("/Shared/Restrito");
         }
         [HttpPost]
         public ActionResult EditPerguntaAtividade(Pergunta_Atividade pa, Pergunta p)
         {
-            ViewBag.idPergunta
-                = new SelectList(perguntaModel.todasPerguntas(),
-                    "idPergunta", "Identificacao", p);
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                ViewBag.idPergunta
+                    = new SelectList(perguntaModel.todasPerguntas(),
+                        "idPergunta", "Identificacao", p);
 
-            string erro = null;
-            if (pa.idPerguntaAtividade == 0)
-            {
-                erro = perguntaAtividadeModel.adicionarPerguntaAtividade(pa);
-            }
-            else
-            {
-                erro = perguntaAtividadeModel.editarPerguntaAtividade(pa);
-            }
-            if (erro == null)
-            {
-                //if(pa.idPerguntaAtividade !=0)
-                //    return RedirectToAction("Index");
+                string erro = null;
+                if (pa.idPerguntaAtividade == 0)
+                {
+                    erro = perguntaAtividadeModel.adicionarPerguntaAtividade(pa);
+                }
+                else
+                {
+                    erro = perguntaAtividadeModel.editarPerguntaAtividade(pa);
+                }
+                if (erro == null)
+                {
+                    //if(pa.idPerguntaAtividade !=0)
+                    //    return RedirectToAction("Index");
 
-                return RedirectToAction("ListaPerguntaAtividade", new { idAtividade = pa.idAtividade });
+                    return RedirectToAction("ListaPerguntaAtividade", new { idAtividade = pa.idAtividade });
+                }
+                else
+                {
+                    ViewBag.Erro = erro;
+                    return View(pa);
+                }
             }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(pa);
-            }
+            return Redirect("/Shared/Restrito");
         }
         public ActionResult DeletePerguntaAtividade(int idPerguntaAtividade)
         {
-            Pergunta_Atividade pa = perguntaAtividadeModel.obterPerguntaAtividade(idPerguntaAtividade);
-            perguntaAtividadeModel.excluirPerguntaAtividade(pa);
-            return RedirectToAction("ListaPerguntaAtividade", new { idAtividade = pa.idAtividade });
+            if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
+            {
+                Pergunta_Atividade pa = perguntaAtividadeModel.obterPerguntaAtividade(idPerguntaAtividade);
+                perguntaAtividadeModel.excluirPerguntaAtividade(pa);
+                return RedirectToAction("ListaPerguntaAtividade", new { idAtividade = pa.idAtividade });
+            }
+            return Redirect("/Shared/Restrito");
         }
 
         public JsonResult ListaCursos(int idCurso)
@@ -306,17 +351,18 @@ namespace Aprendizado.Controllers
             return Json(new { perguntas = perguntas });
         }
 
-        
-//////////////// GERAR PROVA AUTOMATICA ///////////////////////////////////////////////////
+
+        //////////////// GERAR PROVA AUTOMATICA ///////////////////////////////////////////////////
         private List<Aluno> EditProvaAutomatica(int id)
         {
+
             Atividade a = new Atividade();
             ViewBag.Titulo = "Nova Atividade";
 
             short idDisciplina = 1;
             int idTurma = 1;
 
-            
+
 
             ViewBag.idDisciplina
                 = new SelectList(disciplinaModel.todasDisciplinas(),
@@ -327,8 +373,8 @@ namespace Aprendizado.Controllers
                     "idTurma", "Identificacao", idTurma);
 
             listaAlunos = alunoModel.listarAlunosPorTurma(idDisciplina);
-            
-            return(listaAlunos);
+
+            return (listaAlunos);
         }
 
 
@@ -778,7 +824,7 @@ namespace Aprendizado.Controllers
             }
 
 
-            return(listaFinalPerguntas);
+            return (listaFinalPerguntas);
         }
 
         private List<int> Sortear(int contadorPergunta, int nPergunta)
@@ -806,8 +852,8 @@ namespace Aprendizado.Controllers
         {
             cabecalho = new cabecalhoAvaliacao();
 
-            int idDisciplina=0;
-            int idTurma=0;
+            int idDisciplina = 0;
+            int idTurma = 0;
             int idCurso = 0;
 
             ViewBag.idCurso
@@ -862,14 +908,14 @@ namespace Aprendizado.Controllers
 
         public ActionResult GerarAvaliacaoAutomatica(cabecalhoAvaliacao c)
         {
-            
+
             int id = 0;
             Atividade atA = new Atividade();
             ViewBag.Titulo = "Nova Avaliacao Automatica";
 
             int idDisciplina = c.IdDisciplina;
             int idTurma = c.IdTurma;
-            
+
 
             if (id != 0)
             {
@@ -881,13 +927,13 @@ namespace Aprendizado.Controllers
 
 
             listaAlunos = alunoModel.listarAlunosPorTurma(idTurma);
-         
+
             for (int i = 0; i < listaAlunos.Count; i++)
             {
-                
+
                 int idAlunoA = listaAlunos[i].idAluno;
                 Aluno a = alunoModel.obterAluno(idAlunoA);
-                
+
                 Atividade at = new Atividade();
                 Atividade at2 = atividadeModel.obterAtividade(4);
 
