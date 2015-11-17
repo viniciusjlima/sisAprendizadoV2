@@ -513,7 +513,7 @@ namespace Aprendizado.Controllers
 
             for (int i = 0; i < 1; i++)
             {
-                int idPerguntaSorteada = PerguntasDificeisASortearT1[NumerosSorteados[i]].idPergunta;
+                int idPerguntaSorteada = PerguntasFaceisASortearT1[NumerosSorteados[i]].idPergunta;
                 Pergunta pergunta = perguntaModel.obterPergunta(idPerguntaSorteada);
 
                 listaPerguntasFaceisT1.Add(new Pergunta()
@@ -972,7 +972,7 @@ namespace Aprendizado.Controllers
                 erro = alunoAtividadeModel.adicionarAlunoAtividade(aa);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAvaliacao");
         }
 
     }

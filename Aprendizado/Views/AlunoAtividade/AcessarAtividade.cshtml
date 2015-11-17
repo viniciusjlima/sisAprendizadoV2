@@ -20,7 +20,7 @@
             @Html.HiddenFor(model => model.idAluno)
             @Html.HiddenFor(model => model.idAtividade)
 
-            if (Model.idAlunoAtividade != 0)
+            if ((Model.idAlunoAtividade != 0)&&(Model.idStatus == 3))
             {
             <p>Veja no link abaixo suas respostas: </p>
                 

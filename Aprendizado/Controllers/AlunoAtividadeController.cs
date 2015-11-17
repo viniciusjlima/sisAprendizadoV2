@@ -80,21 +80,45 @@ namespace Aprendizado.Controllers
                 Aluno_Atividade aa = new Aluno_Atividade();
                 aa = alunoAtividadeModel.verficaAlunoAtividade(idAluno, idAtividade);
 
-                if ((aa.idStatus == 1) || (aa.idStatus == 0))
+                if (aa == null)
                 {
                     int idAlunoAtividade = 0;
                     return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
                 }
                 else
                 {
-                    aa.idStatus = 3;
-                    return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
+                    if (((aa.idStatus == 1) || (aa.idStatus == 0)) && ((aa.idStatus != 3)&&(aa.idStatus != 2)))
+                    {
+                        if (aa.idAlunoAtividade != 0)
+                        {
+                            int idAlunoAtividade = aa.idAlunoAtividade;
+
+                            if(aa.Atividade.idTipo == 1)
+                                return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
+
+                            return RedirectToAction("AcessarAvaliacao", new { idAluno, idAtividade, idAlunoAtividade });
+                        }
+                        else
+                        {
+                            int idAlunoAtividade = 0;
+
+                            if (aa.Atividade.idTipo == 1)
+                                return RedirectToAction("AcessarAtividade", new { idAluno, idAtividade, idAlunoAtividade });
+
+                            return RedirectToAction("AcessarAvaliacao", new { idAluno, idAtividade, idAlunoAtividade });
+                        }
+                    }
+                    else
+                    {
+                        aa.idStatus = 3;
+                        return RedirectToAction("Respostas", new { idAlunoAtividade = aa.idAlunoAtividade });
+                    }
                 }
             }
             return View("/Shared/Restrito");
         }
 
-        public ActionResult AcessarAtividade(int idAluno, int idAtividade, int idAlunoAtividade)
+        public ActionResult AcessarAvaliacao(int idAluno, int idAtividade, int idAlunoAtividade)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
@@ -108,7 +132,12 @@ namespace Aprendizado.Controllers
                     aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
                     idAtividade = aa.idAtividade;
                     idAluno = aa.idAluno;
+                    if ((aa.Atividade.idTipo == 2) && (aa.idStatus == 1))
+                    {
+                        return View(aa);
+                    }
                     aa.idStatus = 3;
+
                 }
 
 
@@ -119,35 +148,77 @@ namespace Aprendizado.Controllers
 
 
         [HttpPost]
-        public ActionResult AcessarAtividade(Aluno_Atividade aa)
+        public ActionResult AcessarAvaliacao(Aluno_Atividade aa)
         {
+            Aluno_Atividade at = alunoAtividadeModel.obterAlunoAtividade(aa.idAlunoAtividade);
+
             if (Roles.IsUserInRole(User.Identity.Name, "Aluno"))
             {
 
                 string erro = null;
-                if (aa.idAlunoAtividade == 0)
+
+                if ((at.idStatus == 1)||(at.idStatus == null))
                 {
                     aa.idStatus = 1; // Acessando Atividade pela primeira vez: idStatus = Aberto
-                    erro = alunoAtividadeModel.adicionarAlunoAtividade(aa);
+                    erro = alunoAtividadeModel.adicionarAlunoAtividade(at);
+
+                    return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = at.idAlunoAtividade });
                 }
                 else
                 {
-                    aa.idStatus = 2; // Tentando acessar atividade novamente: idStatus = Realizado
-                    erro = alunoAtividadeModel.editarAlunoAtividade(aa);
+                    at.idStatus = 3; // Tentando acessar atividade novamente: idStatus = Realizado
+                    erro = alunoAtividadeModel.editarAlunoAtividade(at);
+
+                    return RedirectToAction("Respostas", new { idAlunoAtividade = at.idAlunoAtividade });
                 }
-                if (erro == null)
-                {
-                    return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = aa.idAlunoAtividade });
-                }
-                else
-                {
-                    ViewBag.Erro = erro;
-                    return View(aa);
-                }
+
             }
             return Redirect("/Shared/Restrito");
         }
 
+        public ActionResult AcessarAtividade(int idAluno, int idAtividade, int idAlunoAtividade)
+        {
+            Aluno_Atividade aa = new Aluno_Atividade();
+            aa.idAluno = idAluno;
+            aa.idAtividade = idAtividade;
+
+            if (idAlunoAtividade != 0)
+            {
+                aa = alunoAtividadeModel.obterAlunoAtividade(idAlunoAtividade);
+                idAtividade = aa.idAtividade;
+                idAluno = aa.idAluno;
+                aa.idStatus = 3;
+            }
+
+
+            return View(aa);
+        }
+
+
+        [HttpPost]
+        public ActionResult AcessarAtividade(Aluno_Atividade aa)
+        {
+            string erro = null;
+            if (aa.idAlunoAtividade == 0)
+            {
+                aa.idStatus = 1; // Acessando Atividade pela primeira vez: idStatus = Aberto
+                erro = alunoAtividadeModel.adicionarAlunoAtividade(aa);
+            }
+            else
+            {
+                aa.idStatus = 2; // Tentando acessar atividade novamente: idStatus = Realizado
+                erro = alunoAtividadeModel.editarAlunoAtividade(aa);
+            }
+            if (erro == null)
+            {
+                return RedirectToAction("RealizarAtividade", new { idAlunoAtividade = aa.idAlunoAtividade });
+            }
+            else
+            {
+                ViewBag.Erro = erro;
+                return View(aa);
+            }
+        }
 
 
         private bool validarAlunoAtividade(Aluno_Atividade aa)
@@ -179,10 +250,8 @@ namespace Aprendizado.Controllers
 
                 if (aa.idStatus == 1)
                 {
-
                     List<Pergunta_Atividade> PerguntaAtividadeAtividades =
                          perguntaAtividadeModel.listarPerguntaAtividadePorAtividade(aa.idAtividade);
-
 
                     ViewBag.idAtividade = aa.idAtividade;
                     ViewBag.NomeAluno = aa.Aluno.Pessoa.Nome;
@@ -291,7 +360,7 @@ namespace Aprendizado.Controllers
                 aa.idStatus = 3;
                 erro = alunoAtividadeModel.editarAlunoAtividade(aa);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Avaliacoes ");
             }
             return Redirect("/Shared/Restrito");
         }

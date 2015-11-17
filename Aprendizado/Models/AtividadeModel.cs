@@ -61,7 +61,7 @@ namespace Aprendizado.Models
                         join d in db.Turma
                         on a.idTurma equals d.idTurma
                         where a.idTurma == idTurma
-                        && a.idStatus == 1
+                        && a.idStatus == 1 && a.idTipo == 1
                         select a;
             return lista.ToList();
         }

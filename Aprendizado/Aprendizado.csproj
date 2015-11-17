@@ -553,6 +553,8 @@
     <Content Include="Views\Atividade\IndexAvaliacao.cshtml" />
     <Content Include="Views\Shared\Restrito.cshtml" />
     <Content Include="Views\Shared\Erro.cshtml" />
+    <Content Include="Views\AlunoAtividade\AcessarAvaliacao.cshtml" />
+    <Content Include="Views\AlunoAtividade\PreRespostas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
