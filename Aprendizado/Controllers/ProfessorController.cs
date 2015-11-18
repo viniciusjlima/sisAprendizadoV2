@@ -43,7 +43,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditPessoa(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
                 Pessoa p;
@@ -63,7 +63,7 @@ namespace Aprendizado.Controllers
         [HttpPost]
         public ActionResult EditPessoa(Pessoa p)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 string erro = pessoaModel.validarPessoa(p);
                 if (erro == null)
@@ -97,7 +97,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult DeletePessoa(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
                 Pessoa p = pessoaModel.obterPessoa(id);
@@ -117,7 +117,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditProfessor(int idProfessor, int idPessoa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
                 Professor p = new Professor();
@@ -142,7 +142,7 @@ namespace Aprendizado.Controllers
         [HttpPost]
         public ActionResult EditProfessor(Professor professor, Pessoa pessoa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 string erro = null;
                 if (professor.idProfessor == 0)
@@ -172,7 +172,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult DeleteProfessor(int idProfessor)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 Professor p = professorModel.obterProfessor(idProfessor);
                 professorModel.excluirProfessor(p);
@@ -193,7 +193,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditUsuario(int idUsuario, int idPessoa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 Usuario u = new Usuario();
                 u.idPessoa = idPessoa;
@@ -218,7 +218,7 @@ namespace Aprendizado.Controllers
         [HttpPost]
         public ActionResult EditUsuario(Usuario u, Perfil p, Pessoa pa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 u.idPerfil = 2;
 
@@ -260,7 +260,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditEndereco(int idEndereco, int idPessoa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
                 Endereco e = new Endereco();
@@ -300,7 +300,7 @@ namespace Aprendizado.Controllers
         [HttpPost]
         public ActionResult EditEndereco(Endereco e, Estado estado, Cidade cidade, TipoEndereco tipo, Pessoa p)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
                 ViewBag.UF
@@ -341,7 +341,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult DeleteEndereco(int idEndereco)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 Endereco e = enderecoModel.obterEndereco(idEndereco);
                 enderecoModel.excluirEndereco(e);
@@ -369,7 +369,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult EditTelefone(int idTelefone, int idPessoa)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 Telefone t = new Telefone();
                 t.idPessoa = idPessoa;
@@ -397,7 +397,7 @@ namespace Aprendizado.Controllers
         [HttpPost]
         public ActionResult EditTelefone(Telefone t, TipoTelefone tt, Pessoa p, Perfil perfil)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 ViewBag.idTipoTelefone
                     = new SelectList(tipoTelefoneModel.todosTiposTelefones(),
@@ -431,7 +431,7 @@ namespace Aprendizado.Controllers
 
         public ActionResult DeleteTelefone(int idTelefone)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "Admimistrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
                 Telefone t = telefoneModel.obterTelefone(idTelefone);
                 telefoneModel.excluirTelefone(t);

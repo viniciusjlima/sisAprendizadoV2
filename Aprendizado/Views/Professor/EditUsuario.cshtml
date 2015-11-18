@@ -4,22 +4,30 @@
     ViewBag.Title = "EditUsuarioAluno";
 }
 
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal">
-        <h4>Informar login para o(a) professor(a) @ViewBag.NomePessoa</h4>
-        <hr />
-    
-        @Html.HiddenFor(model => model.idUsuario)
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Professor<small> - @ViewBag.Titulo - </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idUsuario)
         @Html.HiddenFor(model => model.idPessoa)
         
-        <div class="form-group">
+
+             <div class="form-group">
     @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
     <div class="col-md-3">
     	@Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
     </div>
 </div>
-
+            <br />
+            <br />
         <div id="divSenha">
             <div class="form-group">
                 @Html.LabelFor(model => model.Senha, new { @class = "control-label col-md-2" })
@@ -28,25 +36,33 @@
                 </div>
             </div>
         </div>
-
+            <br /><br />
         <div class="form-group">
             @Html.Label("Confirme", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-    	        @Html.Password("Confirmar")
+    	        @Html.Password("Confirmar", new { @class = "form-control" })
             </div>
         </div>
-            
+            <br /><br />
         <div class="form-group">
             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
             </div>
         </div>
-        
-        <br />   
-        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/> 
+            <br /><br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
     </div>
-}
+</div>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

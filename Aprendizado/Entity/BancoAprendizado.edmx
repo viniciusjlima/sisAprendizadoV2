@@ -1854,31 +1854,31 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="BancoAprendizado" ZoomLevel="80">
-        <EntityTypeShape EntityType="AprendizadoModel.Alternativa" Width="1.5" PointX="9.6764890876023522" PointY="25.758123529031" />
-        <EntityTypeShape EntityType="AprendizadoModel.Aluno" Width="1.5" PointX="6.20365471309221" PointY="4.3091612031260329" />
-        <EntityTypeShape EntityType="AprendizadoModel.Aluno_Atividade" Width="1.5" PointX="1.2796774009613681" PointY="30.761890679021317" />
-        <EntityTypeShape EntityType="AprendizadoModel.Atividade" Width="1.5" PointX="8.6049280672357078" PointY="8.1315994300561023" />
-        <EntityTypeShape EntityType="AprendizadoModel.Cidade" Width="1.5" PointX="4.2492360175816506" PointY="16.081577919461569" />
-        <EntityTypeShape EntityType="AprendizadoModel.Curso" Width="1.5" PointX="4.2526575383975436" PointY="21.69784420248952" />
-        <EntityTypeShape EntityType="AprendizadoModel.Disciplina" Width="1.5" PointX="6.33377583061055" PointY="3.9881611037944262" />
-        <EntityTypeShape EntityType="AprendizadoModel.Endereco" Width="1.5" PointX="6.879704595953088" PointY="31.786129444737981" />
-        <EntityTypeShape EntityType="AprendizadoModel.Estado" Width="1.5" PointX="5.7753129013699072" PointY="24.668171923918731" />
-        <EntityTypeShape EntityType="AprendizadoModel.NivelDificuldade" Width="1.5" PointX="10.865873543017486" PointY="11.593564068709297" />
-        <EntityTypeShape EntityType="AprendizadoModel.Perfil" Width="1.5" PointX="9.7304840896886233" PointY="19.266526424915774" />
-        <EntityTypeShape EntityType="AprendizadoModel.Pergunta" Width="1.5" PointX="4.3940538020776838" PointY="17.570331253842603" />
-        <EntityTypeShape EntityType="AprendizadoModel.Pergunta_Atividade" Width="1.5" PointX="3.2284209501130605" PointY="7.667472842925914" />
-        <EntityTypeShape EntityType="AprendizadoModel.Pessoa" Width="1.5" PointX="6.7827796874487678" PointY="29.779067902722893" />
-        <EntityTypeShape EntityType="AprendizadoModel.Professor" Width="1.5" PointX="5.9761917935573461" PointY="22.238664995058748" />
-        <EntityTypeShape EntityType="AprendizadoModel.Professor_Disciplina" Width="1.5" PointX="3.3527401645447776" PointY="27.976542992506428" />
-        <EntityTypeShape EntityType="AprendizadoModel.Questao_Resposta" Width="1.5" PointX="10.307924569727819" PointY="0.6744856390517604" />
-        <EntityTypeShape EntityType="AprendizadoModel.Status" Width="1.5" PointX="10.033466772191909" PointY="9.7143486187394466" />
-        <EntityTypeShape EntityType="AprendizadoModel.Telefone" Width="1.5" PointX="1.4923595103865301" PointY="24.984148990821161" />
-        <EntityTypeShape EntityType="AprendizadoModel.Tema" Width="1.5" PointX="9.456693888388898" PointY="4.2799818237684581" />
-        <EntityTypeShape EntityType="AprendizadoModel.Tipo" Width="1.5" PointX="11.46294362445499" PointY="2.5890745681659664" />
-        <EntityTypeShape EntityType="AprendizadoModel.TipoEndereco" Width="1.5" PointX="0.99173071281599379" PointY="25.022900250285353" />
-        <EntityTypeShape EntityType="AprendizadoModel.TipoTelefone" Width="1.5" PointX="11.878528051021753" PointY="27.233380360171843" />
-        <EntityTypeShape EntityType="AprendizadoModel.Turma" Width="1.5" PointX="8.1323787402978063" PointY="9.3955936326624787" />
-        <EntityTypeShape EntityType="AprendizadoModel.Usuario" Width="1.5" PointX="2.4811673418065379" PointY="27.760860739164457" />
+        <EntityTypeShape EntityType="AprendizadoModel.Alternativa" Width="1.5" PointX="3.0347785181527858" PointY="1.8765876450932528" />
+        <EntityTypeShape EntityType="AprendizadoModel.Aluno" Width="1.5" PointX="8.1902504620096881" PointY="6.46555398705674" />
+        <EntityTypeShape EntityType="AprendizadoModel.Aluno_Atividade" Width="1.5" PointX="9.78939577089129" PointY="1.8490922459629795" />
+        <EntityTypeShape EntityType="AprendizadoModel.Atividade" Width="1.5" PointX="10.20399043439142" PointY="24.597534220943942" />
+        <EntityTypeShape EntityType="AprendizadoModel.Cidade" Width="1.5" PointX="9.6384207911968325" PointY="26.394359094274396" />
+        <EntityTypeShape EntityType="AprendizadoModel.Curso" Width="1.5" PointX="9.2974215509823619" PointY="12.340638419771864" />
+        <EntityTypeShape EntityType="AprendizadoModel.Disciplina" Width="1.5" PointX="9.6517970290276214" PointY="16.832112618178183" />
+        <EntityTypeShape EntityType="AprendizadoModel.Endereco" Width="1.5" PointX="2.9154031122640722" PointY="24.46597438699844" />
+        <EntityTypeShape EntityType="AprendizadoModel.Estado" Width="1.5" PointX="10.364832445217685" PointY="17.763283022569158" />
+        <EntityTypeShape EntityType="AprendizadoModel.NivelDificuldade" Width="1.5" PointX="6.8927861316561625" PointY="8.909201313233563" />
+        <EntityTypeShape EntityType="AprendizadoModel.Perfil" Width="1.5" PointX="1.8653061789764585" PointY="24.599208157788592" />
+        <EntityTypeShape EntityType="AprendizadoModel.Pergunta" Width="1.5" PointX="7.85133865096203" PointY="29.551602928690428" />
+        <EntityTypeShape EntityType="AprendizadoModel.Pergunta_Atividade" Width="1.5" PointX="3.5454770380377196" PointY="21.513316760544345" />
+        <EntityTypeShape EntityType="AprendizadoModel.Pessoa" Width="1.5" PointX="2.2922264925633682" PointY="28.262298328924132" />
+        <EntityTypeShape EntityType="AprendizadoModel.Professor" Width="1.5" PointX="5.31232632571474" PointY="10.022582699555244" />
+        <EntityTypeShape EntityType="AprendizadoModel.Professor_Disciplina" Width="1.5" PointX="2.2457310251173244" PointY="28.622874630905162" />
+        <EntityTypeShape EntityType="AprendizadoModel.Questao_Resposta" Width="1.5" PointX="11.14143581275895" PointY="25.645905268213667" />
+        <EntityTypeShape EntityType="AprendizadoModel.Status" Width="1.5" PointX="0.39830570872794169" PointY="5.9757529077938543" />
+        <EntityTypeShape EntityType="AprendizadoModel.Telefone" Width="1.5" PointX="0.35075194777490193" PointY="25.68872317377884" />
+        <EntityTypeShape EntityType="AprendizadoModel.Tema" Width="1.5" PointX="0.32810536973555821" PointY="13.015440738301464" />
+        <EntityTypeShape EntityType="AprendizadoModel.Tipo" Width="1.5" PointX="1.0080716633275486" PointY="26.582239431600197" />
+        <EntityTypeShape EntityType="AprendizadoModel.TipoEndereco" Width="1.5" PointX="8.3620732186185531" PointY="31.178667857860525" />
+        <EntityTypeShape EntityType="AprendizadoModel.TipoTelefone" Width="1.5" PointX="7.4384236035116125" PointY="22.221904034829652" />
+        <EntityTypeShape EntityType="AprendizadoModel.Turma" Width="1.5" PointX="10.3697356350579" PointY="0.047969877742216865" />
+        <EntityTypeShape EntityType="AprendizadoModel.Usuario" Width="1.5" PointX="2.4207099426634189" PointY="8.9676657211816249" />
         <AssociationConnector Association="AprendizadoModel.FKAlternativ980029" />
         <AssociationConnector Association="AprendizadoModel.FKQuestao_Re577319" />
         <AssociationConnector Association="AprendizadoModel.FKAluno_Ativ208244" />

@@ -20,9 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.idTurma)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataRegistro)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -37,9 +35,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.idTurma)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataRegistro)
-        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idProfessorDisciplina }) |
             @Html.ActionLink("Details", "Details", new { id=item.idProfessorDisciplina }) |

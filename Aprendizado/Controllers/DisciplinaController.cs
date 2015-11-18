@@ -207,10 +207,11 @@ namespace Aprendizado.Controllers
             return Redirect("/Shared/Restrito");
         }
 
-        public JsonResult ListaTurmas(int idCurso)
+
+        public JsonResult ListaTurmas(int curso)
         {
             var turmas
-                = new SelectList(turmaModel.obterTurmasPorCurso(idCurso), "idTurma", "Identificacao");
+                = new SelectList(turmaModel.obterTurmasPorCurso(curso), "idTurma", "Identificacao");
             return Json(new { turmas = turmas });
         }
 
