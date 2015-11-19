@@ -47,9 +47,8 @@
             @Html.DisplayFor(modelItem => item.Especializacao)
         </td>
         <td>
-            
-            @Html.ActionLink("Editar", "EditPessoa", new { id=item.idProfessor }, new { @class = "btn btn-default", @style = "color:#09192A "})
-            @Html.ActionLink("Excluir", "Delete", new { id=item.idProfessor }, new { @class = "btn btn-default", @style = "color:#09192A "})
+            @Html.ActionLink("Editar", "EditPessoa", new { id=item.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
+            @Html.ActionLink("Excluir", "Delete", new { id=item.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
         </td>
     </tr>
 }

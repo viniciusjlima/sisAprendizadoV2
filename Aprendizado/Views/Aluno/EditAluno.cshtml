@@ -1,41 +1,81 @@
-﻿@model Aprendizado.Entity.Aluno
+﻿@model Aprendizado.Entity.Pessoa
 
 @{
-    ViewBag.Title = "EditAluno";
+    ViewBag.Title = "EditPessoa";
 }
 
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal">
-        <h4>Turma do aluno @ViewBag.NomePessoa</h4>
-        <hr />
 
-        @Html.HiddenFor(model => model.idPessoa)
-        @Html.HiddenFor(model => model.idAluno)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Turma,  new{ @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idTurma")
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Professor<small> - @ViewBag.Titulo - </small>
+                </h1>
             </div>
         </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idPessoa)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Matricula, new { @class = "control-label col-md-2" })
+             <div class="form-group">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Matricula, new { @class = "form-control" })
+    	        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            </div>
+        </div>
+            <br />
+            <br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CPF, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.CPF, new { @class = "form-control" })
+
+                
+            </div>
+        </div>
+            <br />
+            <br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nascimento, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Nascimento, new { @class = "form-control" })
             </div>
         </div>
 
+            <br />
+            <br />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-            <br />   
-            <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  
-            <input type="submit" value="salvar"  class="btn btn-default" onclick="    return validar();"/> 
-          </div>
-        </div>
+            <div class="col-md-3">
+                    @if (Model.idPessoa != 0)
+                    {
+                        <h5>
+                            || @Html.ActionLink("Endereços", "ListaEnderecos", new { idPessoa = Model.idPessoa }) ||
+                            @Html.ActionLink("Telefones", "ListaTelefones", new { idPessoa = Model.idPessoa }) ||
+                            @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = Model.idPessoa }) ||
+                        </h5>
+                    }
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
     </div>
-}
+</div>
+
+<div>
+    
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -49,19 +89,37 @@
 }
 
 <script>
+    $("#CPF").mask('000.000.000-00');
+    $("#Nascimento").mask('00/00/0000');
+</script>
+
+<script>
     function validar() {
-        
-        if ($("#idTurma").val() == "") {
-            alert("Informe uma Turma");
+        $("#CPF").mask('00000000000');
+
+        if ($("#Nome").val() == "") {
+            alert("Informe um Nome");
             return false;
         }
 
-        if ($("#Matricula").val() == "") {
-            alert("Informe uma Matricula");
+        if (($("#CPF").val() == "") || ($("#CPF").val() < 11)) {
+            alert("Informe um CPF");
+            return false;
+        }
+
+        if ($("#Nascimento").val() == "") {
+            alert("Informe uma data de Nascimento");
             return false;
         }
 
         return true;
     }
+
+</script>
+
+<script>
+    $.datetimepicker.setLocale('pt');
+
+    $('#Nascimento').datetimepicker();
 
 </script>

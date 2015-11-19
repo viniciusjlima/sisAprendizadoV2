@@ -64,9 +64,8 @@
                                             @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = item.idPessoa })
 
                                             <td>
-                                                @Html.ActionLink("Editar", "Edit", new { item.idAluno }) </td>
-                                            <td>
-                                                @Html.ActionLink("Deletar", "Delete", new { id = item.idAluno }, new { @onclick = "return confirm('Tem certeza que deseja excluir?')" })
+                                                @Html.ActionLink("Editar", "EditPessoa", new { id=item.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                                                @Html.ActionLink("Excluir", "Delete", new { id=item.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
                                             </td>
                                         </tr>
                                     }

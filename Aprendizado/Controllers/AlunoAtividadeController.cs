@@ -360,7 +360,7 @@ namespace Aprendizado.Controllers
                 aa.idStatus = 3;
                 erro = alunoAtividadeModel.editarAlunoAtividade(aa);
 
-                return RedirectToAction("Avaliacoes ");
+                return RedirectToAction("Avaliacoes");
             }
             return Redirect("/Shared/Restrito");
         }

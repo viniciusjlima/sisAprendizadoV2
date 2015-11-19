@@ -11,6 +11,9 @@
                 <div class="col-md-12">
                     <h1 class="page-header">@ViewBag.NomePessoa<small>Gerenciamento de Endereços</small>
                     </h1>
+                    @Html.ActionLink("Incluir", "EditEndereco", new { idPessoa = ViewBag.idPessoa, idEndereco = 0 }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                    <br />
+                    <br />
                 </div>
             </div>
             <!-- /. ROW  -->

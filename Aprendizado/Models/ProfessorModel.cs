@@ -25,6 +25,15 @@ namespace Aprendizado.Models
             return lista.ToList().FirstOrDefault();
         }
 
+        public Professor obterProfessorPorPessoa(int idPessoa)
+        {
+            var lista = from p in db.Professor
+                        join pe in db.Pessoa on p.idPessoa equals pe.idPessoa
+                        where p.idPessoa == idPessoa
+                        select p;
+            return lista.ToList().FirstOrDefault();
+        }
+
         public Pessoa listarPessoaPorProfessor(int idProfessor)
         {
             var lista = from p in db.Pessoa
@@ -34,6 +43,7 @@ namespace Aprendizado.Models
                         select p;
             return lista.ToList().FirstOrDefault();
         }
+
 
 
         public string adicionarProfessor(Professor p)

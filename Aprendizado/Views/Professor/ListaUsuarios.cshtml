@@ -8,7 +8,10 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-header">@ViewBag.NomePessoa<small>Gerenciamento de Usuarios</small>
+                    <h1 class="page-header">Gerenciamento de Usuarios do <small>@ViewBag.NomePessoa</small>
+                    </h1>
+                    <br />
+                </div>
             </div>
             <!-- /. ROW  -->
 
@@ -22,8 +25,7 @@
                                     <thead>
                                          <tr>
 
-
-        <th>
+<th>
             Login
         </th>
         <th>
@@ -32,14 +34,11 @@
         <th>
             Tipo Perfil
         </th>
-
-        <th></th>
-        <th></th>
     </tr>
             
         </thead>
-                                    <tbody>
-   @foreach (var item in Model) {
+        <tbody>
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Login)
@@ -52,17 +51,15 @@
             @Html.DisplayFor(modelItem => item.Perfil.Descricao)
         </td>
 
+
         <td>
-            @Html.ActionLink("Edit", "EditUsuario", new { idUsuario = item.idUsuario, idPessoa = @ViewBag.idPessoa })</td>
-            <td>
+            @Html.ActionLink("Edit", "EditUsuario", new { idUsuario = item.idUsuario, idPessoa = @ViewBag.idPessoa })
             @Html.ActionLink("Delete", "DeleteUsuario",
                 new { idUsuario = item.idUsuario }, 
                 new { @onclick = "return confirm('Confirma Exclusão?');" })
         </td>
     </tr>
 }
-}
-
 
                                     </tbody>
                                 </table>
@@ -75,3 +72,5 @@
             </div>
         </div>
     </div>
+
+

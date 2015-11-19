@@ -50,13 +50,13 @@
             <br />
             <br />
         <div class="form-group">
-            <div class="col-md-3">
+            <div class="col-md-offset-2 col-md-10">
                     @if (Model.idPessoa != 0)
                     {
                         <h5>
-                            || @Html.ActionLink("Endereços", "ListaEnderecos", new { idPessoa = Model.idPessoa }) ||
-                            @Html.ActionLink("Telefones", "ListaTelefones", new { idPessoa = Model.idPessoa }) ||
-                            @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = Model.idPessoa }) ||
+                            @Html.ActionLink("Endereços", "ListaEnderecos", new { idPessoa = Model.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                            @Html.ActionLink("Telefones", "ListaTelefones", new { idPessoa = Model.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
+                            @Html.ActionLink("Usuarios", "ListaUsuarios", new { idPessoa = Model.idPessoa }, new { @class = "btn btn-default", @style = "color:#09192A "})
                         </h5>
                     }
                 </div>

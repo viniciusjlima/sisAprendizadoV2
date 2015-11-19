@@ -148,10 +148,14 @@ namespace Aprendizado.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Atividade a, Disciplina d, Turma t)
+        public ActionResult Edit(Atividade a, Disciplina d, Turma t, Curso c)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "Professor"))
             {
+                ViewBag.idCurso
+                    = new SelectList(cursoModel.todosCursos(),
+                        "idCurso", "Descricao", c);
+                
                 ViewBag.idDisciplina
                     = new SelectList(disciplinaModel.todasDisciplinas(),
                         "idDisciplina", "Descricao", d);

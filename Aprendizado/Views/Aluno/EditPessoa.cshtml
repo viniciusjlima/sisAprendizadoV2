@@ -32,8 +32,6 @@
             <div class="col-md-3">
     	        @Html.TextBoxFor(model => model.CPF, new { @class = "form-control" })
 
-                <input type="text" name="cpf" onBlur="ValidarCPF(form1.cpf);" 
-onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
             </div>
         </div>
 
@@ -84,11 +82,6 @@ onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
 }
 
 <script>
-    $("#CPF").mask('000.000.000-00');
-    $("#Nascimento").mask('00/00/0000');
-</script>
-
-<script>
     function validar() {
         $("#CPF").mask('00000000000');
 
@@ -109,5 +102,12 @@ onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
 
         return true;
     }
+
+</script>
+
+<script>
+    $.datetimepicker.setLocale('pt');
+
+    $('#Nascimento').datetimepicker();
 
 </script>

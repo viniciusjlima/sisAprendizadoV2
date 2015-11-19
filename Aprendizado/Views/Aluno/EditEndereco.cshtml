@@ -1,15 +1,93 @@
 ﻿@model Aprendizado.Entity.Endereco
-
 @{
     ViewBag.Title = "EditEndereco";
 }
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Gerenciamento de Curso<small> - @ViewBag.Titulo - </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        @using (Html.BeginForm())
+        {
+            <!-- /. ROW  -->
+            @Html.HiddenFor(model => model.idEndereco)
+        @Html.HiddenFor(model => model.idPessoa)
+
+             <div class="form-group">
+	        @Html.LabelFor(model => model.TipoEndereco, new { @class = "control-label col-md-2" })
+	        <div class="col-md-3">
+		        @Html.DropDownList("idTipoEndereco",null, new { @class = "form-control" })
+	        </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+	        @Html.LabelFor(model => model.Cidade.Estado, new { @class = "control-label col-md-2" })
+	        <div class="col-md-3">
+		        @Html.DropDownList("UF",null, new { @class = "form-control" })
+	        </div>
+        </div>
+            <br />
+        <div id="divCidades">
+            <div class="form-group">
+	        @Html.LabelFor(model => model.Cidade, new { @class = "control-label col-md-2" })
+	        <div class="col-md-3">
+		        @Html.DropDownList("idCidade",null, new { @class = "form-control" })
+	        </div>
+        </div>
+        </div>
+            <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.CEP, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Logradouro, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Logradouro, new { @class = "form-control" })
+            </div>
+        </div>
+            <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+            </div>
+        </div>
+            <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Complemento, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+    	        @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
+            </div>
+        </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="button" class="btn btn-default" value="Voltar" onclick="    history.go(-1)">
+                    <input type="submit" value="Salvar" class="btn btn-default" onclick="    return validar();" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
 
 
 @using (Html.BeginForm())
 {
 
     <div class="form-horizontal">
-        <h4>Informar endereço do aluno @ViewBag.nome</h4>
+        <h4>Informar endereço do(a) professor(a) @ViewBag.NomePessoa</h4>
         <hr />
     
         @Html.HiddenFor(model => model.idEndereco)
@@ -37,7 +115,7 @@
 	        </div>
         </div>
         </div>
-
+        <br />
         <div class="form-group">
             @Html.LabelFor(model => model.CEP, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
@@ -65,11 +143,15 @@
     	        @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
             </div>
         </div>
-        <br />   
-        <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/> 
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <br />   
+            <input type="button"  class="btn btn-default" value="Voltar" onClick="    history.go(-1)">  
+            <input type="submit" value="Salvar"  class="btn btn-default" onclick="    return validar();"/> 
+          </div>
+        </div>
     </div>
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

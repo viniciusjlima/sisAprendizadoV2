@@ -120,21 +120,17 @@ namespace Aprendizado.Controllers
             if (Roles.IsUserInRole(User.Identity.Name, "Administrador"))
             {
 
-                Professor p = new Professor();
-                p.idPessoa = idPessoa;
-                if (idProfessor != 0)
+                Professor p;
+                if (idPessoa == 0)
                 {
-                    p = professorModel.obterProfessor(idProfessor);
+                    p = new Professor();
                 }
-
-                int pessoaSelecionada = idPessoa;
-
-                if (idProfessor != 0)
+                else
                 {
-                    pessoaSelecionada = p.idPessoa;
+                    p = professorModel.obterProfessorPorPessoa(idPessoa);
                 }
-
                 return View(p);
+                
             }
             return Redirect("/Shared/Restrito");
         }
